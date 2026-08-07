@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ title }} — ShopSphere{% endblock %}
+
+{% block content %}
+<div class="container section-padding">
+  <div class="row justify-content-center">
+    <div class="col-lg-7">
+      <div class="card-shopsphere p-4 p-md-5">
+        <h3 class="fw-bold mb-4">{{ title }}</h3>
+
+        <form method="POST">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <div class="d-flex gap-2 mt-4">
+            <button type="submit" class="btn btn-primary-custom">Save Address</button>
+            <a href="{% url 'accounts:addresses' %}" class="btn btn-outline-custom">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

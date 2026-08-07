@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}500 Server Error{% endblock %}
+
+{% block content %}
+<div class="container section-padding text-center">
+  <div class="py-5">
+    <div class="display-1 text-warning fw-bold">500</div>
+    <div class="empty-state-icon">
+      <i class="fas fa-triangle-exclamation text-muted"></i>
+    </div>
+    <h2 class="empty-state-title mt-3">Internal Server Error</h2>
+    <p class="empty-state-text mx-auto" style="max-width: 500px;">
+      Something went wrong on our server. Our team has been notified and is working to resolve the issue.
+    </p>
+    <a href="{% url 'core:home' %}" class="btn btn-primary-custom">
+      <i class="fas fa-house me-2"></i>Back to Homepage
+    </a>
+  </div>
+</div>
+{% endblock %}

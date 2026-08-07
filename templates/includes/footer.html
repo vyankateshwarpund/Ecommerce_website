@@ -1,0 +1,54 @@
+{% load static %}
+<footer class="footer-main">
+  <div class="container">
+    <div class="row g-4">
+      <!-- Brand column -->
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-brand mb-2">
+          <img src="{% static 'images/logo.png' %}" alt="SPCart Logo" height="50" class="bg-white p-1 rounded">
+        </div>
+        <p class="footer-desc mt-2">
+          <strong>Smart Shopping, Everyday.</strong><br>
+          SPCart is a modern e-commerce platform delivering high-quality products, fast delivery, and exceptional customer experience.
+        </p>
+        <div class="d-flex gap-3 mt-3">
+          <a href="#" class="btn btn-sm btn-outline-light rounded-circle" style="width:36px; height:36px; display:inline-flex; align-items:center; justify-content:center;"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="btn btn-sm btn-outline-light rounded-circle" style="width:36px; height:36px; display:inline-flex; align-items:center; justify-content:center;"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="btn btn-sm btn-outline-light rounded-circle" style="width:36px; height:36px; display:inline-flex; align-items:center; justify-content:center;"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="btn btn-sm btn-outline-light rounded-circle" style="width:36px; height:36px; display:inline-flex; align-items:center; justify-content:center;"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-lg-2 col-md-6">
+        <h6 class="footer-heading">Quick Links</h6>
+        <a href="{% url 'core:home' %}" class="footer-link">Home</a>
+        <a href="{% url 'products:product_list' %}" class="footer-link">Shop Products</a>
+        <a href="{% url 'core:about' %}" class="footer-link">About Us</a>
+        <a href="{% url 'core:contact' %}" class="footer-link">Contact Support</a>
+      </div>
+
+      <!-- Customer Care -->
+      <div class="col-lg-3 col-md-6">
+        <h6 class="footer-heading">Customer Care</h6>
+        <a href="{% url 'accounts:profile' %}" class="footer-link">My Account</a>
+        <a href="{% url 'orders:order_history' %}" class="footer-link">Order History</a>
+        <a href="{% url 'wishlist:wishlist_detail' %}" class="footer-link">My Wishlist</a>
+        <a href="{% url 'cart:cart_detail' %}" class="footer-link">Shopping Cart</a>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-lg-3 col-md-6">
+        <h6 class="footer-heading">Contact Us</h6>
+        <p class="footer-link mb-2"><i class="fas fa-location-dot me-2 text-primary"></i> 123 Commerce Way, Tech City</p>
+        <p class="footer-link mb-2"><i class="fas fa-envelope me-2 text-primary"></i> support@spcart.com</p>
+        <p class="footer-link mb-2"><i class="fas fa-phone me-2 text-primary"></i> +1 (800) 123-4567</p>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="footer-bottom">
+      <p class="mb-0">&copy; {% now "Y" %} SPCart — Smart Shopping, Everyday. Designed & Built by Saurav Pund. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

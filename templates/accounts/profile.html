@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}My Profile — ShopSphere{% endblock %}
+
+{% block content %}
+<div class="container section-padding">
+  <div class="row g-4">
+    <!-- Sidebar Navigation -->
+    <div class="col-lg-3">
+      <div class="card-shopsphere p-3">
+        <div class="text-center py-3">
+          <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width:64px; height:64px; font-size:24px; font-weight:700;">
+            {{ user.first_name|default:user.email|slice:":1"|upper }}
+          </div>
+          <h5 class="fw-bold mb-0">{{ user.first_name }} {{ user.last_name }}</h5>
+          <p class="text-muted small">{{ user.email }}</p>
+        </div>
+        <div class="list-group list-group-flush border-top pt-2">
+          <a href="{% url 'accounts:profile' %}" class="list-group-item list-group-item-action active rounded mb-1"><i class="fas fa-user me-2"></i>Profile Details</a>
+          <a href="{% url 'orders:order_history' %}" class="list-group-item list-group-item-action rounded mb-1"><i class="fas fa-box me-2"></i>My Orders</a>
+          <a href="{% url 'accounts:addresses' %}" class="list-group-item list-group-item-action rounded mb-1"><i class="fas fa-location-dot me-2"></i>Saved Addresses</a>
+          <a href="{% url 'accounts:change_password' %}" class="list-group-item list-group-item-action rounded mb-1"><i class="fas fa-key me-2"></i>Change Password</a>
+          <a href="{% url 'accounts:logout' %}" class="list-group-item list-group-item-action text-danger rounded"><i class="fas fa-right-from-bracket me-2"></i>Logout</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Profile Card -->
+    <div class="col-lg-9">
+      <div class="card-shopsphere p-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fw-bold mb-0">Personal Information</h3>
+          <a href="{% url 'accounts:edit_profile' %}" class="btn btn-outline-custom btn-sm"><i class="fas fa-pen me-2"></i>Edit Profile</a>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6">
+            <label class="text-muted small">First Name</label>
+            <div class="fw-semibold fs-5">{{ user.first_name|default:"Not specified" }}</div>
+          </div>
+          <div class="col-md-6">
+            <label class="text-muted small">Last Name</label>
+            <div class="fw-semibold fs-5">{{ user.last_name|default:"Not specified" }}</div>
+          </div>
+          <div class="col-md-6">
+            <label class="text-muted small">Email Address</label>
+            <div class="fw-semibold fs-5">{{ user.email }}</div>
+          </div>
+          <div class="col-md-6">
+            <label class="text-muted small">Phone Number</label>
+            <div class="fw-semibold fs-5">{{ user.profile.phone|default:"Not specified" }}</div>
+          </div>
+          <div class="col-md-6">
+            <label class="text-muted small">Gender</label>
+            <div class="fw-semibold fs-5">{{ user.profile.get_gender_display|default:"Not specified" }}</div>
+          </div>
+          <div class="col-md-6">
+            <label class="text-muted small">Date of Birth</label>
+            <div class="fw-semibold fs-5">{{ user.profile.date_of_birth|default:"Not specified" }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

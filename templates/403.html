@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}403 Access Denied{% endblock %}
+
+{% block content %}
+<div class="container section-padding text-center">
+  <div class="py-5">
+    <div class="display-1 text-danger fw-bold">403</div>
+    <div class="empty-state-icon">
+      <i class="fas fa-lock text-muted"></i>
+    </div>
+    <h2 class="empty-state-title mt-3">Access Denied</h2>
+    <p class="empty-state-text mx-auto" style="max-width: 500px;">
+      You don't have permission to access this page. Please log in with appropriate administrative privileges.
+    </p>
+    <a href="{% url 'core:home' %}" class="btn btn-primary-custom">
+      <i class="fas fa-house me-2"></i>Back to Homepage
+    </a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-shopsphere">
+  <div class="container">
+    <!-- Brand Logo (52px height) -->
+    <a class="navbar-brand d-flex align-items-center gap-2 me-lg-4 me-2" href="{% url 'core:home' %}">
+      <img src="{% static 'images/logo.png' %}" alt="SPCart Logo" height="52" class="d-inline-block align-top rounded">
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible Menu -->
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <!-- Premium Search Bar -->
+      <form class="search-form d-flex ms-lg-2 me-lg-auto my-3 my-lg-0 col-lg-5" action="{% url 'products:search' %}" method="GET">
+        <input class="form-control" type="search" name="q" id="search-input" placeholder="Search products, brands, categories..." value="{{ request.GET.q|default:'' }}" aria-label="Search">
+        <button class="btn btn-search d-flex align-items-center gap-2 px-3 fw-semibold" type="submit">
+          <i class="fas fa-search"></i>
+          <span>Search</span>
+        </button>
+      </form>
+
+      <!-- Navigation Links (30-35px spacing between items) -->
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3 gap-1">
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'core:home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'product_list' or request.resolver_match.url_name == 'search' %}active{% endif %}" href="{% url 'products:product_list' %}">Shop</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'core:about' %}">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'core:contact' %}">Contact</a>
+        </li>
+
+        <!-- Wishlist Icon -->
+        <li class="nav-item ms-lg-3">
+          <a href="{% url 'wishlist:wishlist_detail' %}" class="nav-icon-btn text-decoration-none" title="Wishlist">
+            <i class="far fa-heart"></i>
+            <span class="nav-badge wishlist-count" style="{% if not wishlist_count %}display:none;{% endif %}">
+              {{ wishlist_count|default:0 }}
+            </span>
+          </a>
+        </li>
+
+        <!-- Cart Icon -->
+        <li class="nav-item ms-lg-1">
+          <a href="{% url 'cart:cart_detail' %}" class="nav-icon-btn text-decoration-none" title="Shopping Cart">
+            <i class="fas fa-cart-shopping"></i>
+            <span class="nav-badge cart-count" style="{% if not cart_count %}display:none;{% endif %}">
+              {{ cart_count|default:0 }}
+            </span>
+          </a>
+        </li>
+
+        <!-- User Profile / Auth CTA Buttons -->
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown ms-lg-3">
+          <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 border-0" href="#" role="button" data-bs-toggle="dropdown">
+            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 34px; height: 34px; font-weight: 600; font-size: 14px;">
+              {{ user.first_name|default:user.email|slice:":1"|upper }}
+            </div>
+            <span class="d-none d-lg-inline fw-medium text-dark">{{ user.first_name|default:user.username }}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-2" style="border-radius:14px;">
+            {% if user.is_staff %}
+            <li><a class="dropdown-item py-2" href="{% url 'dashboard:index' %}"><i class="fas fa-chart-line me-2 text-primary"></i>Admin Dashboard</a></li>
+            <li><hr class="dropdown-divider"></li>
+            {% endif %}
+            <li><a class="dropdown-item py-2" href="{% url 'accounts:profile' %}"><i class="fas fa-user me-2 text-muted"></i>My Profile</a></li>
+            <li><a class="dropdown-item py-2" href="{% url 'orders:order_history' %}"><i class="fas fa-box me-2 text-muted"></i>My Orders</a></li>
+            <li><a class="dropdown-item py-2" href="{% url 'accounts:addresses' %}"><i class="fas fa-location-dot me-2 text-muted"></i>Saved Addresses</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item py-2 text-danger" href="{% url 'accounts:logout' %}"><i class="fas fa-right-from-bracket me-2"></i>Logout</a></li>
+          </ul>
+        </li>
+        {% else %}
+        <li class="nav-item ms-lg-3">
+          <a class="btn btn-outline-custom btn-sm px-3" href="{% url 'accounts:login' %}">Login</a>
+        </li>
+        <li class="nav-item ms-lg-1">
+          <a class="btn btn-primary-custom btn-sm px-3" href="{% url 'accounts:register' %}">Register</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
