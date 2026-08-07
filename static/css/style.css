@@ -844,7 +844,144 @@ a.category-chip-deals:hover, .category-chip-deals:hover {
   margin-top: 6px;
 }
 
-/* ── Today's Mega Deals Section (10 Enhancements) ── */
+/* ── Top Brands Section (Simple & Minimal) ── */
+.top-brands-section {
+  background: #F8FAFC;
+  padding: 60px 0 65px;
+  position: relative;
+}
+
+.brand-marquee-mask {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 15px 0 20px;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
+
+.brand-marquee-track {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  animation: continuousMarquee 40s linear infinite;
+}
+
+.brand-marquee-mask:hover .brand-marquee-track {
+  animation-play-state: paused;
+}
+
+.brand-simple-card {
+  width: 170px;
+  height: 80px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 22px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  transition: all 250ms ease;
+  text-decoration: none !important;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.brand-simple-card img {
+  max-height: 36px;
+  max-width: 120px;
+  object-fit: contain;
+  transition: transform 250ms ease;
+}
+
+.brand-simple-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.12) !important;
+  border-color: #2563EB !important;
+}
+
+.brand-simple-card:hover img {
+  transform: scale(1.05) !important;
+}
+.brand-marquee-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 15px 0 25px;
+}
+
+/* Gradient fade edges for marquee */
+.brand-marquee-container::before,
+.brand-marquee-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.brand-marquee-container::before {
+  left: 0;
+  background: linear-gradient(90deg, #F8FAFC 0%, rgba(248, 250, 252, 0) 100%);
+}
+
+.brand-marquee-container::after {
+  right: 0;
+  background: linear-gradient(270deg, #F8FAFC 0%, rgba(248, 250, 252, 0) 100%);
+}
+
+.brand-marquee-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: continuousMarquee 35s linear infinite;
+}
+
+.brand-marquee-container:hover .brand-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes continuousMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Premium Brand Card & Hover Animation */
+.brand-logo-card {
+  width: 180px;
+  height: 95px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  border: 1px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand-logo-img {
+  max-height: 52px;
+  max-width: 130px;
+  object-fit: contain;
+  transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.brand-logo-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15), 0 8px 16px rgba(0, 0, 0, 0.06) !important;
+  border-color: var(--primary-light) !important;
+}
+
+.brand-logo-card:hover .brand-logo-img {
+  transform: scale(1.08) !important;
+}
 .deals-section-card {
   background: linear-gradient(135deg, #0B132B 0%, #1C2541 50%, #0F172A 100%);
   border-radius: 28px;

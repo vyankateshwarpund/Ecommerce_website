@@ -420,27 +420,47 @@
 
 
 <!-- ═══════════════════════════════════════════════════
-     8. TOP BRANDS (From Database)
+     8. DYNAMIC TOP BRANDS (Simple & Minimal)
 ═══════════════════════════════════════════════════ -->
-<section class="section-padding bg-light border-bottom">
-  <div class="container">
-    <div class="text-center max-w-xl mx-auto mb-4">
-      <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-1 mb-2" style="border-radius: 99px;">OFFICIAL PARTNERS</span>
-      <h2 class="section-title">Top Brands</h2>
-      <p class="section-subtitle">Shop authentic products from world-class global brands.</p>
-      <div class="section-divider mx-auto"></div>
-    </div>
+<section class="top-brands-section border-bottom">
+  <div class="container text-center mb-4">
+    <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-1 mb-2" style="border-radius: 99px;">OFFICIAL PARTNERS</span>
+    <h2 class="section-title mb-1">Top Brands</h2>
+    <p class="section-subtitle mb-0">Shop authentic products from world-class global brands.</p>
+  </div>
 
-    <div class="row g-4 text-center align-items-center">
+  <!-- Smooth Edge Fade Mask & Continuous Horizontal Marquee Carousel -->
+  <div class="brand-marquee-mask">
+    <div class="brand-marquee-track">
+      <!-- First Set of Database Brands -->
       {% for brand in brands %}
-      <div class="col-4 col-md-2">
-        <div class="card-shopsphere p-3 hover-lift border">
-          <i class="fab fa-{{ brand.name|lower }} display-5 text-dark"></i>
-          <div class="fw-semibold text-muted small mt-2">{{ brand.name }}</div>
-        </div>
-      </div>
+      <a href="{% url 'products:product_list' %}?brand={{ brand.slug }}" class="brand-simple-card" title="Shop {{ brand.name }}">
+        {% if brand.logo %}
+          <img src="{{ brand.logo.url }}" alt="{{ brand.name }} Logo">
+        {% else %}
+          <span class="fw-bold fs-5 text-dark">{{ brand.name }}</span>
+        {% endif %}
+      </a>
+      {% endfor %}
+
+      <!-- Duplicate Set for Seamless Infinite Loop -->
+      {% for brand in brands %}
+      <a href="{% url 'products:product_list' %}?brand={{ brand.slug }}" class="brand-simple-card" title="Shop {{ brand.name }}">
+        {% if brand.logo %}
+          <img src="{{ brand.logo.url }}" alt="{{ brand.name }} Logo">
+        {% else %}
+          <span class="fw-bold fs-5 text-dark">{{ brand.name }}</span>
+        {% endif %}
+      </a>
       {% endfor %}
     </div>
+  </div>
+
+  <!-- Simple Centered CTA Button -->
+  <div class="text-center mt-4">
+    <a href="{% url 'products:product_list' %}" class="btn btn-outline-custom btn-md px-4" style="border-radius: 99px;">
+      Explore All Brands <i class="fas fa-arrow-right ms-2"></i>
+    </a>
   </div>
 </section>
 
