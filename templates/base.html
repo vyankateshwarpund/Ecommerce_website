@@ -14,9 +14,9 @@
   <!-- SPCart Global CSS with cache buster -->
   <link href="{% static 'css/style.css' %}?v={% now 'U' %}" rel="stylesheet" />
 
-  <!-- Critical Inline Category Chip & Navbar Overrides -->
+  <!-- Critical Header Height Specifications (Combined 128px: Navbar 74px + Category Bar 54px) -->
   <style>
-    /* Sticky Header Container */
+    /* Sticky Header Container (Combined Height: ~128px) */
     .sticky-header-container {
       position: sticky !important;
       top: 0 !important;
@@ -25,11 +25,81 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
     }
 
-    /* Category Bar Wrapper */
+    /* Main Navbar (Height: 74px like Amazon/Flipkart/Apple) */
+    .navbar-shopsphere {
+      background: #FFFFFF !important;
+      height: 74px !important;
+      padding: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      border-bottom: 1px solid #F1F5F9 !important;
+    }
+
+    .navbar-shopsphere .container {
+      height: 100% !important;
+      display: flex !important;
+      align-items: center !important;
+    }
+
+    .navbar-brand {
+      padding: 0 !important;
+      margin-right: 20px !important;
+    }
+
+    /* Logo Height: 48px with 0 surrounding padding */
+    .navbar-brand img {
+      height: 48px !important;
+      width: auto !important;
+      object-fit: contain !important;
+    }
+
+    /* Search Bar (Height: 48px, Border Radius: 12px) */
+    .search-form {
+      height: 48px !important;
+      position: relative !important;
+      margin: 0 !important;
+    }
+
+    .search-form .form-control {
+      height: 48px !important;
+      border-radius: 12px 0 0 12px !important;
+      border: 2px solid var(--border) !important;
+      border-right: none !important;
+      padding: 0 18px !important;
+      font-size: 14.5px !important;
+      background: #F8FAFC !important;
+    }
+
+    .search-form .form-control::placeholder {
+      color: #94A3B8 !important;
+    }
+
+    .search-form .form-control:focus {
+      border-color: var(--primary) !important;
+      background: #FFFFFF !important;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12) !important;
+    }
+
+    .search-form .btn-search {
+      height: 48px !important;
+      border-radius: 0 12px 12px 0 !important;
+      background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%) !important;
+      color: white !important;
+      border: 2px solid var(--primary) !important;
+      border-left: none !important;
+      padding: 0 20px !important;
+      font-size: 14.5px !important;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25) !important;
+    }
+
+    /* Category Bar (Height: 54px) */
     .category-bar-wrapper {
       background: #FFFFFF !important;
-      border-bottom: 1px solid #F1F5F9 !important;
-      padding: 10px 0 !important;
+      height: 54px !important;
+      padding: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      border-bottom: 1px solid #E2E8F0 !important;
       overflow-x: auto !important;
       scrollbar-width: none !important;
     }
@@ -39,16 +109,19 @@
     }
 
     .category-bar-wrapper .container {
+      height: 100% !important;
+      display: flex !important;
+      align-items: center !important;
       gap: 12px !important;
     }
 
-    /* Force Pill-Shaped Category Chips */
+    /* Category Chips (Reduced vertical padding: 6px 16px) */
     .category-chip, a.category-chip, button.category-chip {
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
       gap: 8px !important;
-      padding: 8px 18px !important;
+      padding: 6px 16px !important;
       border-radius: 999px !important;
       background: #F1F5F9 !important;
       color: #1E293B !important;

@@ -1,12 +1,12 @@
 {% load static %}
-<!-- STICKY HEADER CONTAINER (Wraps Main Navbar + Category Bar) -->
+<!-- STICKY HEADER CONTAINER (Combined Height: ~128px) -->
 <header class="sticky-header-container">
-  <!-- MAIN NAVIGATION BAR -->
-  <nav class="navbar navbar-expand-lg navbar-shopsphere py-2">
+  <!-- MAIN NAVIGATION BAR (Height: 74px) -->
+  <nav class="navbar navbar-expand-lg navbar-shopsphere">
     <div class="container">
-      <!-- Horizontal Clean Header Brand Logo -->
-      <a class="navbar-brand d-flex align-items-center me-lg-3 me-2" href="{% url 'core:home' %}">
-        <img src="{% static 'images/header_logo.png' %}?v={% now 'U' %}" alt="SPCart Logo" style="height:48px; width:auto; max-width:180px; object-fit:contain;" class="d-inline-block align-top">
+      <!-- Logo: 48px height with 0 surrounding padding -->
+      <a class="navbar-brand d-flex align-items-center p-0 me-lg-3 me-2" href="{% url 'core:home' %}">
+        <img src="{% static 'images/header_logo.png' %}?v={% now 'U' %}" alt="SPCart Logo" style="height:48px; width:auto; max-width:180px; object-fit:contain;" class="d-inline-block">
       </a>
 
       <!-- Mobile Toggle -->
@@ -16,8 +16,8 @@
 
       <!-- Collapsible Menu -->
       <div class="collapse navbar-collapse" id="navbarMain">
-        <!-- Search Bar with explicit flex-grow -->
-        <form class="search-form d-flex my-2 my-lg-0 me-lg-auto flex-grow-1" style="max-width: 480px;" action="{% url 'products:search' %}" method="GET">
+        <!-- Search Bar (Height: 48px, Border Radius: 12px) -->
+        <form class="search-form d-flex my-0 me-lg-auto flex-grow-1" style="max-width: 460px;" action="{% url 'products:search' %}" method="GET">
           <input class="form-control" type="search" name="q" id="search-input" placeholder="Search products, brands, categories..." value="{{ request.GET.q|default:'' }}" aria-label="Search">
           <button class="btn btn-search d-flex align-items-center gap-2 px-3 fw-semibold" type="submit">
             <i class="fas fa-search"></i>
@@ -94,7 +94,7 @@
     </div>
   </nav>
 
-  <!-- HORIZONTAL PILL CATEGORY CHIPS BAR -->
+  <!-- HORIZONTAL PILL CATEGORY CHIPS BAR (Height: 54px) -->
   <div class="category-bar-wrapper">
     <div class="container d-flex align-items-center">
       <a href="{% url 'products:product_list' %}" class="category-chip text-decoration-none {% if not request.GET.category %}active{% endif %}">
