@@ -1,92 +1,162 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-shopsphere">
-  <div class="container">
-    <!-- Brand Logo (52px height) -->
-    <a class="navbar-brand d-flex align-items-center gap-2 me-lg-4 me-2" href="{% url 'core:home' %}">
-      <img src="{% static 'images/logo.png' %}" alt="SPCart Logo" height="52" class="d-inline-block align-top rounded">
-    </a>
+<!-- STICKY HEADER CONTAINER (Wraps Main Navbar + Category Bar) -->
+<header class="sticky-header-container">
+  <!-- MAIN NAVIGATION BAR -->
+  <nav class="navbar navbar-expand-lg navbar-shopsphere py-2">
+    <div class="container">
+      <!-- Horizontal Clean Header Brand Logo -->
+      <a class="navbar-brand d-flex align-items-center me-lg-3 me-2" href="{% url 'core:home' %}">
+        <img src="{% static 'images/header_logo.png' %}?v={% now 'U' %}" alt="SPCart Logo" style="height:48px; width:auto; max-width:180px; object-fit:contain;" class="d-inline-block align-top">
+      </a>
 
-    <!-- Mobile Toggle -->
-    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <!-- Mobile Toggle -->
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <!-- Collapsible Menu -->
-    <div class="collapse navbar-collapse" id="navbarMain">
-      <!-- Premium Search Bar -->
-      <form class="search-form d-flex ms-lg-2 me-lg-auto my-3 my-lg-0 col-lg-5" action="{% url 'products:search' %}" method="GET">
-        <input class="form-control" type="search" name="q" id="search-input" placeholder="Search products, brands, categories..." value="{{ request.GET.q|default:'' }}" aria-label="Search">
-        <button class="btn btn-search d-flex align-items-center gap-2 px-3 fw-semibold" type="submit">
-          <i class="fas fa-search"></i>
-          <span>Search</span>
+      <!-- Collapsible Menu -->
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <!-- Search Bar with explicit flex-grow -->
+        <form class="search-form d-flex my-2 my-lg-0 me-lg-auto flex-grow-1" style="max-width: 480px;" action="{% url 'products:search' %}" method="GET">
+          <input class="form-control" type="search" name="q" id="search-input" placeholder="Search products, brands, categories..." value="{{ request.GET.q|default:'' }}" aria-label="Search">
+          <button class="btn btn-search d-flex align-items-center gap-2 px-3 fw-semibold" type="submit">
+            <i class="fas fa-search"></i>
+            <span>Search</span>
+          </button>
+        </form>
+
+        <!-- Navigation Links -->
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'core:home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'product_list' or request.resolver_match.url_name == 'search' %}active{% endif %}" href="{% url 'products:product_list' %}">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'core:about' %}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'core:contact' %}">Contact</a>
+          </li>
+
+          <!-- Wishlist Icon -->
+          <li class="nav-item ms-lg-2">
+            <a href="{% url 'wishlist:wishlist_detail' %}" class="nav-icon-btn text-decoration-none" title="Wishlist">
+              <i class="far fa-heart"></i>
+              <span class="nav-badge wishlist-count" style="{% if not wishlist_count %}display:none;{% endif %}">
+                {{ wishlist_count|default:0 }}
+              </span>
+            </a>
+          </li>
+
+          <!-- Cart Icon -->
+          <li class="nav-item ms-lg-1">
+            <a href="{% url 'cart:cart_detail' %}" class="nav-icon-btn text-decoration-none" title="Shopping Cart">
+              <i class="fas fa-cart-shopping"></i>
+              <span class="nav-badge cart-count" style="{% if not cart_count %}display:none;{% endif %}">
+                {{ cart_count|default:0 }}
+              </span>
+            </a>
+          </li>
+
+          <!-- User Profile / Auth CTA Buttons -->
+          {% if user.is_authenticated %}
+          <li class="nav-item dropdown ms-lg-2">
+            <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 border-0" href="#" role="button" data-bs-toggle="dropdown">
+              <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 34px; height: 34px; font-weight: 600; font-size: 14px;">
+                {{ user.first_name|default:user.email|slice:":1"|upper }}
+              </div>
+              <span class="d-none d-lg-inline fw-medium text-dark">{{ user.first_name|default:user.username }}</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-2" style="border-radius:14px;">
+              {% if user.is_staff %}
+              <li><a class="dropdown-item py-2" href="{% url 'dashboard:index' %}"><i class="fas fa-chart-line me-2 text-primary"></i>Admin Dashboard</a></li>
+              <li><hr class="dropdown-divider"></li>
+              {% endif %}
+              <li><a class="dropdown-item py-2" href="{% url 'accounts:profile' %}"><i class="fas fa-user me-2 text-muted"></i>My Profile</a></li>
+              <li><a class="dropdown-item py-2" href="{% url 'orders:order_history' %}"><i class="fas fa-box me-2 text-muted"></i>My Orders</a></li>
+              <li><a class="dropdown-item py-2" href="{% url 'accounts:addresses' %}"><i class="fas fa-location-dot me-2 text-muted"></i>Saved Addresses</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item py-2 text-danger" href="{% url 'accounts:logout' %}"><i class="fas fa-right-from-bracket me-2"></i>Logout</a></li>
+            </ul>
+          </li>
+          {% else %}
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-outline-custom btn-sm px-3" href="{% url 'accounts:login' %}">Login</a>
+          </li>
+          <li class="nav-item ms-lg-1">
+            <a class="btn btn-primary-custom btn-sm px-3" href="{% url 'accounts:register' %}">Register</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HORIZONTAL PILL CATEGORY CHIPS BAR -->
+  <div class="category-bar-wrapper">
+    <div class="container d-flex align-items-center">
+      <a href="{% url 'products:product_list' %}" class="category-chip text-decoration-none {% if not request.GET.category %}active{% endif %}">
+        <i class="fas fa-border-all"></i>
+        <span>All Categories</span>
+      </a>
+
+      <a href="{% url 'products:product_list' %}?category=mobiles" class="category-chip text-decoration-none {% if request.GET.category == 'mobiles' %}active{% endif %}">
+        <i class="fas fa-mobile-screen-button"></i>
+        <span>Mobiles</span>
+      </a>
+
+      <a href="{% url 'products:product_list' %}?category=electronics" class="category-chip text-decoration-none {% if request.GET.category == 'electronics' %}active{% endif %}">
+        <i class="fas fa-laptop"></i>
+        <span>Electronics</span>
+      </a>
+
+      <a href="{% url 'products:product_list' %}?category=fashion" class="category-chip text-decoration-none {% if request.GET.category == 'fashion' %}active{% endif %}">
+        <i class="fas fa-shirt"></i>
+        <span>Fashion</span>
+      </a>
+
+      <a href="{% url 'products:product_list' %}?category=gaming" class="category-chip text-decoration-none {% if request.GET.category == 'gaming' %}active{% endif %}">
+        <i class="fas fa-gamepad"></i>
+        <span>Gaming</span>
+      </a>
+
+      <a href="{% url 'products:product_list' %}?category=home" class="category-chip text-decoration-none {% if request.GET.category == 'home' %}active{% endif %}">
+        <i class="fas fa-house"></i>
+        <span>Home & Living</span>
+      </a>
+
+      <a href="{% url 'products:product_list' %}?category=beauty" class="category-chip text-decoration-none {% if request.GET.category == 'beauty' %}active{% endif %}">
+        <i class="fas fa-wand-magic-sparkles"></i>
+        <span>Beauty</span>
+      </a>
+
+      <a href="{% url 'products:product_list' %}?category=books" class="category-chip text-decoration-none {% if request.GET.category == 'books' %}active{% endif %}">
+        <i class="fas fa-book-open"></i>
+        <span>Books</span>
+      </a>
+
+      <!-- "More" Dropdown -->
+      <div class="dropdown">
+        <button class="category-chip text-decoration-none border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fas fa-ellipsis"></i>
+          <span>More</span>
         </button>
-      </form>
+        <ul class="dropdown-menu border-0 shadow-lg mt-2" style="border-radius:14px; min-width:200px;">
+          <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{% url 'products:product_list' %}?category=sports"><i class="fas fa-dumbbell text-primary" style="width:18px;"></i> Sports & Fitness</a></li>
+          <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{% url 'products:product_list' %}?category=automotive"><i class="fas fa-car text-primary" style="width:18px;"></i> Automotive</a></li>
+          <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{% url 'products:product_list' %}?category=toys"><i class="fas fa-puzzle-piece text-primary" style="width:18px;"></i> Toys & Baby</a></li>
+          <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{% url 'products:product_list' %}?category=office"><i class="fas fa-briefcase text-primary" style="width:18px;"></i> Office Supplies</a></li>
+          <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{% url 'products:product_list' %}?category=pets"><i class="fas fa-paw text-primary" style="width:18px;"></i> Pet Supplies</a></li>
+        </ul>
+      </div>
 
-      <!-- Navigation Links (30-35px spacing between items) -->
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3 gap-1">
-        <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'core:home' %}">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'product_list' or request.resolver_match.url_name == 'search' %}active{% endif %}" href="{% url 'products:product_list' %}">Shop</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'core:about' %}">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'core:contact' %}">Contact</a>
-        </li>
-
-        <!-- Wishlist Icon -->
-        <li class="nav-item ms-lg-3">
-          <a href="{% url 'wishlist:wishlist_detail' %}" class="nav-icon-btn text-decoration-none" title="Wishlist">
-            <i class="far fa-heart"></i>
-            <span class="nav-badge wishlist-count" style="{% if not wishlist_count %}display:none;{% endif %}">
-              {{ wishlist_count|default:0 }}
-            </span>
-          </a>
-        </li>
-
-        <!-- Cart Icon -->
-        <li class="nav-item ms-lg-1">
-          <a href="{% url 'cart:cart_detail' %}" class="nav-icon-btn text-decoration-none" title="Shopping Cart">
-            <i class="fas fa-cart-shopping"></i>
-            <span class="nav-badge cart-count" style="{% if not cart_count %}display:none;{% endif %}">
-              {{ cart_count|default:0 }}
-            </span>
-          </a>
-        </li>
-
-        <!-- User Profile / Auth CTA Buttons -->
-        {% if user.is_authenticated %}
-        <li class="nav-item dropdown ms-lg-3">
-          <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 border-0" href="#" role="button" data-bs-toggle="dropdown">
-            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 34px; height: 34px; font-weight: 600; font-size: 14px;">
-              {{ user.first_name|default:user.email|slice:":1"|upper }}
-            </div>
-            <span class="d-none d-lg-inline fw-medium text-dark">{{ user.first_name|default:user.username }}</span>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-2" style="border-radius:14px;">
-            {% if user.is_staff %}
-            <li><a class="dropdown-item py-2" href="{% url 'dashboard:index' %}"><i class="fas fa-chart-line me-2 text-primary"></i>Admin Dashboard</a></li>
-            <li><hr class="dropdown-divider"></li>
-            {% endif %}
-            <li><a class="dropdown-item py-2" href="{% url 'accounts:profile' %}"><i class="fas fa-user me-2 text-muted"></i>My Profile</a></li>
-            <li><a class="dropdown-item py-2" href="{% url 'orders:order_history' %}"><i class="fas fa-box me-2 text-muted"></i>My Orders</a></li>
-            <li><a class="dropdown-item py-2" href="{% url 'accounts:addresses' %}"><i class="fas fa-location-dot me-2 text-muted"></i>Saved Addresses</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item py-2 text-danger" href="{% url 'accounts:logout' %}"><i class="fas fa-right-from-bracket me-2"></i>Logout</a></li>
-          </ul>
-        </li>
-        {% else %}
-        <li class="nav-item ms-lg-3">
-          <a class="btn btn-outline-custom btn-sm px-3" href="{% url 'accounts:login' %}">Login</a>
-        </li>
-        <li class="nav-item ms-lg-1">
-          <a class="btn btn-primary-custom btn-sm px-3" href="{% url 'accounts:register' %}">Register</a>
-        </li>
-        {% endif %}
-      </ul>
+      <!-- Deals & Offers Badge -->
+      <a href="{% url 'products:product_list' %}?filter=deals" class="category-chip category-chip-deals text-decoration-none ms-auto">
+        <i class="fas fa-bolt"></i>
+        <span>Deals & Offers</span>
+      </a>
     </div>
   </div>
-</nav>
+</header>

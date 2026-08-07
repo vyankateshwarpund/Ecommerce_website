@@ -1,17 +1,18 @@
 {% load static %}
 <footer class="footer-main">
   <div class="container">
-    <div class="row g-4">
-      <!-- Brand column -->
-      <div class="col-lg-4 col-md-6">
-        <div class="footer-brand mb-2">
-          <img src="{% static 'images/logo.png' %}" alt="SPCart Logo" height="50" class="bg-white p-1 rounded">
+    <!-- Increased column spacing with g-4 g-lg-5 -->
+    <div class="row g-4 g-lg-5">
+      <!-- Brand Column (Logo reduced by ~40% to height: 34px) -->
+      <div class="col-lg-4 col-md-6 mb-3 mb-lg-0">
+        <div class="footer-brand mb-3">
+          <img src="{% static 'images/header_logo.png' %}" alt="SPCart Logo" height="34" class="bg-white px-3 py-1.5 rounded-3 shadow-sm" style="height:34px; width:auto; object-fit:contain;">
         </div>
-        <p class="footer-desc mt-2">
+        <p class="footer-desc mt-3">
           <strong>Smart Shopping, Everyday.</strong><br>
           SPCart is a modern e-commerce platform delivering high-quality products, fast delivery, and exceptional customer experience.
         </p>
-        <div class="d-flex gap-3 mt-3">
+        <div class="d-flex gap-3 mt-4">
           <a href="#" class="btn btn-sm btn-outline-light rounded-circle" style="width:36px; height:36px; display:inline-flex; align-items:center; justify-content:center;"><i class="fab fa-facebook-f"></i></a>
           <a href="#" class="btn btn-sm btn-outline-light rounded-circle" style="width:36px; height:36px; display:inline-flex; align-items:center; justify-content:center;"><i class="fab fa-twitter"></i></a>
           <a href="#" class="btn btn-sm btn-outline-light rounded-circle" style="width:36px; height:36px; display:inline-flex; align-items:center; justify-content:center;"><i class="fab fa-instagram"></i></a>
@@ -20,7 +21,7 @@
       </div>
 
       <!-- Quick Links -->
-      <div class="col-lg-2 col-md-6">
+      <div class="col-lg-2 col-md-6 mb-3 mb-lg-0">
         <h6 class="footer-heading">Quick Links</h6>
         <a href="{% url 'core:home' %}" class="footer-link">Home</a>
         <a href="{% url 'products:product_list' %}" class="footer-link">Shop Products</a>
@@ -29,7 +30,7 @@
       </div>
 
       <!-- Customer Care -->
-      <div class="col-lg-3 col-md-6">
+      <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
         <h6 class="footer-heading">Customer Care</h6>
         <a href="{% url 'accounts:profile' %}" class="footer-link">My Account</a>
         <a href="{% url 'orders:order_history' %}" class="footer-link">Order History</a>
@@ -38,7 +39,7 @@
       </div>
 
       <!-- Contact Info -->
-      <div class="col-lg-3 col-md-6">
+      <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
         <h6 class="footer-heading">Contact Us</h6>
         <p class="footer-link mb-2"><i class="fas fa-location-dot me-2 text-primary"></i> 123 Commerce Way, Tech City</p>
         <p class="footer-link mb-2"><i class="fas fa-envelope me-2 text-primary"></i> support@spcart.com</p>
