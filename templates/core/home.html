@@ -199,7 +199,7 @@
 
 
 <!-- ═══════════════════════════════════════════════════
-     5. FEATURED CATEGORIES
+     5. DYNAMIC FEATURED CATEGORIES (From Database)
 ═══════════════════════════════════════════════════ -->
 <section class="section-padding bg-white border-bottom">
   <div class="container">
@@ -212,60 +212,24 @@
     </div>
 
     <div class="row g-4">
+      {% for category in featured_categories %}
       <div class="col-6 col-md-4 col-lg-2">
-        <a href="{% url 'products:product_list' %}?category=electronics" class="card-shopsphere p-4 text-center text-decoration-none h-100 d-block border hover-lift">
-          <i class="fas fa-laptop text-primary display-6 mb-3"></i>
-          <h6 class="fw-bold text-dark mb-1">Electronics</h6>
-          <span class="text-muted small">1,200+ Items</span>
+        <a href="{% url 'products:product_list' %}?category={{ category.slug }}" class="card-shopsphere p-4 text-center text-decoration-none h-100 d-block border hover-lift">
+          <i class="{{ category.icon }} text-primary display-6 mb-3"></i>
+          <h6 class="fw-bold text-dark mb-1">{{ category.name }}</h6>
+          <span class="text-muted small">{{ category.products.count }} Products</span>
         </a>
       </div>
-
-      <div class="col-6 col-md-4 col-lg-2">
-        <a href="{% url 'products:product_list' %}?category=mobiles" class="card-shopsphere p-4 text-center text-decoration-none h-100 d-block border hover-lift">
-          <i class="fas fa-mobile-screen-button text-primary display-6 mb-3"></i>
-          <h6 class="fw-bold text-dark mb-1">Mobiles</h6>
-          <span class="text-muted small">850+ Items</span>
-        </a>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-2">
-        <a href="{% url 'products:product_list' %}?category=fashion" class="card-shopsphere p-4 text-center text-decoration-none h-100 d-block border hover-lift">
-          <i class="fas fa-shirt text-primary display-6 mb-3"></i>
-          <h6 class="fw-bold text-dark mb-1">Fashion</h6>
-          <span class="text-muted small">3,400+ Items</span>
-        </a>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-2">
-        <a href="{% url 'products:product_list' %}?category=gaming" class="card-shopsphere p-4 text-center text-decoration-none h-100 d-block border hover-lift">
-          <i class="fas fa-gamepad text-primary display-6 mb-3"></i>
-          <h6 class="fw-bold text-dark mb-1">Gaming</h6>
-          <span class="text-muted small">600+ Items</span>
-        </a>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-2">
-        <a href="{% url 'products:product_list' %}?category=home" class="card-shopsphere p-4 text-center text-decoration-none h-100 d-block border hover-lift">
-          <i class="fas fa-house text-primary display-6 mb-3"></i>
-          <h6 class="fw-bold text-dark mb-1">Home & Living</h6>
-          <span class="text-muted small">1,800+ Items</span>
-        </a>
-      </div>
-
-      <div class="col-6 col-md-4 col-lg-2">
-        <a href="{% url 'products:product_list' %}?category=beauty" class="card-shopsphere p-4 text-center text-decoration-none h-100 d-block border hover-lift">
-          <i class="fas fa-wand-magic-sparkles text-primary display-6 mb-3"></i>
-          <h6 class="fw-bold text-dark mb-1">Beauty</h6>
-          <span class="text-muted small">950+ Items</span>
-        </a>
-      </div>
+      {% empty %}
+      <div class="col-12 text-center py-4 text-muted">No categories available right now.</div>
+      {% endfor %}
     </div>
   </div>
 </section>
 
 
 <!-- ═══════════════════════════════════════════════════
-     6. FEATURED PRODUCTS (Indian Rupees ₹ Prices)
+     6. DYNAMIC FEATURED PRODUCTS (From Database)
 ═══════════════════════════════════════════════════ -->
 <section class="section-padding bg-light border-bottom">
   <div class="container">
@@ -275,7 +239,6 @@
         <h2 class="section-title mb-0">Featured Products</h2>
       </div>
       
-      <!-- Carousel Controls -->
       <div class="d-flex gap-2">
         <button class="btn btn-outline-secondary rounded-circle px-3 py-2" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev" title="Previous">
           <i class="fas fa-chevron-left"></i>
@@ -286,183 +249,81 @@
       </div>
     </div>
 
-    <!-- Carousel -->
     <div id="featuredCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <div class="row g-4">
             
-            <!-- Product Card 1: Laptop (₹79,999) -->
+            {% for product in featured_products %}
             <div class="col-sm-6 col-md-4 col-lg-3">
               <div class="product-card h-100">
-                <span class="product-badge-custom badge-bestseller">Best Seller</span>
-                <button class="wishlist-btn btn-wishlist" data-product-id="1" title="Add to Wishlist"><i class="far fa-heart"></i></button>
+                <!-- Badge -->
+                {% if product.badge %}
+                  <span class="product-badge-custom badge-{{ product.badge }}">{{ product.get_badge_display }}</span>
+                {% endif %}
                 
+                <!-- Wishlist -->
+                <button class="wishlist-btn btn-wishlist" data-product-id="{{ product.id }}" title="Add to Wishlist"><i class="far fa-heart"></i></button>
+                
+                <!-- Product Image -->
                 <div class="product-card-img-wrap">
-                  <img src="{% static 'images/featured_laptop.jpg' %}" alt="Pro Ultra Laptop" class="product-card-img">
+                  {% if product.main_image %}
+                    <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="product-card-img">
+                  {% else %}
+                    <img src="{% static 'images/featured_laptop.jpg' %}" alt="{{ product.name }}" class="product-card-img">
+                  {% endif %}
+
                   <div class="product-quick-actions">
-                    <button class="btn-quick-action" title="Quick View" onclick="showToast('Quick view: Pro Ultra Laptop', 'info')"><i class="fas fa-eye"></i></button>
-                    <button class="btn-quick-action" title="Compare" onclick="showToast('Added to comparison', 'success')"><i class="fas fa-arrows-rotate"></i></button>
+                    <button class="btn-quick-action" title="Quick View" onclick="showToast('Quick view: {{ product.name|escapejs }}', 'info')"><i class="fas fa-eye"></i></button>
+                    <button class="btn-quick-action" title="Compare" onclick="showToast('Added {{ product.name|escapejs }} to comparison', 'success')"><i class="fas fa-arrows-rotate"></i></button>
                   </div>
                 </div>
 
                 <div class="product-card-body">
-                  <span class="product-category-tag">Electronics</span>
-                  <h5 class="product-name">Pro Ultra Laptop (16GB RAM, 512GB SSD)</h5>
+                  <span class="product-category-tag">{{ product.category.name }}</span>
+                  <h5 class="product-name">
+                    <a href="{% url 'products:product_detail' product.slug %}" class="text-dark text-decoration-none">{{ product.name }}</a>
+                  </h5>
                   
+                  <!-- Informative Rating -->
                   <div class="product-rating-info my-2">
                     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i>
-                    <span>(4.8) • 256 Reviews</span>
+                    <span>({{ product.rating }}) • {{ product.reviews_count }} Reviews</span>
                   </div>
 
+                  <!-- Stock Status -->
                   <div class="mb-3">
-                    <span class="stock-badge-in"><i class="fas fa-circle-check me-1"></i>In Stock</span>
+                    {% if product.stock > 10 %}
+                      <span class="stock-badge-in"><i class="fas fa-circle-check me-1"></i>In Stock</span>
+                    {% elif product.stock > 0 %}
+                      <span class="text-warning fw-bold small"><i class="fas fa-triangle-exclamation me-1"></i>Only {{ product.stock }} Left!</span>
+                    {% else %}
+                      <span class="stock-badge-out"><i class="fas fa-circle-xmark me-1"></i>Out of Stock</span>
+                    {% endif %}
                   </div>
 
-                  <!-- Indian Rupees ₹ Prices -->
+                  <!-- Dynamic Price in ₹ -->
                   <div class="d-flex align-items-baseline justify-content-between mb-3">
                     <div>
-                      <span class="product-price-current">₹79,999</span>
-                      <span class="product-price-old">₹99,999</span>
+                      <span class="product-price-current">₹{{ product.effective_price|floatformat:"0" }}</span>
+                      {% if product.discount_price %}
+                        <span class="product-price-old">₹{{ product.price|floatformat:"0" }}</span>
+                      {% endif %}
                     </div>
-                    <span class="badge bg-danger-subtle text-danger fw-bold px-2 py-1 small" style="border-radius: 6px;">-20% OFF</span>
+                    {% if product.discount_percent > 0 %}
+                      <span class="badge bg-danger-subtle text-danger fw-bold px-2 py-1 small" style="border-radius: 6px;">-{{ product.discount_percent }}% OFF</span>
+                    {% endif %}
                   </div>
 
-                  <button class="btn btn-primary-custom w-100 btn-add-cart mt-auto" data-product-id="1">
+                  <button class="btn btn-primary-custom w-100 btn-add-cart mt-auto" data-product-id="{{ product.id }}">
                     <i class="fas fa-cart-shopping me-2"></i>Add to Cart
                   </button>
                 </div>
               </div>
             </div>
-
-            <!-- Product Card 2: Smartphone (₹64,999) -->
-            <div class="col-sm-6 col-md-4 col-lg-3">
-              <div class="product-card h-100">
-                <span class="product-badge-custom badge-new">New Arrival</span>
-                <button class="wishlist-btn btn-wishlist" data-product-id="2" title="Add to Wishlist"><i class="far fa-heart"></i></button>
-                
-                <div class="product-card-img-wrap">
-                  <img src="{% static 'images/featured_smartphone.jpg' %}" alt="Flagship Smartphone 5G" class="product-card-img">
-                  <div class="product-quick-actions">
-                    <button class="btn-quick-action" title="Quick View" onclick="showToast('Quick view: Flagship Smartphone 5G', 'info')"><i class="fas fa-eye"></i></button>
-                    <button class="btn-quick-action" title="Compare" onclick="showToast('Added to comparison', 'success')"><i class="fas fa-arrows-rotate"></i></button>
-                  </div>
-                </div>
-
-                <div class="product-card-body">
-                  <span class="product-category-tag">Mobiles</span>
-                  <h5 class="product-name">Flagship Smartphone 5G (256GB Storage)</h5>
-                  
-                  <div class="product-rating-info my-2">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    <span>(5.0) • 412 Reviews</span>
-                  </div>
-
-                  <div class="mb-3">
-                    <span class="stock-badge-in"><i class="fas fa-circle-check me-1"></i>In Stock</span>
-                  </div>
-
-                  <!-- Indian Rupees ₹ Prices -->
-                  <div class="d-flex align-items-baseline justify-content-between mb-3">
-                    <div>
-                      <span class="product-price-current">₹64,999</span>
-                      <span class="product-price-old">₹76,999</span>
-                    </div>
-                    <span class="badge bg-danger-subtle text-danger fw-bold px-2 py-1 small" style="border-radius: 6px;">-15% OFF</span>
-                  </div>
-
-                  <button class="btn btn-primary-custom w-100 btn-add-cart mt-auto" data-product-id="2">
-                    <i class="fas fa-cart-shopping me-2"></i>Add to Cart
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Product Card 3: Headphones (₹9,999) -->
-            <div class="col-sm-6 col-md-4 col-lg-3">
-              <div class="product-card h-100">
-                <span class="product-badge-custom badge-trending">Trending</span>
-                <button class="wishlist-btn btn-wishlist" data-product-id="3" title="Add to Wishlist"><i class="far fa-heart"></i></button>
-                
-                <div class="product-card-img-wrap">
-                  <img src="{% static 'images/featured_headphones.jpg' %}" alt="Wireless Noise-Canceling Headphones" class="product-card-img">
-                  <div class="product-quick-actions">
-                    <button class="btn-quick-action" title="Quick View" onclick="showToast('Quick view: Headphones', 'info')"><i class="fas fa-eye"></i></button>
-                    <button class="btn-quick-action" title="Compare" onclick="showToast('Added to comparison', 'success')"><i class="fas fa-arrows-rotate"></i></button>
-                  </div>
-                </div>
-
-                <div class="product-card-body">
-                  <span class="product-category-tag">Electronics</span>
-                  <h5 class="product-name">Wireless Noise-Canceling Headphones</h5>
-                  
-                  <div class="product-rating-info my-2">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-                    <span>(4.2) • 188 Reviews</span>
-                  </div>
-
-                  <div class="mb-3">
-                    <span class="text-warning fw-bold small"><i class="fas fa-triangle-exclamation me-1"></i>Only 5 Left!</span>
-                  </div>
-
-                  <!-- Indian Rupees ₹ Prices -->
-                  <div class="d-flex align-items-baseline justify-content-between mb-3">
-                    <div>
-                      <span class="product-price-current">₹9,999</span>
-                      <span class="product-price-old">₹14,299</span>
-                    </div>
-                    <span class="badge bg-danger-subtle text-danger fw-bold px-2 py-1 small" style="border-radius: 6px;">-30% OFF</span>
-                  </div>
-
-                  <button class="btn btn-primary-custom w-100 btn-add-cart mt-auto" data-product-id="3">
-                    <i class="fas fa-cart-shopping me-2"></i>Add to Cart
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Product Card 4: Smartwatch (₹11,999) -->
-            <div class="col-sm-6 col-md-4 col-lg-3">
-              <div class="product-card h-100">
-                <span class="product-badge-custom badge-limited">Limited Stock</span>
-                <button class="wishlist-btn btn-wishlist" data-product-id="4" title="Add to Wishlist"><i class="far fa-heart"></i></button>
-                
-                <div class="product-card-img-wrap">
-                  <img src="{% static 'images/featured_smartwatch.jpg' %}" alt="Smartwatch Ultra 2" class="product-card-img">
-                  <div class="product-quick-actions">
-                    <button class="btn-quick-action" title="Quick View" onclick="showToast('Quick view: Smartwatch', 'info')"><i class="fas fa-eye"></i></button>
-                    <button class="btn-quick-action" title="Compare" onclick="showToast('Added to comparison', 'success')"><i class="fas fa-arrows-rotate"></i></button>
-                  </div>
-                </div>
-
-                <div class="product-card-body">
-                  <span class="product-category-tag">Gadgets</span>
-                  <h5 class="product-name">Smartwatch Ultra 2 (AMOLED Display)</h5>
-                  
-                  <div class="product-rating-info my-2">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i>
-                    <span>(4.7) • 320 Reviews</span>
-                  </div>
-
-                  <div class="mb-3">
-                    <span class="stock-badge-in"><i class="fas fa-circle-check me-1"></i>In Stock</span>
-                  </div>
-
-                  <!-- Indian Rupees ₹ Prices -->
-                  <div class="d-flex align-items-baseline justify-content-between mb-3">
-                    <div>
-                      <span class="product-price-current">₹11,999</span>
-                      <span class="product-price-old">₹19,999</span>
-                    </div>
-                    <span class="badge bg-danger-subtle text-danger fw-bold px-2 py-1 small" style="border-radius: 6px;">-40% OFF</span>
-                  </div>
-
-                  <button class="btn btn-primary-custom w-100 btn-add-cart mt-auto" data-product-id="4">
-                    <i class="fas fa-cart-shopping me-2"></i>Add to Cart
-                  </button>
-                </div>
-              </div>
-            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5 text-muted">No products available in the database right now.</div>
+            {% endfor %}
 
           </div>
         </div>
@@ -473,7 +334,7 @@
 
 
 <!-- ═══════════════════════════════════════════════════
-     7. TODAY'S MEGA DEALS (Indian Rupees ₹ Prices)
+     7. DYNAMIC TODAY'S MEGA DEALS (From Database)
 ═══════════════════════════════════════════════════ -->
 <section class="section-padding bg-white border-bottom">
   <div class="container">
@@ -534,31 +395,22 @@
 
         <div class="col-lg-6">
           <div class="row g-3">
+            {% for product in deal_products %}
             <div class="col-6">
               <div class="deal-mini-card text-dark text-center position-relative">
-                <span class="badge bg-danger text-white position-absolute top-0 start-0 m-2 fw-bold" style="font-size: 10px;">-50% OFF</span>
-                <img src="{% static 'images/featured_headphones.jpg' %}" alt="Headphones" class="img-fluid rounded-3 my-2" style="height:110px; object-fit:cover;">
-                <h6 class="fw-bold mb-1 text-truncate">Noise-Canceling Pro</h6>
+                <span class="badge bg-danger text-white position-absolute top-0 start-0 m-2 fw-bold" style="font-size: 10px;">-{{ product.discount_percent }}% OFF</span>
+                {% if product.main_image %}
+                  <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="img-fluid rounded-3 my-2" style="height:110px; object-fit:cover;">
+                {% endif %}
+                <h6 class="fw-bold mb-1 text-truncate">{{ product.name }}</h6>
                 <div class="d-flex align-items-center justify-content-center gap-2 mt-2">
-                  <span class="fw-bold text-primary fs-5">₹6,999</span>
-                  <span class="text-muted text-decoration-line-through small">₹13,999</span>
+                  <span class="fw-bold text-primary fs-5">₹{{ product.effective_price|floatformat:"0" }}</span>
+                  <span class="text-muted text-decoration-line-through small">₹{{ product.price|floatformat:"0" }}</span>
                 </div>
-                <button class="btn btn-primary-custom btn-sm w-100 mt-2 btn-add-cart" data-product-id="3">Claim Deal</button>
+                <button class="btn btn-primary-custom btn-sm w-100 mt-2 btn-add-cart" data-product-id="{{ product.id }}">Claim Deal</button>
               </div>
             </div>
-
-            <div class="col-6">
-              <div class="deal-mini-card text-dark text-center position-relative">
-                <span class="badge bg-danger text-white position-absolute top-0 start-0 m-2 fw-bold" style="font-size: 10px;">-40% OFF</span>
-                <img src="{% static 'images/featured_smartwatch.jpg' %}" alt="Smartwatch" class="img-fluid rounded-3 my-2" style="height:110px; object-fit:cover;">
-                <h6 class="fw-bold mb-1 text-truncate">Smartwatch Ultra 2</h6>
-                <div class="d-flex align-items-center justify-content-center gap-2 mt-2">
-                  <span class="fw-bold text-primary fs-5">₹11,999</span>
-                  <span class="text-muted text-decoration-line-through small">₹19,999</span>
-                </div>
-                <button class="btn btn-primary-custom btn-sm w-100 mt-2 btn-add-cart" data-product-id="2">Claim Deal</button>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -568,7 +420,7 @@
 
 
 <!-- ═══════════════════════════════════════════════════
-     8. TOP BRANDS
+     8. TOP BRANDS (From Database)
 ═══════════════════════════════════════════════════ -->
 <section class="section-padding bg-light border-bottom">
   <div class="container">
@@ -580,42 +432,14 @@
     </div>
 
     <div class="row g-4 text-center align-items-center">
+      {% for brand in brands %}
       <div class="col-4 col-md-2">
         <div class="card-shopsphere p-3 hover-lift border">
-          <i class="fab fa-apple display-5 text-dark"></i>
-          <div class="fw-semibold text-muted small mt-2">Apple</div>
+          <i class="fab fa-{{ brand.name|lower }} display-5 text-dark"></i>
+          <div class="fw-semibold text-muted small mt-2">{{ brand.name }}</div>
         </div>
       </div>
-      <div class="col-4 col-md-2">
-        <div class="card-shopsphere p-3 hover-lift border">
-          <i class="fab fa-amazon display-5 text-dark"></i>
-          <div class="fw-semibold text-muted small mt-2">Amazon</div>
-        </div>
-      </div>
-      <div class="col-4 col-md-2">
-        <div class="card-shopsphere p-3 hover-lift border">
-          <i class="fab fa-google display-5 text-dark"></i>
-          <div class="fw-semibold text-muted small mt-2">Google</div>
-        </div>
-      </div>
-      <div class="col-4 col-md-2">
-        <div class="card-shopsphere p-3 hover-lift border">
-          <i class="fab fa-microsoft display-5 text-dark"></i>
-          <div class="fw-semibold text-muted small mt-2">Microsoft</div>
-        </div>
-      </div>
-      <div class="col-4 col-md-2">
-        <div class="card-shopsphere p-3 hover-lift border">
-          <i class="fab fa-playstation display-5 text-dark"></i>
-          <div class="fw-semibold text-muted small mt-2">Sony</div>
-        </div>
-      </div>
-      <div class="col-4 col-md-2">
-        <div class="card-shopsphere p-3 hover-lift border">
-          <i class="fab fa-xbox display-5 text-dark"></i>
-          <div class="fw-semibold text-muted small mt-2">Xbox</div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>

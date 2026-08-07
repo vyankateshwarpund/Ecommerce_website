@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Shop Products | SPCart{% endblock %}
+
+{% block content %}
+<div class="breadcrumb-shopsphere">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Shop Products</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<section class="section-padding bg-light">
+  <div class="container">
+    <div class="row g-4">
+      
+      <!-- Filter Sidebar -->
+      <div class="col-lg-3">
+        <div class="card-shopsphere p-4 border">
+          <h5 class="fw-bold mb-3"><i class="fas fa-filter text-primary me-2"></i>Filter Products</h5>
+          
+          <!-- Categories Filter -->
+          <div class="mb-4">
+            <h6 class="fw-semibold text-muted mb-2 text-uppercase small">Categories</h6>
+            <div class="list-group list-group-flush">
+              <a href="{% url 'products:product_list' %}" class="list-group-item list-group-item-action border-0 px-0 py-1.5 {% if not selected_category %}fw-bold text-primary{% endif %}">
+                All Categories
+              </a>
+              {% for cat in categories %}
+              <a href="{% url 'products:product_list' %}?category={{ cat.slug }}" class="list-group-item list-group-item-action border-0 px-0 py-1.5 {% if selected_category.slug == cat.slug %}fw-bold text-primary{% endif %}">
+                <i class="{{ cat.icon }} me-2 text-muted" style="width: 16px;"></i>{{ cat.name }}
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+
+          <!-- Brands Filter -->
+          <div>
+            <h6 class="fw-semibold text-muted mb-2 text-uppercase small">Brands</h6>
+            <div class="list-group list-group-flush">
+              {% for b in brands %}
+              <a href="{% url 'products:product_list' %}?brand={{ b.slug }}" class="list-group-item list-group-item-action border-0 px-0 py-1.5">
+                {{ b.name }}
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="col-lg-9">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h4 class="fw-bold mb-0">
+            {% if selected_category %}{{ selected_category.name }}{% else %}All Products{% endif %}
+            <span class="fs-6 text-muted font-normal">({{ products.count }} items)</span>
+          </h4>
+        </div>
+
+        <div class="row g-4">
+          {% for product in products %}
+          <div class="col-sm-6 col-md-4">
+            <div class="product-card h-100">
+              {% if product.badge %}
+                <span class="product-badge-custom badge-{{ product.badge }}">{{ product.get_badge_display }}</span>
+              {% endif %}
+              
+              <button class="wishlist-btn btn-wishlist" data-product-id="{{ product.id }}" title="Add to Wishlist"><i class="far fa-heart"></i></button>
+              
+              <div class="product-card-img-wrap">
+                {% if product.main_image %}
+                  <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="product-card-img">
+                {% else %}
+                  <img src="{% static 'images/featured_laptop.jpg' %}" alt="{{ product.name }}" class="product-card-img">
+                {% endif %}
+
+                <div class="product-quick-actions">
+                  <button class="btn-quick-action" title="Quick View" onclick="showToast('Quick view: {{ product.name|escapejs }}', 'info')"><i class="fas fa-eye"></i></button>
+                  <button class="btn-quick-action" title="Compare" onclick="showToast('Added {{ product.name|escapejs }} to comparison', 'success')"><i class="fas fa-arrows-rotate"></i></button>
+                </div>
+              </div>
+
+              <div class="product-card-body">
+                <span class="product-category-tag">{{ product.category.name }}</span>
+                <h5 class="product-name">
+                  <a href="{% url 'products:product_detail' product.slug %}" class="text-dark text-decoration-none">{{ product.name }}</a>
+                </h5>
+                
+                <div class="product-rating-info my-2">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i>
+                  <span>({{ product.rating }}) • {{ product.reviews_count }} Reviews</span>
+                </div>
+
+                <div class="mb-3">
+                  {% if product.stock > 10 %}
+                    <span class="stock-badge-in"><i class="fas fa-circle-check me-1"></i>In Stock</span>
+                  {% elif product.stock > 0 %}
+                    <span class="text-warning fw-bold small"><i class="fas fa-triangle-exclamation me-1"></i>Only {{ product.stock }} Left!</span>
+                  {% else %}
+                    <span class="stock-badge-out"><i class="fas fa-circle-xmark me-1"></i>Out of Stock</span>
+                  {% endif %}
+                </div>
+
+                <div class="d-flex align-items-baseline justify-content-between mb-3">
+                  <div>
+                    <span class="product-price-current">₹{{ product.effective_price|floatformat:"0" }}</span>
+                    {% if product.discount_price %}
+                      <span class="product-price-old">₹{{ product.price|floatformat:"0" }}</span>
+                    {% endif %}
+                  </div>
+                  {% if product.discount_percent > 0 %}
+                    <span class="badge bg-danger-subtle text-danger fw-bold px-2 py-1 small" style="border-radius: 6px;">-{{ product.discount_percent }}% OFF</span>
+                  {% endif %}
+                </div>
+
+                <button class="btn btn-primary-custom w-100 btn-add-cart mt-auto" data-product-id="{{ product.id }}">
+                  <i class="fas fa-cart-shopping me-2"></i>Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          {% empty %}
+          <div class="col-12">
+            <div class="empty-state bg-white rounded-4 border p-5">
+              <i class="fas fa-box-open empty-state-icon"></i>
+              <h3 class="empty-state-title">No Products Found</h3>
+              <p class="empty-state-text">There are no products matching your selected filter criteria.</p>
+              <a href="{% url 'products:product_list' %}" class="btn btn-primary-custom">Clear Filters</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}

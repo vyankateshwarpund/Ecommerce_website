@@ -72,6 +72,7 @@
             <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-2" style="border-radius:14px;">
               {% if user.is_staff %}
               <li><a class="dropdown-item py-2" href="{% url 'dashboard:index' %}"><i class="fas fa-chart-line me-2 text-primary"></i>Admin Dashboard</a></li>
+              <li><a class="dropdown-item py-2" href="/admin/" target="_blank"><i class="fas fa-user-gear me-2 text-warning"></i>Django Admin Panel</a></li>
               <li><hr class="dropdown-divider"></li>
               {% endif %}
               <li><a class="dropdown-item py-2" href="{% url 'accounts:profile' %}"><i class="fas fa-user me-2 text-muted"></i>My Profile</a></li>
@@ -94,7 +95,7 @@
     </div>
   </nav>
 
-  <!-- HORIZONTAL PILL CATEGORY CHIPS BAR (Height: 54px) -->
+  <!-- DYNAMIC HORIZONTAL CATEGORY CHIPS BAR (Queried from DB) -->
   <div class="category-bar-wrapper">
     <div class="container d-flex align-items-center">
       <a href="{% url 'products:product_list' %}" class="category-chip text-decoration-none {% if not request.GET.category %}active{% endif %}">
@@ -102,55 +103,32 @@
         <span>All Categories</span>
       </a>
 
-      <a href="{% url 'products:product_list' %}?category=mobiles" class="category-chip text-decoration-none {% if request.GET.category == 'mobiles' %}active{% endif %}">
-        <i class="fas fa-mobile-screen-button"></i>
-        <span>Mobiles</span>
+      <!-- First 6 Featured Categories as direct pill chips -->
+      {% for cat in all_categories|slice:":6" %}
+      <a href="{% url 'products:product_list' %}?category={{ cat.slug }}" class="category-chip text-decoration-none {% if request.GET.category == cat.slug %}active{% endif %}">
+        <i class="{{ cat.icon }}"></i>
+        <span>{{ cat.name }}</span>
       </a>
+      {% endfor %}
 
-      <a href="{% url 'products:product_list' %}?category=electronics" class="category-chip text-decoration-none {% if request.GET.category == 'electronics' %}active{% endif %}">
-        <i class="fas fa-laptop"></i>
-        <span>Electronics</span>
-      </a>
-
-      <a href="{% url 'products:product_list' %}?category=fashion" class="category-chip text-decoration-none {% if request.GET.category == 'fashion' %}active{% endif %}">
-        <i class="fas fa-shirt"></i>
-        <span>Fashion</span>
-      </a>
-
-      <a href="{% url 'products:product_list' %}?category=gaming" class="category-chip text-decoration-none {% if request.GET.category == 'gaming' %}active{% endif %}">
-        <i class="fas fa-gamepad"></i>
-        <span>Gaming</span>
-      </a>
-
-      <a href="{% url 'products:product_list' %}?category=home" class="category-chip text-decoration-none {% if request.GET.category == 'home' %}active{% endif %}">
-        <i class="fas fa-house"></i>
-        <span>Home & Living</span>
-      </a>
-
-      <a href="{% url 'products:product_list' %}?category=beauty" class="category-chip text-decoration-none {% if request.GET.category == 'beauty' %}active{% endif %}">
-        <i class="fas fa-wand-magic-sparkles"></i>
-        <span>Beauty</span>
-      </a>
-
-      <a href="{% url 'products:product_list' %}?category=books" class="category-chip text-decoration-none {% if request.GET.category == 'books' %}active{% endif %}">
-        <i class="fas fa-book-open"></i>
-        <span>Books</span>
-      </a>
-
-      <!-- "More" Dropdown -->
+      <!-- Remaining categories inside "More" Dropdown -->
+      {% if all_categories|length > 6 %}
       <div class="dropdown">
         <button class="category-chip text-decoration-none border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fas fa-ellipsis"></i>
           <span>More</span>
         </button>
         <ul class="dropdown-menu border-0 shadow-lg mt-2" style="border-radius:14px; min-width:200px;">
-          <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{% url 'products:product_list' %}?category=sports"><i class="fas fa-dumbbell text-primary" style="width:18px;"></i> Sports & Fitness</a></li>
-          <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{% url 'products:product_list' %}?category=automotive"><i class="fas fa-car text-primary" style="width:18px;"></i> Automotive</a></li>
-          <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{% url 'products:product_list' %}?category=toys"><i class="fas fa-puzzle-piece text-primary" style="width:18px;"></i> Toys & Baby</a></li>
-          <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{% url 'products:product_list' %}?category=office"><i class="fas fa-briefcase text-primary" style="width:18px;"></i> Office Supplies</a></li>
-          <li><a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{% url 'products:product_list' %}?category=pets"><i class="fas fa-paw text-primary" style="width:18px;"></i> Pet Supplies</a></li>
+          {% for cat in all_categories|slice:"6:" %}
+          <li>
+            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{% url 'products:product_list' %}?category={{ cat.slug }}">
+              <i class="{{ cat.icon }} text-primary" style="width:18px;"></i> {{ cat.name }}
+            </a>
+          </li>
+          {% endfor %}
         </ul>
       </div>
+      {% endif %}
 
       <!-- Deals & Offers Badge -->
       <a href="{% url 'products:product_list' %}?filter=deals" class="category-chip category-chip-deals text-decoration-none ms-auto">

@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} | SPCart{% endblock %}
+
+{% block content %}
+<div class="breadcrumb-shopsphere">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'products:product_list' %}">Shop</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'products:product_list' %}?category={{ product.category.slug }}">{{ product.category.name }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<section class="section-padding bg-white">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      
+      <!-- Product Main Image -->
+      <div class="col-lg-6 text-center">
+        <div class="p-3 bg-light rounded-4 border position-relative overflow-hidden">
+          {% if product.badge %}
+            <span class="product-badge-custom badge-{{ product.badge }}">{{ product.get_badge_display }}</span>
+          {% endif %}
+          {% if product.main_image %}
+            <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="img-fluid rounded-4" style="max-height: 440px; object-fit: contain;">
+          {% else %}
+            <img src="{% static 'images/featured_laptop.jpg' %}" alt="{{ product.name }}" class="img-fluid rounded-4" style="max-height: 440px; object-fit: contain;">
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Product Details Info -->
+      <div class="col-lg-6">
+        <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-1 mb-2" style="border-radius: 99px;">
+          {{ product.category.name }} {% if product.brand %}• {{ product.brand.name }}{% endif %}
+        </span>
+        
+        <h1 class="display-6 fw-bold text-dark mb-3">{{ product.name }}</h1>
+        
+        <!-- Ratings -->
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <div class="product-rating-info">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i>
+            <span class="fw-bold">({{ product.rating }})</span>
+          </div>
+          <span class="text-muted">• {{ product.reviews_count }} Verified Reviews</span>
+        </div>
+
+        <!-- Pricing in Indian Rupees ₹ -->
+        <div class="d-flex align-items-baseline gap-3 mb-4">
+          <span class="display-5 fw-bold text-primary">₹{{ product.effective_price|floatformat:"0" }}</span>
+          {% if product.discount_price %}
+            <span class="fs-4 text-muted text-decoration-line-through">₹{{ product.price|floatformat:"0" }}</span>
+            <span class="badge bg-danger text-white fw-bold px-3 py-1.5" style="border-radius: 99px;">-{{ product.discount_percent }}% OFF</span>
+          {% endif %}
+        </div>
+
+        <p class="text-muted fs-5 mb-4">{{ product.description }}</p>
+
+        <!-- Stock Status -->
+        <div class="mb-4">
+          {% if product.stock > 10 %}
+            <span class="stock-badge-in fs-6 px-3 py-1.5"><i class="fas fa-circle-check me-2"></i>In Stock ({{ product.stock }} units ready to ship)</span>
+          {% elif product.stock > 0 %}
+            <span class="text-warning fw-bold fs-6"><i class="fas fa-triangle-exclamation me-2"></i>Hurry! Only {{ product.stock }} Left in Stock</span>
+          {% else %}
+            <span class="stock-badge-out fs-6 px-3 py-1.5"><i class="fas fa-circle-xmark me-2"></i>Currently Out of Stock</span>
+          {% endif %}
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <button class="btn btn-primary-custom btn-lg px-4 btn-add-cart" data-product-id="{{ product.id }}">
+            <i class="fas fa-cart-shopping me-2"></i>Add to Cart
+          </button>
+          <button class="btn btn-outline-custom btn-lg px-4 btn-wishlist" data-product-id="{{ product.id }}">
+            <i class="far fa-heart me-2"></i>Add to Wishlist
+          </button>
+        </div>
+
+        <!-- Trust Features -->
+        <div class="row g-3 mt-4 pt-4 border-top">
+          <div class="col-6">
+            <div class="d-flex align-items-center gap-2">
+              <i class="fas fa-truck-fast text-primary fs-5"></i>
+              <span class="small text-dark fw-semibold">Free Express Shipping</span>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="d-flex align-items-center gap-2">
+              <i class="fas fa-shield-check text-success fs-5"></i>
+              <span class="small text-dark fw-semibold">100% Original Brand Guarantee</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
