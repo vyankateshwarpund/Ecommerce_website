@@ -4,8 +4,9 @@
 {% block title %}SPCart — Smart Shopping, Everyday{% endblock %}
 
 {% block content %}
+
 <!-- ═══════════════════════════════════════════════════
-     HERO SECTION (#FFFFFF to #F8FBFF Gradient)
+     1. HERO SECTION
 ═══════════════════════════════════════════════════ -->
 <section class="hero-section">
   <div class="container">
@@ -20,7 +21,7 @@
           Shop Smarter. <span>Live Better.</span>
         </h1>
         <p class="text-muted fs-5 my-4">
-          Discover premium products at amazing prices across electronics, fashion, lifestyle, and home essentials with express delivery.
+          Discover premium products at amazing prices across electronics, fashion, lifestyle, and home essentials with express delivery across India.
         </p>
         
         <!-- Hero CTA Buttons -->
@@ -32,85 +33,19 @@
             Learn More
           </a>
         </div>
-
-        <!-- Trust Badges -->
-        <div class="d-flex flex-wrap gap-2">
-          <span class="trust-badge-item"><i class="fas fa-circle-check text-success"></i> Free Shipping</span>
-          <span class="trust-badge-item"><i class="fas fa-shield-check text-primary"></i> Secure Payment</span>
-          <span class="trust-badge-item"><i class="fas fa-rotate-left text-info"></i> Easy Returns</span>
-          <span class="trust-badge-item"><i class="fas fa-headset text-warning"></i> 24/7 Support</span>
-        </div>
-
-        <!-- Key Business Metrics Statistics Row -->
-        <div class="hero-stats-container">
-          <div class="row g-3">
-            <div class="col-6 col-sm-3 col-lg-6 col-xl-3">
-              <div class="hero-stat-box">
-                <div class="hero-stat-icon-wrap">
-                  <i class="fas fa-box-open"></i>
-                </div>
-                <div>
-                  <div class="hero-stat-val">10K+</div>
-                  <div class="hero-stat-lbl">Products</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 col-sm-3 col-lg-6 col-xl-3">
-              <div class="hero-stat-box">
-                <div class="hero-stat-icon-wrap">
-                  <i class="fas fa-tags"></i>
-                </div>
-                <div>
-                  <div class="hero-stat-val">500+</div>
-                  <div class="hero-stat-lbl">Brands</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 col-sm-3 col-lg-6 col-xl-3">
-              <div class="hero-stat-box">
-                <div class="hero-stat-icon-wrap">
-                  <i class="fas fa-users"></i>
-                </div>
-                <div>
-                  <div class="hero-stat-val">50K+</div>
-                  <div class="hero-stat-lbl">Customers</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 col-sm-3 col-lg-6 col-xl-3">
-              <div class="hero-stat-box">
-                <div class="hero-stat-icon-wrap">
-                  <i class="fas fa-star text-warning"></i>
-                </div>
-                <div>
-                  <div class="hero-stat-val">99%</div>
-                  <div class="hero-stat-lbl">Reviews</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- Right Hero Card -->
       <div class="col-lg-6 text-center">
         <div class="hero-card-container">
-          <!-- Radial Blue Glow -->
           <div class="hero-radial-glow"></div>
-
-          <!-- Premium Card with 24px radius & natural hover elevation -->
           <div class="hero-card-floating p-3">
             <div class="hero-image-animate position-relative overflow-hidden" style="border-radius: 18px;">
               <img src="{% static 'images/hero_shopping.jpg' %}" 
                    alt="SPCart Premium Shopping" 
                    class="img-fluid w-100" 
-                   style="max-height: 490px; object-fit: cover; display: block; border-radius: 18px;">
+                   style="max-height: 480px; object-fit: cover; display: block; border-radius: 18px;">
             </div>
-            
-            <!-- Caption below image -->
             <div class="pt-3 pb-1 px-3 d-flex align-items-center justify-content-between text-start border-top mt-3">
               <div>
                 <span class="badge bg-primary-subtle text-primary fw-semibold px-2.5 py-1" style="font-size: 12px; border-radius: 6px;">PREMIUM COLLECTION</span>
@@ -125,7 +60,7 @@
 
     <!-- Animated Scroll Indicator -->
     <div class="text-center pt-4 mt-2">
-      <a href="#features-section" class="hero-scroll-indicator text-decoration-none d-inline-flex flex-column align-items-center">
+      <a href="#trust-badges-section" class="hero-scroll-indicator text-decoration-none d-inline-flex flex-column align-items-center">
         <span class="scroll-text mb-1">Explore Products</span>
         <div class="scroll-icon-wrap">
           <i class="fas fa-chevron-down"></i>
@@ -135,51 +70,636 @@
   </div>
 </section>
 
+
 <!-- ═══════════════════════════════════════════════════
-     FEATURES HIGHLIGHT
+     2. TRUST BADGES
 ═══════════════════════════════════════════════════ -->
-<section id="features-section" class="section-padding">
+<section id="trust-badges-section" class="py-4 bg-white border-bottom">
   <div class="container">
-    <div class="row g-4 text-center">
-      <div class="col-md-3">
-        <div class="card-shopsphere h-100 p-4">
-          <i class="fas fa-shield-check text-primary fs-1 mb-3"></i>
-          <h5 class="fw-bold">Trusted Quality</h5>
-          <p class="text-muted small mb-0">100% genuine products with full warranty</p>
+    <div class="row g-3 text-center justify-content-center">
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded-4 bg-light d-flex align-items-center justify-content-center gap-2 border">
+          <i class="fas fa-circle-check text-success fs-4"></i>
+          <span class="fw-semibold text-dark">Free Shipping</span>
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="card-shopsphere h-100 p-4">
-          <i class="fas fa-truck-fast text-primary fs-1 mb-3"></i>
-          <h5 class="fw-bold">Fast Delivery</h5>
-          <p class="text-muted small mb-0">Express shipping across all regions</p>
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded-4 bg-light d-flex align-items-center justify-content-center gap-2 border">
+          <i class="fas fa-shield-check text-primary fs-4"></i>
+          <span class="fw-semibold text-dark">Secure Payment</span>
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="card-shopsphere h-100 p-4">
-          <i class="fas fa-tags text-primary fs-1 mb-3"></i>
-          <h5 class="fw-bold">Best Prices</h5>
-          <p class="text-muted small mb-0">Daily discounts and unbeatable deals</p>
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded-4 bg-light d-flex align-items-center justify-content-center gap-2 border">
+          <i class="fas fa-rotate-left text-info fs-4"></i>
+          <span class="fw-semibold text-dark">Easy Returns</span>
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="card-shopsphere h-100 p-4">
-          <i class="fas fa-headset text-primary fs-1 mb-3"></i>
-          <h5 class="fw-bold">24/7 Support</h5>
-          <p class="text-muted small mb-0">Dedicated support team always ready</p>
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded-4 bg-light d-flex align-items-center justify-content-center gap-2 border">
+          <i class="fas fa-headset text-warning fs-4"></i>
+          <span class="fw-semibold text-dark">24/7 Support</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+
 <!-- ═══════════════════════════════════════════════════
-     NEWSLETTER SECTION
+     3. STATISTICS
+═══════════════════════════════════════════════════ -->
+<section class="py-5 bg-white border-bottom">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-6 col-md-3">
+        <div class="stat-counter-card">
+          <div class="stat-number">10K+</div>
+          <div class="stat-label">Products Available</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-counter-card">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Top Brands</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-counter-card">
+          <div class="stat-number">50K+</div>
+          <div class="stat-label">Happy Customers</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-counter-card">
+          <div class="stat-number">99%</div>
+          <div class="stat-label">Positive Reviews</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     4. WHY SHOP WITH SPCART
+═══════════════════════════════════════════════════ -->
+<section class="section-padding section-bg">
+  <div class="container">
+    <div class="text-center max-w-xl mx-auto mb-5">
+      <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-1 mb-2" style="border-radius: 99px;">OUR PROMISE</span>
+      <h2 class="section-title">Why Shop With SPCart</h2>
+      <p class="section-subtitle">Experience a seamless, fast, and reliable shopping journey engineered for you.</p>
+      <div class="section-divider mx-auto"></div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-3">
+        <div class="card-shopsphere h-100 p-4 text-center">
+          <div class="bg-primary-subtle text-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
+            <i class="fas fa-truck-fast fs-3"></i>
+          </div>
+          <h5 class="fw-bold">Express Delivery</h5>
+          <p class="text-muted small mb-0">Lightning-fast shipping delivered right to your doorstep with real-time tracking.</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card-shopsphere h-100 p-4 text-center">
+          <div class="bg-success-subtle text-success rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
+            <i class="fas fa-certificate fs-3"></i>
+          </div>
+          <h5 class="fw-bold">100% Genuine</h5>
+          <p class="text-muted small mb-0">Directly sourced from authorized brand distributors with official warranties.</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card-shopsphere h-100 p-4 text-center">
+          <div class="bg-warning-subtle text-warning rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
+            <i class="fas fa-tags fs-3"></i>
+          </div>
+          <h5 class="fw-bold">Best Price Guarantee</h5>
+          <p class="text-muted small mb-0">Unbeatable daily prices, exclusive coupons, and seasonal discount drops.</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card-shopsphere h-100 p-4 text-center">
+          <div class="bg-info-subtle text-info rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
+            <i class="fas fa-hand-holding-dollar fs-3"></i>
+          </div>
+          <h5 class="fw-bold">Hassle-Free Returns</h5>
+          <p class="text-muted small mb-0">30-day money-back guarantee with instant no-questions-asked refunds.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     5. FEATURED CATEGORIES
+═══════════════════════════════════════════════════ -->
+<section class="section-padding bg-white border-bottom">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+      <div>
+        <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-1 mb-2" style="border-radius: 99px;">POPULAR SELECTIONS</span>
+        <h2 class="section-title mb-0">Featured Categories</h2>
+      </div>
+      <a href="{% url 'products:product_list' %}" class="btn btn-outline-custom btn-sm">View All Categories <i class="fas fa-arrow-right ms-1"></i></a>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-6 col-md-4 col-lg-2">
+        <a href="{% url 'products:product_list' %}?category=electronics" class="card-shopsphere p-4 text-center text-decoration-none h-100 d-block border hover-lift">
+          <i class="fas fa-laptop text-primary display-6 mb-3"></i>
+          <h6 class="fw-bold text-dark mb-1">Electronics</h6>
+          <span class="text-muted small">1,200+ Items</span>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-2">
+        <a href="{% url 'products:product_list' %}?category=mobiles" class="card-shopsphere p-4 text-center text-decoration-none h-100 d-block border hover-lift">
+          <i class="fas fa-mobile-screen-button text-primary display-6 mb-3"></i>
+          <h6 class="fw-bold text-dark mb-1">Mobiles</h6>
+          <span class="text-muted small">850+ Items</span>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-2">
+        <a href="{% url 'products:product_list' %}?category=fashion" class="card-shopsphere p-4 text-center text-decoration-none h-100 d-block border hover-lift">
+          <i class="fas fa-shirt text-primary display-6 mb-3"></i>
+          <h6 class="fw-bold text-dark mb-1">Fashion</h6>
+          <span class="text-muted small">3,400+ Items</span>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-2">
+        <a href="{% url 'products:product_list' %}?category=gaming" class="card-shopsphere p-4 text-center text-decoration-none h-100 d-block border hover-lift">
+          <i class="fas fa-gamepad text-primary display-6 mb-3"></i>
+          <h6 class="fw-bold text-dark mb-1">Gaming</h6>
+          <span class="text-muted small">600+ Items</span>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-2">
+        <a href="{% url 'products:product_list' %}?category=home" class="card-shopsphere p-4 text-center text-decoration-none h-100 d-block border hover-lift">
+          <i class="fas fa-house text-primary display-6 mb-3"></i>
+          <h6 class="fw-bold text-dark mb-1">Home & Living</h6>
+          <span class="text-muted small">1,800+ Items</span>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-2">
+        <a href="{% url 'products:product_list' %}?category=beauty" class="card-shopsphere p-4 text-center text-decoration-none h-100 d-block border hover-lift">
+          <i class="fas fa-wand-magic-sparkles text-primary display-6 mb-3"></i>
+          <h6 class="fw-bold text-dark mb-1">Beauty</h6>
+          <span class="text-muted small">950+ Items</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     6. FEATURED PRODUCTS (Indian Rupees ₹ Prices)
+═══════════════════════════════════════════════════ -->
+<section class="section-padding bg-light border-bottom">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+      <div>
+        <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-1 mb-2" style="border-radius: 99px;">HANDPICKED FOR YOU</span>
+        <h2 class="section-title mb-0">Featured Products</h2>
+      </div>
+      
+      <!-- Carousel Controls -->
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-secondary rounded-circle px-3 py-2" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev" title="Previous">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="btn btn-primary-custom rounded-circle px-3 py-2" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next" title="Next">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Carousel -->
+    <div id="featuredCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row g-4">
+            
+            <!-- Product Card 1: Laptop (₹79,999) -->
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="product-card h-100">
+                <span class="product-badge-custom badge-bestseller">Best Seller</span>
+                <button class="wishlist-btn btn-wishlist" data-product-id="1" title="Add to Wishlist"><i class="far fa-heart"></i></button>
+                
+                <div class="product-card-img-wrap">
+                  <img src="{% static 'images/featured_laptop.jpg' %}" alt="Pro Ultra Laptop" class="product-card-img">
+                  <div class="product-quick-actions">
+                    <button class="btn-quick-action" title="Quick View" onclick="showToast('Quick view: Pro Ultra Laptop', 'info')"><i class="fas fa-eye"></i></button>
+                    <button class="btn-quick-action" title="Compare" onclick="showToast('Added to comparison', 'success')"><i class="fas fa-arrows-rotate"></i></button>
+                  </div>
+                </div>
+
+                <div class="product-card-body">
+                  <span class="product-category-tag">Electronics</span>
+                  <h5 class="product-name">Pro Ultra Laptop (16GB RAM, 512GB SSD)</h5>
+                  
+                  <div class="product-rating-info my-2">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i>
+                    <span>(4.8) • 256 Reviews</span>
+                  </div>
+
+                  <div class="mb-3">
+                    <span class="stock-badge-in"><i class="fas fa-circle-check me-1"></i>In Stock</span>
+                  </div>
+
+                  <!-- Indian Rupees ₹ Prices -->
+                  <div class="d-flex align-items-baseline justify-content-between mb-3">
+                    <div>
+                      <span class="product-price-current">₹79,999</span>
+                      <span class="product-price-old">₹99,999</span>
+                    </div>
+                    <span class="badge bg-danger-subtle text-danger fw-bold px-2 py-1 small" style="border-radius: 6px;">-20% OFF</span>
+                  </div>
+
+                  <button class="btn btn-primary-custom w-100 btn-add-cart mt-auto" data-product-id="1">
+                    <i class="fas fa-cart-shopping me-2"></i>Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 2: Smartphone (₹64,999) -->
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="product-card h-100">
+                <span class="product-badge-custom badge-new">New Arrival</span>
+                <button class="wishlist-btn btn-wishlist" data-product-id="2" title="Add to Wishlist"><i class="far fa-heart"></i></button>
+                
+                <div class="product-card-img-wrap">
+                  <img src="{% static 'images/featured_smartphone.jpg' %}" alt="Flagship Smartphone 5G" class="product-card-img">
+                  <div class="product-quick-actions">
+                    <button class="btn-quick-action" title="Quick View" onclick="showToast('Quick view: Flagship Smartphone 5G', 'info')"><i class="fas fa-eye"></i></button>
+                    <button class="btn-quick-action" title="Compare" onclick="showToast('Added to comparison', 'success')"><i class="fas fa-arrows-rotate"></i></button>
+                  </div>
+                </div>
+
+                <div class="product-card-body">
+                  <span class="product-category-tag">Mobiles</span>
+                  <h5 class="product-name">Flagship Smartphone 5G (256GB Storage)</h5>
+                  
+                  <div class="product-rating-info my-2">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <span>(5.0) • 412 Reviews</span>
+                  </div>
+
+                  <div class="mb-3">
+                    <span class="stock-badge-in"><i class="fas fa-circle-check me-1"></i>In Stock</span>
+                  </div>
+
+                  <!-- Indian Rupees ₹ Prices -->
+                  <div class="d-flex align-items-baseline justify-content-between mb-3">
+                    <div>
+                      <span class="product-price-current">₹64,999</span>
+                      <span class="product-price-old">₹76,999</span>
+                    </div>
+                    <span class="badge bg-danger-subtle text-danger fw-bold px-2 py-1 small" style="border-radius: 6px;">-15% OFF</span>
+                  </div>
+
+                  <button class="btn btn-primary-custom w-100 btn-add-cart mt-auto" data-product-id="2">
+                    <i class="fas fa-cart-shopping me-2"></i>Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 3: Headphones (₹9,999) -->
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="product-card h-100">
+                <span class="product-badge-custom badge-trending">Trending</span>
+                <button class="wishlist-btn btn-wishlist" data-product-id="3" title="Add to Wishlist"><i class="far fa-heart"></i></button>
+                
+                <div class="product-card-img-wrap">
+                  <img src="{% static 'images/featured_headphones.jpg' %}" alt="Wireless Noise-Canceling Headphones" class="product-card-img">
+                  <div class="product-quick-actions">
+                    <button class="btn-quick-action" title="Quick View" onclick="showToast('Quick view: Headphones', 'info')"><i class="fas fa-eye"></i></button>
+                    <button class="btn-quick-action" title="Compare" onclick="showToast('Added to comparison', 'success')"><i class="fas fa-arrows-rotate"></i></button>
+                  </div>
+                </div>
+
+                <div class="product-card-body">
+                  <span class="product-category-tag">Electronics</span>
+                  <h5 class="product-name">Wireless Noise-Canceling Headphones</h5>
+                  
+                  <div class="product-rating-info my-2">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                    <span>(4.2) • 188 Reviews</span>
+                  </div>
+
+                  <div class="mb-3">
+                    <span class="text-warning fw-bold small"><i class="fas fa-triangle-exclamation me-1"></i>Only 5 Left!</span>
+                  </div>
+
+                  <!-- Indian Rupees ₹ Prices -->
+                  <div class="d-flex align-items-baseline justify-content-between mb-3">
+                    <div>
+                      <span class="product-price-current">₹9,999</span>
+                      <span class="product-price-old">₹14,299</span>
+                    </div>
+                    <span class="badge bg-danger-subtle text-danger fw-bold px-2 py-1 small" style="border-radius: 6px;">-30% OFF</span>
+                  </div>
+
+                  <button class="btn btn-primary-custom w-100 btn-add-cart mt-auto" data-product-id="3">
+                    <i class="fas fa-cart-shopping me-2"></i>Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Card 4: Smartwatch (₹11,999) -->
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="product-card h-100">
+                <span class="product-badge-custom badge-limited">Limited Stock</span>
+                <button class="wishlist-btn btn-wishlist" data-product-id="4" title="Add to Wishlist"><i class="far fa-heart"></i></button>
+                
+                <div class="product-card-img-wrap">
+                  <img src="{% static 'images/featured_smartwatch.jpg' %}" alt="Smartwatch Ultra 2" class="product-card-img">
+                  <div class="product-quick-actions">
+                    <button class="btn-quick-action" title="Quick View" onclick="showToast('Quick view: Smartwatch', 'info')"><i class="fas fa-eye"></i></button>
+                    <button class="btn-quick-action" title="Compare" onclick="showToast('Added to comparison', 'success')"><i class="fas fa-arrows-rotate"></i></button>
+                  </div>
+                </div>
+
+                <div class="product-card-body">
+                  <span class="product-category-tag">Gadgets</span>
+                  <h5 class="product-name">Smartwatch Ultra 2 (AMOLED Display)</h5>
+                  
+                  <div class="product-rating-info my-2">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i>
+                    <span>(4.7) • 320 Reviews</span>
+                  </div>
+
+                  <div class="mb-3">
+                    <span class="stock-badge-in"><i class="fas fa-circle-check me-1"></i>In Stock</span>
+                  </div>
+
+                  <!-- Indian Rupees ₹ Prices -->
+                  <div class="d-flex align-items-baseline justify-content-between mb-3">
+                    <div>
+                      <span class="product-price-current">₹11,999</span>
+                      <span class="product-price-old">₹19,999</span>
+                    </div>
+                    <span class="badge bg-danger-subtle text-danger fw-bold px-2 py-1 small" style="border-radius: 6px;">-40% OFF</span>
+                  </div>
+
+                  <button class="btn btn-primary-custom w-100 btn-add-cart mt-auto" data-product-id="4">
+                    <i class="fas fa-cart-shopping me-2"></i>Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     7. TODAY'S MEGA DEALS (Indian Rupees ₹ Prices)
+═══════════════════════════════════════════════════ -->
+<section class="section-padding bg-white border-bottom">
+  <div class="container">
+    <div class="deals-section-card">
+      <div class="deals-radial-glow"></div>
+      <i class="fas fa-bolt deals-floating-icon deals-floating-icon-1"></i>
+      <i class="fas fa-tags deals-floating-icon deals-floating-icon-2"></i>
+
+      <div class="row align-items-center g-5 position-relative" style="z-index: 1;">
+        <div class="col-lg-6 text-white">
+          <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+            <span class="deals-discount-badge"><i class="fas fa-fire me-1"></i> UP TO 70% OFF</span>
+            <span class="badge bg-danger text-white fw-bold px-3 py-1.5" style="border-radius: 99px; font-size: 12px;">
+              <i class="fas fa-clock me-1"></i> Sale Ends Tonight!
+            </span>
+          </div>
+
+          <h2 class="display-4 fw-bold text-white mb-3" style="line-height: 1.1;">Today's Mega Deals</h2>
+          <p class="text-light fs-5 mb-4" style="max-width: 480px; opacity: 0.9;">
+            Unbeatable flash discounts on premium electronics, fashion, and lifestyle gadgets. Don't miss out!
+          </p>
+
+          <div class="mb-4 max-w-md">
+            <div class="d-flex justify-content-between align-items-center text-white small mb-2 fw-semibold">
+              <span><i class="fas fa-fire-flame-curved text-warning me-1"></i> 78% Sold Out</span>
+              <span class="text-warning">Only 127 Items Left!</span>
+            </div>
+            <div class="deals-progress-bar">
+              <div class="deals-progress-fill"></div>
+            </div>
+          </div>
+
+          <div class="deals-timer-card d-inline-block mb-4">
+            <div class="d-flex align-items-center gap-3">
+              <div class="timer-box">
+                <div class="timer-number" id="timer-hours">08</div>
+                <div class="timer-unit">Hours</div>
+              </div>
+              <span class="text-white fs-3 fw-bold">:</span>
+              <div class="timer-box">
+                <div class="timer-number" id="timer-mins">42</div>
+                <div class="timer-unit">Mins</div>
+              </div>
+              <span class="text-white fs-3 fw-bold">:</span>
+              <div class="timer-box">
+                <div class="timer-number" id="timer-secs">15</div>
+                <div class="timer-unit">Secs</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <a href="{% url 'products:product_list' %}?filter=deals" class="btn btn-deals-cta">
+              🔥 Grab Deals Now <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="deal-mini-card text-dark text-center position-relative">
+                <span class="badge bg-danger text-white position-absolute top-0 start-0 m-2 fw-bold" style="font-size: 10px;">-50% OFF</span>
+                <img src="{% static 'images/featured_headphones.jpg' %}" alt="Headphones" class="img-fluid rounded-3 my-2" style="height:110px; object-fit:cover;">
+                <h6 class="fw-bold mb-1 text-truncate">Noise-Canceling Pro</h6>
+                <div class="d-flex align-items-center justify-content-center gap-2 mt-2">
+                  <span class="fw-bold text-primary fs-5">₹6,999</span>
+                  <span class="text-muted text-decoration-line-through small">₹13,999</span>
+                </div>
+                <button class="btn btn-primary-custom btn-sm w-100 mt-2 btn-add-cart" data-product-id="3">Claim Deal</button>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="deal-mini-card text-dark text-center position-relative">
+                <span class="badge bg-danger text-white position-absolute top-0 start-0 m-2 fw-bold" style="font-size: 10px;">-40% OFF</span>
+                <img src="{% static 'images/featured_smartwatch.jpg' %}" alt="Smartwatch" class="img-fluid rounded-3 my-2" style="height:110px; object-fit:cover;">
+                <h6 class="fw-bold mb-1 text-truncate">Smartwatch Ultra 2</h6>
+                <div class="d-flex align-items-center justify-content-center gap-2 mt-2">
+                  <span class="fw-bold text-primary fs-5">₹11,999</span>
+                  <span class="text-muted text-decoration-line-through small">₹19,999</span>
+                </div>
+                <button class="btn btn-primary-custom btn-sm w-100 mt-2 btn-add-cart" data-product-id="2">Claim Deal</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     8. TOP BRANDS
+═══════════════════════════════════════════════════ -->
+<section class="section-padding bg-light border-bottom">
+  <div class="container">
+    <div class="text-center max-w-xl mx-auto mb-4">
+      <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-1 mb-2" style="border-radius: 99px;">OFFICIAL PARTNERS</span>
+      <h2 class="section-title">Top Brands</h2>
+      <p class="section-subtitle">Shop authentic products from world-class global brands.</p>
+      <div class="section-divider mx-auto"></div>
+    </div>
+
+    <div class="row g-4 text-center align-items-center">
+      <div class="col-4 col-md-2">
+        <div class="card-shopsphere p-3 hover-lift border">
+          <i class="fab fa-apple display-5 text-dark"></i>
+          <div class="fw-semibold text-muted small mt-2">Apple</div>
+        </div>
+      </div>
+      <div class="col-4 col-md-2">
+        <div class="card-shopsphere p-3 hover-lift border">
+          <i class="fab fa-amazon display-5 text-dark"></i>
+          <div class="fw-semibold text-muted small mt-2">Amazon</div>
+        </div>
+      </div>
+      <div class="col-4 col-md-2">
+        <div class="card-shopsphere p-3 hover-lift border">
+          <i class="fab fa-google display-5 text-dark"></i>
+          <div class="fw-semibold text-muted small mt-2">Google</div>
+        </div>
+      </div>
+      <div class="col-4 col-md-2">
+        <div class="card-shopsphere p-3 hover-lift border">
+          <i class="fab fa-microsoft display-5 text-dark"></i>
+          <div class="fw-semibold text-muted small mt-2">Microsoft</div>
+        </div>
+      </div>
+      <div class="col-4 col-md-2">
+        <div class="card-shopsphere p-3 hover-lift border">
+          <i class="fab fa-playstation display-5 text-dark"></i>
+          <div class="fw-semibold text-muted small mt-2">Sony</div>
+        </div>
+      </div>
+      <div class="col-4 col-md-2">
+        <div class="card-shopsphere p-3 hover-lift border">
+          <i class="fab fa-xbox display-5 text-dark"></i>
+          <div class="fw-semibold text-muted small mt-2">Xbox</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     9. CUSTOMER REVIEWS
+═══════════════════════════════════════════════════ -->
+<section class="section-padding bg-white border-bottom">
+  <div class="container">
+    <div class="text-center max-w-xl mx-auto mb-5">
+      <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-1 mb-2" style="border-radius: 99px;">TESTIMONIALS</span>
+      <h2 class="section-title">What Our Customers Say</h2>
+      <p class="section-subtitle">Read verified reviews from real buyers across India.</p>
+      <div class="section-divider mx-auto"></div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card-shopsphere p-4 h-100 border">
+          <div class="star-rating mb-3">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-dark mb-4 fs-6">"Super fast delivery! Received my laptop within 24 hours. Original product with full warranty. Highly recommended!"</p>
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width:42px; height:42px;">
+              R
+            </div>
+            <div>
+              <h6 class="fw-bold mb-0">Rahul Sharma</h6>
+              <span class="text-success small fw-semibold"><i class="fas fa-circle-check me-1"></i>Verified Buyer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card-shopsphere p-4 h-100 border">
+          <div class="star-rating mb-3">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-dark mb-4 fs-6">"SPCart is my go-to shopping app now. Great discounts on fashion & electronics. The return process was super simple."</p>
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width:42px; height:42px;">
+              P
+            </div>
+            <div>
+              <h6 class="fw-bold mb-0">Priya Patel</h6>
+              <span class="text-success small fw-semibold"><i class="fas fa-circle-check me-1"></i>Verified Buyer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card-shopsphere p-4 h-100 border">
+          <div class="star-rating mb-3">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i>
+          </div>
+          <p class="text-dark mb-4 fs-6">"Smooth checkout and great customer support team. The deals section is awesome. Best e-commerce experience!"</p>
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width:42px; height:42px;">
+              A
+            </div>
+            <div>
+              <h6 class="fw-bold mb-0">Amit Verma</h6>
+              <span class="text-success small fw-semibold"><i class="fas fa-circle-check me-1"></i>Verified Buyer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     10. NEWSLETTER
 ═══════════════════════════════════════════════════ -->
 <section class="section-padding section-bg">
   <div class="container">
     <div class="row justify-content-center text-center">
       <div class="col-lg-7">
+        <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-1 mb-2" style="border-radius: 99px;">STAY INSPIRED</span>
         <h2 class="section-title">Subscribe to Newsletter</h2>
         <p class="section-subtitle">Get instant updates about new arrivals, special offers, and discount coupons on SPCart.</p>
         <div class="section-divider mx-auto"></div>
@@ -191,4 +711,5 @@
     </div>
   </div>
 </section>
+
 {% endblock %}

@@ -161,6 +161,35 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // ── Live Deals Countdown Timer (Updates every second) ────
+  function startDealsCountdown() {
+    let hours = 8, minutes = 42, seconds = 15;
+    const hoursEl = document.getElementById('timer-hours');
+    const minsEl = document.getElementById('timer-mins');
+    const secsEl = document.getElementById('timer-secs');
+
+    if (!hoursEl || !minsEl || !secsEl) return;
+
+    setInterval(() => {
+      if (seconds > 0) {
+        seconds--;
+      } else {
+        seconds = 59;
+        if (minutes > 0) {
+          minutes--;
+        } else {
+          minutes = 59;
+          if (hours > 0) hours--;
+        }
+      }
+
+      hoursEl.textContent = hours.toString().padStart(2, '0');
+      minsEl.textContent = minutes.toString().padStart(2, '0');
+      secsEl.textContent = seconds.toString().padStart(2, '0');
+    }, 1000);
+  }
+  startDealsCountdown();
+
   // ── Back to Top Button ────────────────────────────────────
   const backToTop = document.getElementById('back-to-top');
   if (backToTop) {
