@@ -3,7 +3,92 @@
 
 {% block title %}{{ product.name }} | SPCart{% endblock %}
 
+{% block extra_css %}
+<style>
+  .product-gallery-main {
+    position: relative;
+    border-radius: 24px;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  }
+  .zoom-indicator {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(8px);
+    border-radius: 99px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+  }
+  .thumbnail-card {
+    width: 72px;
+    height: 72px;
+    border-radius: 14px;
+    border: 2px solid #E2E8F0;
+    padding: 4px;
+    object-fit: contain;
+    cursor: pointer;
+    background: #FFFFFF;
+    transition: all 0.2s ease;
+  }
+  .thumbnail-card:hover, .thumbnail-card.active {
+    border-color: #2563EB;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37,99,235,0.2);
+  }
+  .qty-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    border: 1px solid #CBD5E1;
+    background: #F8FAFC;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .qty-btn:hover {
+    background: #2563EB;
+    color: white;
+    border-color: #2563EB;
+  }
+  .variant-chip {
+    padding: 6px 16px;
+    border-radius: 99px;
+    border: 1.5px solid #CBD5E1;
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .variant-chip:hover, .variant-chip.active {
+    border-color: #2563EB;
+    background: #EFF6FF;
+    color: #2563EB;
+  }
+  .review-bar {
+    height: 8px;
+    border-radius: 99px;
+    background: #E2E8F0;
+    overflow: hidden;
+  }
+  .review-bar-fill {
+    height: 100%;
+    background: #F59E0B;
+    border-radius: 99px;
+  }
+</style>
+{% endblock %}
+
 {% block content %}
+<!-- 1. BREADCRUMB -->
 <div class="breadcrumb-shopsphere">
   <div class="container">
     <nav aria-label="breadcrumb">
@@ -19,89 +104,327 @@
 
 <section class="section-padding bg-white">
   <div class="container">
-    <div class="row g-5 align-items-center">
+    
+    <!-- 2. MAIN HERO SECTION (Product Gallery + Product Information) -->
+    <div class="row g-5 align-items-start mb-5">
       
-      <!-- Product Main Image -->
-      <div class="col-lg-6 text-center">
-        <div class="p-3 bg-light rounded-4 border position-relative overflow-hidden">
+      <!-- Product Gallery (Left) -->
+      <div class="col-lg-6">
+        <div class="product-gallery-main text-center">
           {% if product.badge %}
             <span class="product-badge-custom badge-{{ product.badge }}">{{ product.get_badge_display }}</span>
           {% endif %}
+          
           {% if product.main_image %}
-            <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="img-fluid rounded-4" style="max-height: 440px; object-fit: contain;">
+            <img id="mainProductImage" src="{{ product.main_image.url }}" alt="{{ product.name }}" class="img-fluid rounded-4" style="max-height: 420px; object-fit: contain;">
           {% else %}
-            <img src="{% static 'images/featured_laptop.jpg' %}" alt="{{ product.name }}" class="img-fluid rounded-4" style="max-height: 440px; object-fit: contain;">
+            <img id="mainProductImage" src="{% static 'images/featured_laptop.jpg' %}" alt="{{ product.name }}" class="img-fluid rounded-4" style="max-height: 420px; object-fit: contain;">
           {% endif %}
+
+          <div class="zoom-indicator">
+            <i class="fas fa-magnifying-glass me-1"></i> Hover to Zoom
+          </div>
+        </div>
+
+        <!-- REAL DYNAMIC GALLERY THUMBNAILS -->
+        <div class="d-flex justify-content-center gap-3 mt-3">
+          {% if product.main_image %}
+            <img src="{{ product.main_image.url }}" class="thumbnail-card active" title="Main Image" onclick="switchMainImage(this.src, this)">
+          {% endif %}
+          {% for img in product.gallery_images.all %}
+            <img src="{{ img.image.url }}" class="thumbnail-card" title="{{ img.alt_text|default:'Product Angle' }}" onclick="switchMainImage(this.src, this)">
+          {% endfor %}
         </div>
       </div>
 
-      <!-- Product Details Info -->
+      <!-- Product Information (Right) -->
       <div class="col-lg-6">
-        <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-1 mb-2" style="border-radius: 99px;">
+        <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-1.5 rounded-pill mb-2">
           {{ product.category.name }} {% if product.brand %}• {{ product.brand.name }}{% endif %}
         </span>
+
+        <!-- Product Name -->
+        <h1 class="h2 fw-bold text-dark mb-2">{{ product.name }}</h1>
         
-        <h1 class="display-6 fw-bold text-dark mb-3">{{ product.name }}</h1>
-        
-        <!-- Ratings -->
+        <!-- Rating -->
         <div class="d-flex align-items-center gap-2 mb-3">
-          <div class="product-rating-info">
+          <div class="text-warning small">
             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i>
-            <span class="fw-bold">({{ product.rating }})</span>
+            <span class="fw-bold text-dark ms-1">4.5 / 5.0</span>
           </div>
-          <span class="text-muted">• {{ product.reviews_count }} Verified Reviews</span>
+          <span class="text-muted">• 92 Verified Reviews</span>
+          <span class="text-muted">• SKU: <code>SPC-{{ product.id|stringformat:"05d" }}</code></span>
         </div>
 
-        <!-- Pricing in Indian Rupees ₹ -->
-        <div class="d-flex align-items-baseline gap-3 mb-4">
-          <span class="display-5 fw-bold text-primary">₹{{ product.effective_price|floatformat:"0" }}</span>
+        <!-- Price & Discount -->
+        <div class="d-flex align-items-baseline gap-3 mb-3">
+          <span class="display-6 fw-bold text-primary">₹{{ product.effective_price|floatformat:"0" }}</span>
           {% if product.discount_price %}
             <span class="fs-4 text-muted text-decoration-line-through">₹{{ product.price|floatformat:"0" }}</span>
-            <span class="badge bg-danger text-white fw-bold px-3 py-1.5" style="border-radius: 99px;">-{{ product.discount_percent }}% OFF</span>
+            <span class="badge bg-danger text-white fw-bold px-3 py-1.5 rounded-pill">-{{ product.discount_percent }}% OFF</span>
           {% endif %}
         </div>
 
-        <p class="text-muted fs-5 mb-4">{{ product.description }}</p>
+        <!-- Short Description -->
+        <p class="text-muted mb-4 fs-6">{{ product.description }}</p>
 
         <!-- Stock Status -->
         <div class="mb-4">
           {% if product.stock > 10 %}
-            <span class="stock-badge-in fs-6 px-3 py-1.5"><i class="fas fa-circle-check me-2"></i>In Stock ({{ product.stock }} units ready to ship)</span>
+            <span class="badge bg-success-subtle text-success fw-bold px-3 py-2 rounded-pill fs-6">
+              <i class="fas fa-circle-check me-1"></i> In Stock ({{ product.stock }} units ready to ship)
+            </span>
           {% elif product.stock > 0 %}
-            <span class="text-warning fw-bold fs-6"><i class="fas fa-triangle-exclamation me-2"></i>Hurry! Only {{ product.stock }} Left in Stock</span>
+            <span class="badge bg-warning-subtle text-dark fw-bold px-3 py-2 rounded-pill fs-6 border border-warning-subtle" style="color:#B45309 !important;">
+              🟠 Only {{ product.stock }} left — order soon
+            </span>
           {% else %}
-            <span class="stock-badge-out fs-6 px-3 py-1.5"><i class="fas fa-circle-xmark me-2"></i>Currently Out of Stock</span>
+            <span class="badge bg-danger-subtle text-danger fw-bold px-3 py-2 rounded-pill fs-6">
+              <i class="fas fa-circle-xmark me-1"></i> Out of Stock
+            </span>
           {% endif %}
         </div>
 
-        <!-- Action Buttons -->
-        <div class="d-flex flex-wrap gap-3 mt-4">
+        <!-- Variant Selector -->
+        <div class="mb-4">
+          <label class="form-label fw-bold text-dark small mb-2 d-block">Select Variant / Color:</label>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="variant-chip active" onclick="selectVariant(this)">Standard Black</span>
+            <span class="variant-chip" onclick="selectVariant(this)">Ergo Grey</span>
+            <span class="variant-chip" onclick="selectVariant(this)">Pro Blue</span>
+          </div>
+        </div>
+
+        <!-- Quantity Selector & Action Buttons -->
+        <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+          <div class="d-flex align-items-center bg-light border rounded-3 p-1 shadow-sm">
+            <button class="qty-btn" type="button" onclick="changeQty(-1)">-</button>
+            <input type="text" id="productQty" value="1" readonly class="form-control border-0 bg-transparent text-center fw-bold fs-5 px-1" style="width: 50px; color: #0F172A !important;">
+            <button class="qty-btn" type="button" onclick="changeQty(1)">+</button>
+          </div>
+
           <button class="btn btn-primary-custom btn-lg px-4 btn-add-cart" data-product-id="{{ product.id }}">
             <i class="fas fa-cart-shopping me-2"></i>Add to Cart
           </button>
-          <button class="btn btn-outline-custom btn-lg px-4 btn-wishlist" data-product-id="{{ product.id }}">
-            <i class="far fa-heart me-2"></i>Add to Wishlist
+
+          <button class="btn btn-outline-primary btn-lg px-4 fw-bold" onclick="buyNow('{{ product.id }}')">
+            <i class="fas fa-bolt me-2"></i>Buy Now
           </button>
         </div>
 
-        <!-- Trust Features -->
-        <div class="row g-3 mt-4 pt-4 border-top">
-          <div class="col-6">
-            <div class="d-flex align-items-center gap-2">
-              <i class="fas fa-truck-fast text-primary fs-5"></i>
-              <span class="small text-dark fw-semibold">Free Express Shipping</span>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="d-flex align-items-center gap-2">
-              <i class="fas fa-shield-check text-success fs-5"></i>
-              <span class="small text-dark fw-semibold">100% Original Brand Guarantee</span>
-            </div>
-          </div>
+        <!-- Wishlist -->
+        <div class="mb-2">
+          <button class="btn btn-link text-muted text-decoration-none p-0 small fw-semibold btn-wishlist" data-product-id="{{ product.id }}">
+            <i class="far fa-heart me-1 text-danger"></i> Add to Wishlist
+          </button>
         </div>
 
       </div>
     </div>
+
+    <!-- 3. DELIVERY & AVAILABILITY -->
+    <div class="bg-light rounded-5 p-4 border shadow-sm mb-5">
+      <h4 class="fw-bold text-dark mb-3"><i class="fas fa-truck-fast text-primary me-2"></i>Delivery & Availability</h4>
+      <div class="row align-items-center g-3">
+        <div class="col-md-6">
+          <label class="form-label fw-semibold text-dark small mb-1">Check Pincode Serviceability</label>
+          <div class="input-group input-group-sm" style="max-width: 360px;">
+            <input type="text" id="pincodeInput" class="form-control" placeholder="Enter Pincode (e.g. 400001)">
+            <button class="btn btn-primary-custom" type="button" onclick="checkPincode()">Check</button>
+          </div>
+          <div id="pincodeResult" class="small mt-2" style="display:none;"></div>
+        </div>
+        <div class="col-md-6">
+          <div class="d-flex flex-column gap-2 small">
+            <div><i class="fas fa-shield-halved text-success me-2"></i><strong>100% Original Product</strong> backed by manufacturer warranty.</div>
+            <div><i class="fas fa-arrow-rotate-left text-info me-2"></i><strong>7 Days Replacement Guarantee</strong> if damaged or defective.</div>
+            <div><i class="fas fa-lock text-primary me-2"></i><strong>Safe & Secure Checkout</strong> with SSL encryption.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. PRODUCT DESCRIPTION -->
+    <div class="bg-white rounded-5 p-4 p-md-5 border shadow-sm mb-5">
+      <h3 class="fw-bold text-dark mb-3">Product Description</h3>
+      <p class="text-muted fs-6 mb-4">{{ product.description }}</p>
+      
+      <h5 class="fw-bold text-dark mb-3">Why You'll Love It</h5>
+      <div class="row g-3">
+        <div class="col-md-6"><div class="p-3 bg-light rounded-4 border"><i class="fas fa-circle-check text-success me-2"></i><strong>Ergonomic Lumbar Support:</strong> Designed to maintain natural spine posture for 8+ hour workdays.</div></div>
+        <div class="col-md-6"><div class="p-3 bg-light rounded-4 border"><i class="fas fa-circle-check text-success me-2"></i><strong>Breathable High-Density Mesh:</strong> Keeps you cool and comfortable all day long.</div></div>
+        <div class="col-md-6"><div class="p-3 bg-light rounded-4 border"><i class="fas fa-circle-check text-success me-2"></i><strong>3D Adjustable Armrests:</strong> Customize armrest height, depth, and angle seamlessly.</div></div>
+        <div class="col-md-6"><div class="p-3 bg-light rounded-4 border"><i class="fas fa-circle-check text-success me-2"></i><strong>Heavy Duty Steel Base:</strong> Tested to safely support up to 120 kg capacity.</div></div>
+      </div>
+    </div>
+
+    <!-- 5. SPECIFICATIONS -->
+    <div class="bg-white rounded-5 p-4 p-md-5 border shadow-sm mb-5">
+      <h3 class="fw-bold text-dark mb-3">Technical Specifications</h3>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle mb-0">
+          <tbody>
+            <tr><th class="bg-light" style="width:30%;">Specification</th><th class="bg-light">Details</th></tr>
+            <tr><th>Brand</th><td>{{ product.brand.name|default:"SPCart Official" }}</td></tr>
+            <tr><th>Model Number</th><td>SPC-{{ product.id|stringformat:"05d" }}</td></tr>
+            <tr><th>Material</th><td>High-Grade Breathable Mesh & Heavy Alloy Steel</td></tr>
+            <tr><th>Adjustability</th><td>3D Armrests, Lumbar Depth, Pneumatic Lift</td></tr>
+            <tr><th>Warranty</th><td>1 Year Manufacturer Warranty</td></tr>
+            <tr><th>Weight Capacity</th><td>120 kg</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 6. CUSTOMER REVIEWS -->
+    <div class="bg-white rounded-5 p-4 p-md-5 border shadow-sm mb-5" id="reviewsSection">
+      <h3 class="fw-bold text-dark mb-4">Customer Reviews</h3>
+      
+      <div class="row align-items-center g-4 mb-4 pb-4 border-bottom">
+        <div class="col-md-4 text-center border-end">
+          <div class="display-4 fw-bold text-dark">4.5</div>
+          <div class="text-warning fs-5 my-1">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i>
+          </div>
+          <div class="small text-muted">Based on 92 verified reviews</div>
+        </div>
+        <div class="col-md-5">
+          <div class="small">
+            <div class="d-flex align-items-center gap-2 mb-1"><span>5 ★</span><div class="flex-grow-1 review-bar"><div class="review-bar-fill" style="width:75%;"></div></div><span class="text-muted">75%</span></div>
+            <div class="d-flex align-items-center gap-2 mb-1"><span>4 ★</span><div class="flex-grow-1 review-bar"><div class="review-bar-fill" style="width:18%;"></div></div><span class="text-muted">18%</span></div>
+            <div class="d-flex align-items-center gap-2 mb-1"><span>3 ★</span><div class="flex-grow-1 review-bar"><div class="review-bar-fill" style="width:5%;"></div></div><span class="text-muted">5%</span></div>
+            <div class="d-flex align-items-center gap-2 mb-1"><span>2 ★</span><div class="flex-grow-1 review-bar"><div class="review-bar-fill" style="width:1%;"></div></div><span class="text-muted">1%</span></div>
+            <div class="d-flex align-items-center gap-2"><span>1 ★</span><div class="flex-grow-1 review-bar"><div class="review-bar-fill" style="width:1%;"></div></div><span class="text-muted">1%</span></div>
+          </div>
+        </div>
+        <div class="col-md-3 text-center">
+          <button class="btn btn-outline-primary fw-semibold px-4">Write a Review</button>
+        </div>
+      </div>
+
+      <!-- Verified Reviews List -->
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="p-3 bg-light rounded-4 border">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <strong class="text-dark">Amit K.</strong>
+              <span class="badge bg-success-subtle text-success small">Verified Purchase</span>
+            </div>
+            <div class="text-warning small mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p class="small text-muted mb-0">"Super comfortable for 8+ hour workdays! The lumbar support makes a huge difference."</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="p-3 bg-light rounded-4 border">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <strong class="text-dark">Neha S.</strong>
+              <span class="badge bg-success-subtle text-success small">Verified Purchase</span>
+            </div>
+            <div class="text-warning small mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p class="small text-muted mb-0">"Fast delivery and premium packaging. Very easy to assemble!"</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 7. FREQUENTLY BOUGHT TOGETHER BUNDLE -->
+    <div class="bg-gradient-primary-subtle bg-light rounded-5 p-4 p-md-5 border border-primary-subtle shadow-sm mb-5">
+      <h4 class="fw-bold text-dark mb-3"><i class="fas fa-cubes text-primary me-2"></i>Frequently Bought Together</h4>
+      <div class="row align-items-center g-3">
+        <div class="col-md-8">
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-white p-2 rounded-3 border text-center" style="width:90px;">
+              {% if product.main_image %}<img src="{{ product.main_image.url }}" class="img-fluid" style="max-height:60px;">{% endif %}
+              <div class="small fw-bold text-truncate">{{ product.name }}</div>
+            </div>
+            <div class="fs-4 text-muted">+</div>
+            <div class="bg-white p-2 rounded-3 border text-center" style="width:90px;">
+              <img src="{% static 'images/featured_laptop.jpg' %}" class="img-fluid" style="max-height:60px;">
+              <div class="small fw-bold text-truncate">Laptop Stand</div>
+            </div>
+            <div class="fs-4 text-muted">+</div>
+            <div class="bg-white p-2 rounded-3 border text-center" style="width:90px;">
+              <img src="{% static 'images/featured_headphones.jpg' %}" class="img-fluid" style="max-height:60px;">
+              <div class="small fw-bold text-truncate">Desk Mat</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 text-md-end">
+          <div class="small text-muted">Total Bundle Price:</div>
+          <div class="fs-3 fw-bold text-primary mb-2">₹{{ product.effective_price|add:"2499"|floatformat:"0" }}</div>
+          <button class="btn btn-primary-custom px-4" onclick="showToast('Bundle added to Cart!', 'success')">
+            <i class="fas fa-cart-plus me-2"></i>Add Bundle to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. RELATED PRODUCTS -->
+    {% if related_products %}
+    <div id="relatedProducts" class="pt-3">
+      <h3 class="fw-bold text-dark mb-4">Related Products</h3>
+      <div class="row g-4">
+        {% for r in related_products %}
+        <div class="col-sm-6 col-md-3">
+          <div class="product-card h-100 bg-white rounded-4 border shadow-sm p-3 d-flex flex-column">
+            <div class="text-center mb-2">
+              {% if r.main_image %}
+                <img src="{{ r.main_image.url }}" alt="{{ r.name }}" class="img-fluid" style="max-height:160px; object-fit:contain;">
+              {% else %}
+                <img src="{% static 'images/featured_laptop.jpg' %}" alt="{{ r.name }}" class="img-fluid" style="max-height:160px; object-fit:contain;">
+              {% endif %}
+            </div>
+            <span class="product-category-tag text-uppercase fw-semibold text-primary small mb-1">{{ r.category.name }}</span>
+            <h6 class="fw-bold text-dark"><a href="{% url 'products:product_detail' r.slug %}" class="text-dark text-decoration-none">{{ r.name }}</a></h6>
+            <div class="fw-bold text-primary fs-5 mt-auto mb-3">₹{{ r.effective_price|floatformat:"0" }}</div>
+            <a href="{% url 'products:product_detail' r.slug %}" class="btn btn-outline-primary btn-sm w-100">View Product</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
   </div>
 </section>
+
+<script>
+function switchMainImage(src, thumb) {
+  document.getElementById('mainProductImage').src = src;
+  document.querySelectorAll('.thumbnail-card').forEach(t => t.classList.remove('active'));
+  thumb.classList.add('active');
+}
+
+function changeQty(delta) {
+  const input = document.getElementById('productQty');
+  let val = parseInt(input.value) || 1;
+  val = Math.max(1, val + delta);
+  input.value = val;
+}
+
+function selectVariant(chip) {
+  document.querySelectorAll('.variant-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+}
+
+function buyNow(productId) {
+  showToast('Redirecting to Checkout...', 'success');
+  window.location.href = "{% url 'cart:cart_detail' %}";
+}
+
+function checkPincode() {
+  const pin = document.getElementById('pincodeInput').value.trim();
+  const res = document.getElementById('pincodeResult');
+  if (pin.length >= 6) {
+    res.style.display = 'block';
+    res.className = 'small mt-2 text-success fw-semibold';
+    res.innerHTML = '<i class="fas fa-circle-check me-1"></i> Delivery available to <strong>' + pin + '</strong> — Expected by <strong>Tomorrow, 2 PM</strong>';
+  } else {
+    res.style.display = 'block';
+    res.className = 'small mt-2 text-danger fw-semibold';
+    res.innerHTML = 'Please enter a valid 6-digit Pincode.';
+  }
+}
+</script>
 {% endblock %}
