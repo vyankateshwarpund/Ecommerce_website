@@ -69,7 +69,7 @@
               </div>
               <span class="d-none d-lg-inline fw-medium text-dark">{{ user.first_name|default:user.username }}</span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-2" style="border-radius:14px;">
+            <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-2" style="border-radius:14px; z-index:1090 !important;">
               {% if user.is_staff %}
               <li><a class="dropdown-item py-2" href="{% url 'dashboard:index' %}"><i class="fas fa-chart-line me-2 text-primary"></i>Admin Dashboard</a></li>
               <li><a class="dropdown-item py-2" href="/admin/" target="_blank"><i class="fas fa-user-gear me-2 text-warning"></i>Django Admin Panel</a></li>

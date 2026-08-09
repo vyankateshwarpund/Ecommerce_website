@@ -13,12 +13,11 @@ def register_view(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            if not user.username:
-                user.username = user.email.split('@')[0]
-            user.save()
-            messages.success(request, 'Account created successfully! You can now log in.')
-            return redirect('accounts:login')
+            user = form.save()
+            # Auto-login newly registered user with explicit backend
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            messages.success(request, f'Welcome to SPCart, {user.first_name or user.username}! Your account has been created successfully.')
+            return redirect('core:home')
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
@@ -32,7 +31,7 @@ def login_view(request):
         return redirect('core:home')
 
     if request.method == 'POST':
-        form = UserLoginForm(request, data=request.POST)
+        form = UserLoginForm(request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
@@ -40,7 +39,7 @@ def login_view(request):
             next_url = request.GET.get('next') or 'core:home'
             return redirect(next_url)
         else:
-            messages.error(request, 'Invalid email or password.')
+            messages.error(request, 'Invalid email/username or password.')
     else:
         form = UserLoginForm()
 
@@ -56,6 +55,15 @@ def logout_view(request):
 
 @login_required
 def profile_view(request):
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        if first_name is not None and last_name is not None:
+            request.user.first_name = first_name
+            request.user.last_name = last_name
+            request.user.save()
+            messages.success(request, 'Your profile changes have been saved successfully!')
+            return redirect('accounts:profile')
     return render(request, 'accounts/profile.html', {'user': request.user})
 
 

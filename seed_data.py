@@ -28,9 +28,9 @@ def seed_database():
     categories = {}
     for c_info in cats_data:
         cat, created = Category.objects.update_or_create(
-            name=c_info['name'],
+            slug=c_info['slug'],
             defaults={
-                'slug': c_info['slug'],
+                'name': c_info['name'],
                 'icon': c_info['icon'],
                 'description': c_info['description'],
                 'is_featured': c_info['is_featured'],

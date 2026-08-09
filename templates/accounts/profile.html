@@ -1,66 +1,156 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}My Profile — ShopSphere{% endblock %}
+{% block title %}My Profile | SPCart{% endblock %}
 
 {% block content %}
-<div class="container section-padding">
-  <div class="row g-4">
-    <!-- Sidebar Navigation -->
-    <div class="col-lg-3">
-      <div class="card-shopsphere p-3">
-        <div class="text-center py-3">
-          <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width:64px; height:64px; font-size:24px; font-weight:700;">
-            {{ user.first_name|default:user.email|slice:":1"|upper }}
-          </div>
-          <h5 class="fw-bold mb-0">{{ user.first_name }} {{ user.last_name }}</h5>
-          <p class="text-muted small">{{ user.email }}</p>
-        </div>
-        <div class="list-group list-group-flush border-top pt-2">
-          <a href="{% url 'accounts:profile' %}" class="list-group-item list-group-item-action active rounded mb-1"><i class="fas fa-user me-2"></i>Profile Details</a>
-          <a href="{% url 'orders:order_history' %}" class="list-group-item list-group-item-action rounded mb-1"><i class="fas fa-box me-2"></i>My Orders</a>
-          <a href="{% url 'accounts:addresses' %}" class="list-group-item list-group-item-action rounded mb-1"><i class="fas fa-location-dot me-2"></i>Saved Addresses</a>
-          <a href="{% url 'accounts:change_password' %}" class="list-group-item list-group-item-action rounded mb-1"><i class="fas fa-key me-2"></i>Change Password</a>
-          <a href="{% url 'accounts:logout' %}" class="list-group-item list-group-item-action text-danger rounded"><i class="fas fa-right-from-bracket me-2"></i>Logout</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Main Profile Card -->
-    <div class="col-lg-9">
-      <div class="card-shopsphere p-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <h3 class="fw-bold mb-0">Personal Information</h3>
-          <a href="{% url 'accounts:edit_profile' %}" class="btn btn-outline-custom btn-sm"><i class="fas fa-pen me-2"></i>Edit Profile</a>
-        </div>
-
-        <div class="row g-4">
-          <div class="col-md-6">
-            <label class="text-muted small">First Name</label>
-            <div class="fw-semibold fs-5">{{ user.first_name|default:"Not specified" }}</div>
-          </div>
-          <div class="col-md-6">
-            <label class="text-muted small">Last Name</label>
-            <div class="fw-semibold fs-5">{{ user.last_name|default:"Not specified" }}</div>
-          </div>
-          <div class="col-md-6">
-            <label class="text-muted small">Email Address</label>
-            <div class="fw-semibold fs-5">{{ user.email }}</div>
-          </div>
-          <div class="col-md-6">
-            <label class="text-muted small">Phone Number</label>
-            <div class="fw-semibold fs-5">{{ user.profile.phone|default:"Not specified" }}</div>
-          </div>
-          <div class="col-md-6">
-            <label class="text-muted small">Gender</label>
-            <div class="fw-semibold fs-5">{{ user.profile.get_gender_display|default:"Not specified" }}</div>
-          </div>
-          <div class="col-md-6">
-            <label class="text-muted small">Date of Birth</label>
-            <div class="fw-semibold fs-5">{{ user.profile.date_of_birth|default:"Not specified" }}</div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="breadcrumb-shopsphere">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Profile</li>
+      </ol>
+    </nav>
   </div>
 </div>
+
+<section class="section-padding bg-light">
+  <div class="container">
+
+    <!-- Page Title Header -->
+    <div class="text-center mb-4">
+      <h2 class="fw-bold text-dark text-uppercase tracking-wide" style="letter-spacing: 2px;">Profile</h2>
+      <div class="mx-auto bg-primary rounded" style="width: 50px; height: 3px;"></div>
+    </div>
+
+    <div class="row g-4">
+      
+      <!-- LEFT SIDEBAR -->
+      <div class="col-lg-4 col-xl-3">
+        <div class="bg-white rounded-5 p-4 border shadow-sm text-center">
+          
+          <!-- Avatar Circle -->
+          <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold display-5 mb-3 shadow-sm" style="width: 90px; height: 90px;">
+            {{ user.first_name|default:user.email|slice:":1"|upper }}
+          </div>
+
+          <!-- User Info -->
+          <h5 class="fw-bold text-dark mb-1">{{ user.first_name|default:user.username }} {{ user.last_name }}</h5>
+          <p class="text-muted small mb-2">{{ user.email }}</p>
+          <span class="badge bg-success-subtle text-success fw-semibold px-3 py-1.5 rounded-pill border border-success-subtle mb-3">
+            🟢 Verified
+          </span>
+
+          <hr class="my-3 opacity-25">
+
+          <!-- Sidebar Navigation -->
+          <div class="nav flex-column nav-pills text-start gap-1">
+            <a href="{% url 'accounts:profile' %}" class="nav-link active fw-semibold py-2.5 px-3 rounded-3 d-flex align-items-center gap-2">
+              <span>👤</span> <span>Profile</span>
+            </a>
+            <a href="{% url 'orders:order_history' %}" class="nav-link text-dark fw-semibold py-2.5 px-3 rounded-3 d-flex align-items-center gap-2 hover-bg-light">
+              <span>📦</span> <span>My Orders</span>
+            </a>
+            <a href="{% url 'accounts:addresses' %}" class="nav-link text-dark fw-semibold py-2.5 px-3 rounded-3 d-flex align-items-center gap-2 hover-bg-light">
+              <span>📍</span> <span>Addresses</span>
+            </a>
+            <a href="{% url 'wishlist:wishlist_detail' %}" class="nav-link text-dark fw-semibold py-2.5 px-3 rounded-3 d-flex align-items-center gap-2 hover-bg-light">
+              <span>♡</span> <span>Wishlist</span>
+            </a>
+            <a href="#" class="nav-link text-dark fw-semibold py-2.5 px-3 rounded-3 d-flex align-items-center gap-2 hover-bg-light">
+              <span>🔔</span> <span>Notifications</span>
+            </a>
+            <a href="#" class="nav-link text-dark fw-semibold py-2.5 px-3 rounded-3 d-flex align-items-center gap-2 hover-bg-light">
+              <span>⚙</span> <span>Settings</span>
+            </a>
+
+            <hr class="my-2 opacity-25">
+
+            <a href="{% url 'accounts:logout' %}" class="nav-link text-danger fw-semibold py-2.5 px-3 rounded-3 d-flex align-items-center gap-2 hover-bg-danger-subtle">
+              <span>🚪</span> <span>Logout</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT MAIN CONTENT -->
+      <div class="col-lg-8 col-xl-9">
+        
+        <!-- Account Overview Card -->
+        <div class="bg-white rounded-5 p-4 p-md-5 border shadow-sm mb-4">
+          <h4 class="fw-bold text-dark mb-3">Account Overview</h4>
+
+          <!-- 3 Stats Boxes -->
+          <div class="row g-3 mb-4">
+            <div class="col-4">
+              <div class="bg-light p-3 rounded-4 border text-center">
+                <div class="fw-bold fs-3 text-primary">{{ user.orders.count|default:"0" }}</div>
+                <div class="small fw-semibold text-muted">Orders</div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="bg-light p-3 rounded-4 border text-center">
+                <div class="fw-bold fs-3 text-primary">{{ user.wishlist.items.count|default:"0" }}</div>
+                <div class="small fw-semibold text-muted">Wishlist</div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="bg-light p-3 rounded-4 border text-center">
+                <div class="fw-bold fs-3 text-primary">0</div>
+                <div class="small fw-semibold text-muted">Reviews</div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <!-- Edit Profile Information -->
+          <h4 class="fw-bold text-dark mb-3">Edit Profile Information</h4>
+          
+          <form method="POST" action="{% url 'accounts:profile' %}">
+            {% csrf_token %}
+
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label for="first_name" class="form-label fw-semibold text-dark small">First Name</label>
+                <input type="text" name="first_name" id="first_name" class="form-control form-control-lg bg-light" value="{{ user.first_name }}" placeholder="karan" required>
+              </div>
+              <div class="col-md-6">
+                <label for="last_name" class="form-label fw-semibold text-dark small">Last Name</label>
+                <input type="text" name="last_name" id="last_name" class="form-control form-control-lg bg-light" value="{{ user.last_name }}" placeholder="kadalkar" required>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="email" class="form-label fw-semibold text-dark small">Email Address</label>
+              <input type="email" name="email" id="email" class="form-control form-control-lg bg-light" value="{{ user.email }}" placeholder="kk1@gmail.com" required readonly>
+            </div>
+
+            <button type="submit" class="btn btn-primary-custom btn-lg px-4 shadow-sm mb-4">
+              💾 Save Profile Changes
+            </button>
+          </form>
+
+          <hr class="my-4">
+
+          <!-- Security Section -->
+          <div class="d-flex justify-content-between align-items-center p-3 rounded-4 bg-light border">
+            <div>
+              <div class="fw-bold text-dark"><span class="me-1">🔒</span> Security</div>
+              <div class="small text-muted">Password: <strong>••••••••</strong></div>
+            </div>
+            <a href="{% url 'accounts:change_password' %}" class="btn btn-outline-primary btn-sm px-4 rounded-pill fw-semibold">
+              Change
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
 {% endblock %}
