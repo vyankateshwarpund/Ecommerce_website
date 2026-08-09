@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Order Placed Successfully | SPCart{% endblock %}
+
+{% block content %}
+<section class="section-padding bg-light">
+  <div class="container" style="max-width: 800px;">
+    
+    <!-- SUCCESS CELEBRATION HEADER -->
+    <div class="bg-white rounded-5 border p-5 text-center shadow-sm mb-4">
+      <div class="d-inline-flex align-items-center justify-content-center bg-success-subtle text-success rounded-circle mb-3" style="width: 80px; height: 80px;">
+        <i class="fas fa-circle-check display-4"></i>
+      </div>
+      
+      <h2 class="fw-bold text-dark mb-2">Order Confirmed!</h2>
+      <p class="text-muted fs-6 mb-3">Thank you for your order. We have received your purchase request and are processing it.</p>
+      
+      <div class="d-inline-block bg-light px-4 py-2 rounded-pill border mb-3">
+        <span class="text-muted me-2">Order Number:</span>
+        <strong class="text-primary font-monospace fs-5">#{{ order.order_number }}</strong>
+      </div>
+
+      <div class="small text-success fw-semibold">
+        <i class="fas fa-truck-fast me-1"></i> Estimated Delivery: <strong>Tomorrow, by 2:00 PM</strong>
+      </div>
+    </div>
+
+    <!-- ORDER STATUS TIMELINE -->
+    <div class="bg-white rounded-5 border p-4 shadow-sm mb-4">
+      <h5 class="fw-bold text-dark mb-4"><i class="fas fa-route text-primary me-2"></i>Order Status Tracking</h5>
+      
+      <div class="d-flex justify-content-between text-center position-relative px-3">
+        
+        <div class="position-relative z-1">
+          <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 40px; height: 40px;">
+            <i class="fas fa-box-archive"></i>
+          </div>
+          <div class="small fw-bold text-primary">Order Placed</div>
+          <div class="small text-muted" style="font-size:11px;">Today</div>
+        </div>
+
+        <div class="position-relative z-1">
+          <div class="bg-light text-muted border rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 40px; height: 40px;">
+            <i class="fas fa-gear"></i>
+          </div>
+          <div class="small fw-semibold text-muted">Processing</div>
+        </div>
+
+        <div class="position-relative z-1">
+          <div class="bg-light text-muted border rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 40px; height: 40px;">
+            <i class="fas fa-truck"></i>
+          </div>
+          <div class="small fw-semibold text-muted">Shipped</div>
+        </div>
+
+        <div class="position-relative z-1">
+          <div class="bg-light text-muted border rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 40px; height: 40px;">
+            <i class="fas fa-house-chimney"></i>
+          </div>
+          <div class="small fw-semibold text-muted">Delivered</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ORDER SUMMARY & ADDRESS -->
+    <div class="bg-white rounded-5 border p-4 shadow-sm mb-4">
+      <div class="row g-4 border-bottom pb-4 mb-4">
+        <div class="col-md-6 border-end">
+          <h6 class="fw-bold text-dark text-uppercase small" style="letter-spacing: 0.5px;">Delivery Address</h6>
+          <div class="fw-bold text-dark mt-2">{{ order.shipping_name }}</div>
+          <div class="small text-muted">{{ order.shipping_address }}, {{ order.shipping_city }}, {{ order.shipping_state }} - {{ order.shipping_pincode }}</div>
+          <div class="small text-muted">Phone: {{ order.shipping_phone }}</div>
+        </div>
+        <div class="col-md-6">
+          <h6 class="fw-bold text-dark text-uppercase small" style="letter-spacing: 0.5px;">Payment Details</h6>
+          <div class="fw-bold text-dark mt-2">{{ order.get_payment_method_display }}</div>
+          <div class="small text-muted">Status: <span class="badge bg-warning-subtle text-dark">Pending on Delivery</span></div>
+          <div class="fw-bold text-primary fs-5 mt-2">Total: ₹{{ order.total_amount|floatformat:"0" }}</div>
+        </div>
+      </div>
+
+      <!-- Items List -->
+      <h6 class="fw-bold text-dark mb-3">Items Purchased</h6>
+      {% for item in order.items.all %}
+      <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
+        <div>
+          <span class="fw-bold text-dark small">{{ item.product_name }}</span>
+          <span class="small text-muted ms-2">(x{{ item.quantity }})</span>
+        </div>
+        <div class="fw-bold text-dark small">₹{{ item.total_price|floatformat:"0" }}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <div class="d-flex justify-content-center gap-3">
+      <a href="{% url 'orders:history' %}" class="btn btn-outline-primary rounded-pill px-4 fw-semibold">
+        <i class="fas fa-list-check me-2"></i>My Orders
+      </a>
+      <a href="{% url 'products:product_list' %}" class="btn btn-primary-custom rounded-pill px-4 shadow-sm">
+        <i class="fas fa-bag-shopping me-2"></i>Continue Shopping
+      </a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

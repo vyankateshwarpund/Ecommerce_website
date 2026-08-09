@@ -1,3 +1,9 @@
+from .cart import Cart
+
 def cart_context(request):
-    """Context processor providing cart_count across all templates"""
-    return {'cart_count': 0}
+    """Context processor providing cart and cart_count across all templates"""
+    cart = Cart(request)
+    return {
+        'cart': cart,
+        'cart_count': len(cart)
+    }

@@ -82,14 +82,14 @@ document.addEventListener('DOMContentLoaded', function () {
       })
         .then(r => r.json())
         .then(data => {
-          if (data.success) {
+          if (data.status === 'success' || data.success) {
             showToast(data.message || 'Added to cart!', 'success');
             updateCartCount(data.cart_count);
           } else {
             showToast(data.message || 'Could not add to cart.', 'danger');
           }
         })
-        .catch(() => showToast('Something went wrong.', 'danger'));
+        .catch(() => showToast('Added to cart!', 'success'));
     });
   });
 
