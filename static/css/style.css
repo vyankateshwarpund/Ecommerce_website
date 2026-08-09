@@ -244,13 +244,61 @@ img { max-width: 100%; height: auto; }
   border: 2px solid white;
 }
 
-/* Horizontal Category Chips Bar — High Specificity Rules */
+/* Horizontal Category Bar & More Dropdown Styling */
 .category-bar-wrapper {
-  background: #FFFFFF !important;
-  border-bottom: 1px solid var(--border-light) !important;
-  padding: 10px 0 !important;
-  overflow-x: auto !important;
-  scrollbar-width: none !important;
+  background: #FFFFFF;
+  border-top: 1px solid #F1F5F9;
+  border-bottom: 1px solid #E2E8F0;
+  padding: 8px 0;
+  overflow: visible !important;
+  position: relative;
+  z-index: 1040;
+}
+
+.category-more-menu {
+  border-radius: 18px !important;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12), 0 8px 16px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid #E2E8F0 !important;
+  min-width: 240px;
+  padding: 10px !important;
+  z-index: 1055 !important;
+  animation: dropdownFadeIn 0.25s ease;
+}
+
+@keyframes dropdownFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.category-more-item {
+  border-radius: 12px;
+  padding: 10px 14px;
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none !important;
+}
+
+.category-more-item:hover {
+  background: #F1F5F9;
+  color: #2563EB;
+  transform: translateX(4px);
+}
+
+.category-more-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #EFF6FF;
+  color: #2563EB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
 }
 
 .category-bar-wrapper::-webkit-scrollbar {

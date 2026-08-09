@@ -100,12 +100,9 @@
       display: flex !important;
       align-items: center !important;
       border-bottom: 1px solid #E2E8F0 !important;
-      overflow-x: auto !important;
-      scrollbar-width: none !important;
-    }
-
-    .category-bar-wrapper::-webkit-scrollbar {
-      display: none !important;
+      position: relative !important;
+      z-index: 1040 !important;
+      overflow: visible !important;
     }
 
     .category-bar-wrapper .container {
@@ -113,6 +110,7 @@
       display: flex !important;
       align-items: center !important;
       gap: 12px !important;
+      overflow: visible !important;
     }
 
     /* Category Chips (Reduced vertical padding: 6px 16px) */

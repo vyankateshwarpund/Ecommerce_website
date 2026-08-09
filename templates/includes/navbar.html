@@ -113,16 +113,23 @@
 
       <!-- Remaining categories inside "More" Dropdown -->
       {% if all_categories|length > 6 %}
-      <div class="dropdown">
-        <button class="category-chip text-decoration-none border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <div class="dropdown position-relative">
+        <button class="category-chip text-decoration-none border-0 dropdown-toggle" type="button" id="moreCategoriesDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
           <i class="fas fa-ellipsis"></i>
           <span>More</span>
         </button>
-        <ul class="dropdown-menu border-0 shadow-lg mt-2" style="border-radius:14px; min-width:200px;">
+        <ul class="dropdown-menu category-more-menu border-0 shadow-lg mt-2" aria-labelledby="moreCategoriesDropdown" style="z-index: 1060 !important; min-width: 250px;">
           {% for cat in all_categories|slice:"6:" %}
           <li>
-            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{% url 'products:product_list' %}?category={{ cat.slug }}">
-              <i class="{{ cat.icon }} text-primary" style="width:18px;"></i> {{ cat.name }}
+            <a class="dropdown-item category-more-item" href="{% url 'products:product_list' %}?category={{ cat.slug }}">
+              <div class="category-more-icon">
+                <i class="{{ cat.icon }}"></i>
+              </div>
+              <div class="flex-grow-1">
+                <div class="fw-semibold text-dark">{{ cat.name }}</div>
+                <span class="text-muted fw-normal" style="font-size: 11px;">{{ cat.products.count }} Products</span>
+              </div>
+              <i class="fas fa-chevron-right text-muted" style="font-size: 11px;"></i>
             </a>
           </li>
           {% endfor %}
