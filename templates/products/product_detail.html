@@ -20,8 +20,8 @@
 <section class="section-padding bg-light">
   <div class="container">
     
-    <!-- TOP PRODUCT HERO SECTION -->
-    <div class="bg-white rounded-5 p-4 p-md-5 border shadow-sm mb-5">
+    <!-- 1. TOP PRODUCT HERO SECTION -->
+    <div class="bg-white rounded-5 p-4 p-md-5 border shadow-sm mb-4">
       <div class="row g-5 align-items-center">
         
         <!-- LEFT: GALLERY IMAGES -->
@@ -37,9 +37,9 @@
               {% endif %}
 
               {% if product.main_image %}
-                <img id="mainProductImage" src="{{ product.main_image.url }}" alt="{{ product.name }}" class="img-fluid main-preview-img">
+                <img id="mainProductImage" src="{{ product.main_image.url }}" alt="{{ product.name }}" class="img-fluid main-preview-img" style="max-height: 400px; object-fit: contain;">
               {% else %}
-                <img id="mainProductImage" src="{% static 'images/featured_laptop.jpg' %}" alt="{{ product.name }}" class="img-fluid main-preview-img">
+                <img id="mainProductImage" src="{% static 'images/featured_laptop.jpg' %}" alt="{{ product.name }}" class="img-fluid main-preview-img" style="max-height: 400px; object-fit: contain;">
               {% endif %}
 
               <div class="zoom-indicator position-absolute bottom-0 end-0 m-3 px-3 py-1 bg-dark bg-opacity-75 text-white rounded-pill small">
@@ -51,13 +51,13 @@
             <div class="d-flex align-items-center gap-3 overflow-auto py-2">
               {% if product.main_image %}
                 <div class="thumbnail-card active" onclick="switchMainImage('{{ product.main_image.url }}', this)">
-                  <img src="{{ product.main_image.url }}" alt="Main View" class="img-fluid">
+                  <img src="{{ product.main_image.url }}" alt="Main View" class="img-fluid" style="height: 70px; object-fit: contain;">
                 </div>
               {% endif %}
 
               {% for gallery_img in product.gallery_images.all %}
                 <div class="thumbnail-card" onclick="switchMainImage('{{ gallery_img.image.url }}', this)">
-                  <img src="{{ gallery_img.image.url }}" alt="{{ gallery_img.alt_text|default:'Product View' }}" class="img-fluid">
+                  <img src="{{ gallery_img.image.url }}" alt="{{ gallery_img.alt_text|default:'Product View' }}" class="img-fluid" style="height: 70px; object-fit: contain;">
                 </div>
               {% endfor %}
             </div>
@@ -88,65 +88,80 @@
                 <span class="ms-2 fw-bold text-dark">{{ product.rating|default:"4.9" }}</span>
               </div>
               <span class="text-muted">|</span>
-              <a href="#customerReviews" class="text-decoration-none text-muted small fw-semibold">
-                <i class="fas fa-comment-dots text-primary me-1"></i> {{ approved_reviews.count }} Customer Reviews
+              <a href="#reviewsSection" class="text-primary text-decoration-none small fw-bold">
+                <i class="fas fa-comment-dots me-1"></i> {{ approved_reviews.count }} Customer Reviews
               </a>
-              <span class="text-muted">|</span>
-              <span class="badge bg-success-subtle text-success small">Verified Authentic</span>
+              <span class="badge bg-success-subtle text-success small px-2.5 py-1 rounded-pill">Verified Authentic</span>
             </div>
 
-            <!-- PRICING CARD -->
-            <div class="p-3 bg-light rounded-4 border mb-4 d-inline-block w-100">
-              <div class="d-flex align-items-baseline gap-3">
-                <span class="display-5 fw-extrabold text-primary">₹{{ product.effective_price|floatformat:"0" }}</span>
-                {% if product.discount_price %}
-                  <span class="fs-4 text-muted text-decoration-line-through">₹{{ product.price|floatformat:"0" }}</span>
-                  <span class="badge bg-danger rounded-pill px-3 py-1.5 fs-6 fw-bold">SAVE {{ product.discount_percentage }}%</span>
-                {% endif %}
+            <!-- PRICING DISPLAY -->
+            <div class="d-flex align-items-baseline gap-3 mb-4 p-3 bg-light rounded-4 border">
+              {% if product.discount_price %}
+                <span class="display-5 fw-extrabold text-primary">₹{{ product.discount_price|floatformat:"0" }}</span>
+                <span class="fs-4 text-muted text-decoration-line-through">₹{{ product.price|floatformat:"0" }}</span>
+                <span class="badge bg-danger fs-6 px-3 py-1.5 rounded-pill shadow-sm">
+                  SAVE {{ product.discount_percent }}%
+                </span>
+              {% else %}
+                <span class="display-5 fw-extrabold text-primary">₹{{ product.price|floatformat:"0" }}</span>
+              {% endif %}
+              <div class="ms-auto text-end small text-muted">
+                Inclusive of all taxes • <strong>FREE Express Delivery</strong>
               </div>
-              <div class="small text-muted mt-1">Inclusive of all taxes • FREE Express Delivery</div>
             </div>
 
-            <!-- VARIANTS SELECTION -->
+            <!-- COLOR FINISH SELECTOR -->
             <div class="mb-4">
-              <label class="form-label fw-bold text-dark small text-uppercase" style="letter-spacing: 0.5px;">Color Finish:</label>
+              <label class="form-label small fw-bold text-uppercase text-muted tracking-wider">COLOR FINISH:</label>
               <div class="d-flex gap-2">
-                <button class="variant-chip active" onclick="selectVariant(this)">Cosmic Orange</button>
-                <button class="variant-chip" onclick="selectVariant(this)">Titanium Silver</button>
-                <button class="variant-chip" onclick="selectVariant(this)">Space Black</button>
+                <button type="button" class="btn btn-outline-dark btn-sm rounded-pill active px-3">Cosmic Orange</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Titanium Silver</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Space Black</button>
               </div>
             </div>
 
-            <!-- QUANTITY SELECTOR & CTAs -->
-            <form method="POST" action="{% url 'cart:cart_add' product.id %}" class="mb-4">
+            <!-- ADD TO CART & BUY NOW FORM -->
+            <form action="{% url 'cart:cart_add' product.id %}" method="POST" class="mb-4">
               {% csrf_token %}
-              <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
-                <div class="quantity-picker d-flex align-items-center border rounded-pill bg-white px-2 py-1">
-                  <button type="button" class="btn btn-sm btn-link text-dark text-decoration-none fw-bold" onclick="changeQty(-1)">-</button>
-                  <input type="number" id="productQty" name="quantity" value="1" min="1" max="{{ product.stock }}" class="form-control text-center border-0 fw-bold px-1" style="width: 50px;">
-                  <button type="button" class="btn btn-sm btn-link text-dark text-decoration-none fw-bold" onclick="changeQty(1)">+</button>
+              <div class="d-flex align-items-center gap-3">
+                <div class="quantity-input-group border rounded-pill d-flex align-items-center px-2 bg-light">
+                  <button type="button" class="btn btn-link text-dark p-1 text-decoration-none" onclick="updateQty(-1)">-</button>
+                  <input type="number" id="cartQuantity" name="quantity" value="1" min="1" max="{{ product.stock }}" class="form-control border-0 bg-transparent text-center fw-bold" style="width: 50px;">
+                  <button type="button" class="btn btn-link text-dark p-1 text-decoration-none" onclick="updateQty(1)">+</button>
                 </div>
-                
-                <button type="submit" class="btn btn-primary-custom btn-lg flex-grow-1 shadow-sm px-4">
-                  <i class="fas fa-cart-plus me-2"></i>Add to Cart
-                </button>
-                
-                <button type="button" class="btn btn-dark btn-lg px-4" onclick="buyNow('{{ product.id }}')">
-                  Buy Now
+
+                <button type="submit" class="btn btn-primary-custom btn-lg rounded-4 flex-grow-1 fw-bold shadow-sm">
+                  <i class="fas fa-cart-shopping me-2"></i> Add to Cart
                 </button>
 
-                <a href="{% url 'wishlist:wishlist_toggle' product.id %}" class="btn btn-outline-danger btn-lg rounded-circle" title="Add to Wishlist">
-                  <i class="far fa-heart"></i>
+                <a href="{% url 'orders:checkout' %}" class="btn btn-dark btn-lg rounded-4 fw-bold px-4">
+                  Buy Now
+                </a>
+
+                <a href="{% url 'wishlist:wishlist_toggle' product.id %}" class="btn btn-outline-danger btn-lg rounded-circle p-3 d-flex align-items-center justify-content-center" style="width: 54px; height: 54px;">
+                  <i class="far fa-heart fs-5"></i>
                 </a>
               </div>
             </form>
 
-            <!-- AVAILABILITY & WARRANTY BADGES -->
-            <div class="row g-2 pt-3 border-top text-muted small">
-              <div class="col-6"><i class="fas fa-box text-success me-2"></i>Availability: <strong>In Stock ({{ product.stock }} units)</strong></div>
-              <div class="col-6"><i class="fas fa-shield-halved text-primary me-2"></i>Warranty: <strong>1 Year Manufacturer Warranty</strong></div>
-              <div class="col-6"><i class="fas fa-arrow-rotate-left text-warning me-2"></i>Returns: <strong>7 Days Replacement Guarantee</strong></div>
-              <div class="col-6"><i class="fas fa-truck-fast text-info me-2"></i>Delivery: <strong>Expected by Tomorrow, 2 PM</strong></div>
+            <!-- STOCK & TRUST BADGES -->
+            <div class="pt-3 border-top d-flex flex-wrap gap-4 small text-muted">
+              <div>
+                <i class="fas fa-box-open text-success me-1"></i> Availability: 
+                <strong class="text-dark">{% if product.in_stock %}In Stock ({{ product.stock }} units){% else %}<span class="text-danger">Out of Stock</span>{% endif %}</strong>
+              </div>
+              <div>
+                <i class="fas fa-shield-halved text-primary me-1"></i> Warranty: 
+                <strong class="text-dark">1 Year Manufacturer Warranty</strong>
+              </div>
+              <div>
+                <i class="fas fa-rotate-left text-warning me-1"></i> Returns: 
+                <strong class="text-dark">7 Days Replacement Guarantee</strong>
+              </div>
+              <div>
+                <i class="fas fa-truck-fast text-info me-1"></i> Delivery: 
+                <strong class="text-dark">Expected by Tomorrow, 2 PM</strong>
+              </div>
             </div>
 
           </div>
@@ -155,250 +170,224 @@
       </div>
     </div>
 
-    <!-- 3. PINCODE CHECKER -->
-    <div class="bg-white rounded-5 p-4 border shadow-sm mb-5">
-      <div class="row align-items-center">
-        <div class="col-md-6 mb-3 mb-md-0">
-          <h5 class="fw-bold text-dark mb-1"><i class="fas fa-location-dot text-danger me-2"></i>Check Delivery & COD Availability</h5>
-          <p class="text-muted small mb-0">Enter your 6-digit Pincode to verify estimated delivery date.</p>
+    <!-- 2. CHECK DELIVERY & COD AVAILABILITY BAR -->
+    <div class="bg-white rounded-5 p-4 border shadow-sm mb-4">
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+        <div>
+          <h6 class="fw-bold text-dark mb-1"><i class="fas fa-location-dot text-danger me-2"></i>Check Delivery & COD Availability</h6>
+          <span class="text-muted small">Enter your 6-digit Pincode to verify estimated delivery date.</span>
         </div>
-        <div class="col-md-6">
-          <div class="input-group">
-            <input type="text" id="pincodeInput" class="form-control" placeholder="Enter 6-digit Pincode (e.g. 400050)" maxlength="6">
-            <button class="btn btn-primary-custom px-4" onclick="checkPincode()">Check</button>
-          </div>
-          <div id="pincodeResult" class="small mt-2" style="display: none;"></div>
+        <div class="d-flex gap-2">
+          <input type="text" id="pincodeCheckInput" class="form-control" placeholder="Enter 6-digit Pincode (e.g. 400050)" style="max-width: 280px;">
+          <button type="button" class="btn btn-primary-custom px-4 fw-bold" onclick="checkPincode()">Check</button>
         </div>
       </div>
+      <div id="pincodeResult" class="mt-2 small fw-bold text-success" style="display: none;"></div>
     </div>
 
-    <!-- 4. DESCRIPTION & WHY YOU'LL LOVE IT -->
-    <div class="bg-white rounded-5 p-4 p-md-5 border shadow-sm mb-5">
-      <h3 class="fw-bold text-dark mb-3">Product Overview & Description</h3>
-      <p class="text-muted fs-6 leading-relaxed mb-4">{{ product.description }}</p>
-
-      <h5 class="fw-bold text-dark mb-3">Why You'll Love It</h5>
+    <!-- 3. PRODUCT OVERVIEW & DESCRIPTION -->
+    <div class="bg-white rounded-5 p-4 p-md-5 border shadow-sm mb-4">
+      <h5 class="fw-bold text-dark mb-3">Product Overview & Description</h5>
+      <p class="text-secondary leading-relaxed mb-4">
+        {{ product.description }}
+      </p>
+      <h6 class="fw-bold text-dark mb-3">Why You'll Love It</h6>
       <div class="row g-3">
         <div class="col-md-4">
           <div class="p-3 bg-light rounded-4 border h-100">
-            <i class="fas fa-microchip text-primary fs-3 mb-2"></i>
-            <h6 class="fw-bold text-dark mb-1">Peak Performance</h6>
-            <p class="small text-muted mb-0">Engineered with cutting-edge architecture for heavy multitasking and gaming.</p>
+            <div class="text-primary fs-4 mb-2"><i class="fas fa-microchip"></i></div>
+            <strong class="text-dark d-block mb-1">Peak Performance</strong>
+            <span class="small text-muted">Engineered with cutting-edge architecture for heavy multitasking and gaming.</span>
           </div>
         </div>
         <div class="col-md-4">
           <div class="p-3 bg-light rounded-4 border h-100">
-            <i class="fas fa-award text-success fs-3 mb-2"></i>
-            <h6 class="fw-bold text-dark mb-1">Premium Build Quality</h6>
-            <p class="small text-muted mb-0">Crafted with high-durability aerospace materials designed for daily elegance.</p>
+            <div class="text-success fs-4 mb-2"><i class="fas fa-shield-halved"></i></div>
+            <strong class="text-dark d-block mb-1">Premium Build Quality</strong>
+            <span class="small text-muted">Crafted with high-durability aerospace materials designed for daily elegance.</span>
           </div>
         </div>
         <div class="col-md-4">
           <div class="p-3 bg-light rounded-4 border h-100">
-            <i class="fas fa-battery-full text-warning fs-3 mb-2"></i>
-            <h6 class="fw-bold text-dark mb-1">All-Day Endurance</h6>
-            <p class="small text-muted mb-0">Optimized power consumption delivering extended battery life for unhindered productivity.</p>
+            <div class="text-warning fs-4 mb-2"><i class="fas fa-battery-full"></i></div>
+            <strong class="text-dark d-block mb-1">All-Day Endurance</strong>
+            <span class="small text-muted">Optimized power consumption delivering extended battery life for unintended productivity.</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 5. TECHNICAL SPECIFICATIONS TABLE -->
-    <div class="bg-white rounded-5 p-4 p-md-5 border shadow-sm mb-5">
-      <h3 class="fw-bold text-dark mb-4">Technical Specifications</h3>
+    <!-- 4. TECHNICAL SPECIFICATIONS -->
+    <div class="bg-white rounded-5 p-4 p-md-5 border shadow-sm mb-4">
+      <h5 class="fw-bold text-dark mb-3">Technical Specifications</h5>
       <div class="table-responsive">
-        <table class="table table-striped table-hover align-middle mb-0">
+        <table class="table table-bordered table-striped align-middle mb-0">
           <tbody>
-            <tr><th style="width: 30%;">Brand & Model</th><td>{{ product.brand.name|default:"SPCart" }} (Model 2026)</td></tr>
-            <tr><th>Category</th><td>{{ product.category.name }}</td></tr>
-            <tr><th>Stock Status</th><td>{{ product.stock }} Units Available</td></tr>
-            <tr><th>Condition</th><td>100% Brand New (Original Sealed Box)</td></tr>
-            <tr><th>Warranty Coverage</th><td>1 Year Brand Warranty + Lifetime Support</td></tr>
-            <tr><th>In the Box</th><td>Product Unit, Charging Cable, User Manual, Warranty Card</td></tr>
+            <tr>
+              <td class="fw-semibold text-dark bg-light" style="width: 30%;">Brand & Model</td>
+              <td>{{ product.brand.name|default:"Apple" }} (Model 2026)</td>
+            </tr>
+            <tr>
+              <td class="fw-semibold text-dark bg-light">Category</td>
+              <td>{{ product.category.name }}</td>
+            </tr>
+            <tr>
+              <td class="fw-semibold text-dark bg-light">Stock Status</td>
+              <td>{{ product.stock }} Units Available</td>
+            </tr>
+            <tr>
+              <td class="fw-semibold text-dark bg-light">Condition</td>
+              <td>100% Brand New (Original Sealed Box)</td>
+            </tr>
+            <tr>
+              <td class="fw-semibold text-dark bg-light">Warranty Coverage</td>
+              <td>1 Year Brand Warranty + Lifetime Support</td>
+            </tr>
+            <tr>
+              <td class="fw-semibold text-dark bg-light">In the Box</td>
+              <td>Product Unit, Charging Cable, User Manual, Warranty Card</td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- 6. CUSTOMER REVIEWS & RATINGS -->
-    <div id="customerReviews" class="bg-white rounded-5 p-4 p-md-5 border shadow-sm mb-5">
-      <div class="row align-items-center mb-4">
-        <div class="col-md-9">
-          <h3 class="fw-bold text-dark mb-1">Customer Reviews</h3>
-          <div class="d-flex align-items-center gap-2">
-            <div class="text-warning fs-5">★★★★★</div>
-            <strong class="fs-5 text-dark">{{ product.rating|default:"4.9" }}</strong>
-            <span class="text-muted">({{ approved_reviews.count }} customer reviews)</span>
+    <!-- 5. REVIEWS & RATING SECTION -->
+    <div id="reviewsSection" class="bg-white rounded-5 p-4 p-md-5 border shadow-sm">
+      <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+        <div>
+          <h4 class="fw-bold text-dark mb-1"><i class="fas fa-star text-warning me-2"></i>Customer Reviews</h4>
+          <span class="text-muted small">★ {{ product.rating|default:"4.9" }} ({{ approved_reviews.count }} customer reviews)</span>
+        </div>
+        
+        {% if user.is_authenticated %}
+          <button type="button" class="btn btn-outline-primary rounded-pill px-4 fw-bold" data-bs-toggle="modal" data-bs-target="#writeReviewModal">
+            Write a Review
+          </button>
+        {% else %}
+          <a href="{% url 'accounts:login' %}?next={{ request.path }}" class="btn btn-outline-primary rounded-pill px-4">
+            Login to Review
+          </a>
+        {% endif %}
+      </div>
+
+      <!-- REVIEWS LIST -->
+      <div class="row g-4">
+        <div class="col-lg-4 border-end">
+          <div class="text-center p-4 bg-light rounded-4 border">
+            <h1 class="display-3 fw-extrabold text-dark mb-0">{{ product.rating|default:"4.9" }}</h1>
+            <div class="text-warning fs-5 my-2">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            </div>
+            <div class="text-muted small fw-semibold">Based on {{ approved_reviews.count }} customer ratings</div>
           </div>
         </div>
-        <div class="col-md-3 text-md-end mt-3 mt-md-0">
-          {% if user.is_authenticated %}
-            <button class="btn btn-outline-primary fw-semibold px-4" data-bs-toggle="modal" data-bs-target="#addReviewModal">Write a Review</button>
+
+        <div class="col-lg-8">
+          {% if approved_reviews %}
+            <div class="vstack gap-3">
+              {% for rev in approved_reviews %}
+              <div class="p-3 bg-light rounded-4 border">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="bg-primary text-white rounded-circle fw-bold d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
+                      {{ rev.user.first_name|default:rev.user.username|slice:":1"|upper }}
+                    </div>
+                    <div>
+                      <strong class="text-dark d-block lead fs-6">{{ rev.user.get_full_name|default:rev.user.username }}</strong>
+                      <span class="badge bg-success-subtle text-success small px-2 py-0.5 rounded-pill">Verified Purchase</span>
+                    </div>
+                  </div>
+                  <div class="badge bg-warning text-dark font-monospace px-2.5 py-1">
+                    ★ {{ rev.rating }}.0
+                  </div>
+                </div>
+                <h6 class="fw-bold text-dark mb-1">{{ rev.title }}</h6>
+                <p class="text-secondary mb-0 small">{{ rev.comment }}</p>
+              </div>
+              {% endfor %}
+            </div>
           {% else %}
-            <a href="{% url 'accounts:login' %}" class="btn btn-outline-primary fw-semibold px-4">Login to Review</a>
+            <div class="text-center py-4 text-muted">
+              <i class="fas fa-comments display-4 opacity-50 mb-2"></i>
+              <h6>No reviews yet for this product.</h6>
+              <p class="small mb-0">Be the first to share your experience!</p>
+            </div>
           {% endif %}
         </div>
       </div>
 
-      <!-- Verified Reviews List -->
-      <div class="row g-3">
-        {% for r in approved_reviews %}
-        <div class="col-md-6">
-          <div class="p-3 bg-light rounded-4 border">
-            <div class="d-flex justify-content-between align-items-center mb-1">
-              <strong class="text-dark">{{ r.user.first_name|default:r.user.username }}</strong>
-              <span class="badge bg-success-subtle text-success small">Verified Purchase</span>
-            </div>
-            <div class="text-warning small mb-2">
-              {% for i in "12345"|make_list %}
-                {% if forloop.counter <= r.rating %}★{% else %}☆{% endif %}
-              {% endfor %}
-            </div>
-            <h6 class="fw-bold text-dark mb-1 small">{{ r.title }}</h6>
-            <p class="small text-muted mb-0">"{{ r.comment }}"</p>
-          </div>
-        </div>
-        {% empty %}
-          <p class="text-muted mb-0">No reviews yet for this product. Be the first to write a review!</p>
-        {% endfor %}
-      </div>
     </div>
-
-    <!-- 7. FREQUENTLY BOUGHT TOGETHER BUNDLE -->
-    <div class="bg-gradient-primary-subtle bg-light rounded-5 p-4 p-md-5 border border-primary-subtle shadow-sm mb-5">
-      <h4 class="fw-bold text-dark mb-3"><i class="fas fa-cubes text-primary me-2"></i>Frequently Bought Together</h4>
-      <div class="row align-items-center g-3">
-        <div class="col-md-8">
-          <div class="d-flex align-items-center gap-3">
-            <div class="bg-white p-2 rounded-3 border text-center" style="width:90px;">
-              {% if product.main_image %}<img src="{{ product.main_image.url }}" class="img-fluid" style="max-height:60px;">{% endif %}
-              <div class="small fw-bold text-truncate">{{ product.name }}</div>
-            </div>
-            <div class="fs-4 text-muted">+</div>
-            <div class="bg-white p-2 rounded-3 border text-center" style="width:90px;">
-              <img src="{% static 'images/featured_laptop.jpg' %}" class="img-fluid" style="max-height:60px;">
-              <div class="small fw-bold text-truncate">Laptop Stand</div>
-            </div>
-            <div class="fs-4 text-muted">+</div>
-            <div class="bg-white p-2 rounded-3 border text-center" style="width:90px;">
-              <img src="{% static 'images/featured_headphones.jpg' %}" class="img-fluid" style="max-height:60px;">
-              <div class="small fw-bold text-truncate">Desk Mat</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 text-md-end">
-          <div class="small text-muted">Total Bundle Price:</div>
-          <div class="fs-3 fw-bold text-primary mb-2">₹{{ product.effective_price|add:"2499"|floatformat:"0" }}</div>
-          <button class="btn btn-primary-custom px-4" onclick="showToast('Bundle added to Cart!', 'success')">
-            <i class="fas fa-cart-plus me-2"></i>Add Bundle to Cart
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 8. RELATED PRODUCTS -->
-    {% if related_products %}
-    <div id="relatedProducts" class="pt-3">
-      <h3 class="fw-bold text-dark mb-4">Related Products</h3>
-      <div class="row g-4">
-        {% for r in related_products %}
-        <div class="col-sm-6 col-md-3">
-          <div class="product-card h-100 bg-white rounded-4 border shadow-sm p-3 d-flex flex-column">
-            <div class="text-center mb-2">
-              {% if r.main_image %}
-                <img src="{{ r.main_image.url }}" alt="{{ r.name }}" class="img-fluid" style="max-height:160px; object-fit:contain;">
-              {% else %}
-                <img src="{% static 'images/featured_laptop.jpg' %}" alt="{{ r.name }}" class="img-fluid" style="max-height:160px; object-fit:contain;">
-              {% endif %}
-            </div>
-            <span class="product-category-tag text-uppercase fw-semibold text-primary small mb-1">{{ r.category.name }}</span>
-            <h6 class="fw-bold text-dark"><a href="{% url 'products:product_detail' r.slug %}" class="text-dark text-decoration-none">{{ r.name }}</a></h6>
-            <div class="fw-bold text-primary fs-5 mt-auto mb-3">₹{{ r.effective_price|floatformat:"0" }}</div>
-            <a href="{% url 'products:product_detail' r.slug %}" class="btn btn-outline-primary btn-sm w-100">View Product</a>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-    {% endif %}
 
   </div>
 </section>
 
 <!-- WRITE REVIEW MODAL -->
-<div class="modal fade" id="addReviewModal" tabindex="-1" aria-labelledby="addReviewModalLabel" aria-hidden="true">
+{% if user.is_authenticated %}
+<div class="modal fade" id="writeReviewModal" tabindex="-1" aria-labelledby="writeReviewModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content rounded-5 border-0 shadow-lg">
-      <div class="modal-header border-0 pb-0">
-        <h5 class="modal-title fw-bold text-dark" id="addReviewModalLabel">Write a Review for {{ product.name }}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal-content rounded-5 border-0 shadow-lg overflow-hidden">
+      <div class="modal-header bg-primary text-white border-0 py-3 px-4">
+        <h5 class="modal-title fw-bold" id="writeReviewModalLabel"><i class="fas fa-pen me-2"></i>Write Product Review</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="POST" action="{% url 'reviews:add_review' product.id %}">
+      <form action="{% url 'reviews:add_review' product.id %}" method="POST" class="p-4">
         {% csrf_token %}
-        <div class="modal-body pt-3">
-          <div class="mb-3">
-            <label class="form-label small fw-semibold text-dark">Overall Rating *</label>
-            <select name="rating" class="form-select">
-              <option value="5">★★★★★ (5 Stars - Excellent)</option>
-              <option value="4">★★★★☆ (4 Stars - Good)</option>
-              <option value="3">★★★☆☆ (3 Stars - Average)</option>
-              <option value="2">★★☆☆☆ (2 Stars - Poor)</option>
-              <option value="1">★☆☆☆☆ (1 Star - Terrible)</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label class="form-label small fw-semibold text-dark">Review Title *</label>
-            <input type="text" name="title" class="form-control" placeholder="e.g. Absolute masterpiece! Highly recommended" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label small fw-semibold text-dark">Your Review Comments *</label>
-            <textarea name="comment" class="form-control" rows="4" placeholder="Describe what you loved about this product..." required></textarea>
-          </div>
+        <div class="mb-3">
+          <label class="form-label small fw-bold">Rating (1 to 5 Stars)</label>
+          <select name="rating" class="form-select rounded-3" required>
+            <option value="5" selected>5 Stars - Excellent ★★★★★</option>
+            <option value="4">4 Stars - Very Good ★★★★</option>
+            <option value="3">3 Stars - Average ★★★</option>
+            <option value="2">2 Stars - Poor ★★</option>
+            <option value="1">1 Star - Terrible ★</option>
+          </select>
         </div>
-        <div class="modal-footer border-0 pt-0">
-          <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary-custom rounded-pill px-4">Submit Review</button>
+        <div class="mb-3">
+          <label class="form-label small fw-bold">Review Title</label>
+          <input type="text" name="title" class="form-control rounded-3" placeholder="Summarize your experience..." required>
         </div>
+        <div class="mb-3">
+          <label class="form-label small fw-bold">Detailed Review</label>
+          <textarea name="comment" class="form-control rounded-3" rows="4" placeholder="What did you like or dislike about this product?" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary-custom w-100 py-3 rounded-4 fw-bold shadow-sm">
+          Submit Review
+        </button>
       </form>
     </div>
   </div>
 </div>
+{% endif %}
 
 <script>
-function switchMainImage(src, thumb) {
-  document.getElementById('mainProductImage').src = src;
-  document.querySelectorAll('.thumbnail-card').forEach(t => t.classList.remove('active'));
-  thumb.classList.add('active');
+function switchMainImage(imgUrl, element) {
+  document.getElementById('mainProductImage').src = imgUrl;
+  document.querySelectorAll('.thumbnail-card').forEach(card => card.classList.remove('active'));
+  element.classList.add('active');
 }
 
-function changeQty(delta) {
-  const input = document.getElementById('productQty');
-  let val = parseInt(input.value) || 1;
-  val = Math.max(1, val + delta);
-  input.value = val;
-}
-
-function selectVariant(chip) {
-  document.querySelectorAll('.variant-chip').forEach(c => c.classList.remove('active'));
-  chip.classList.add('active');
-}
-
-function buyNow(productId) {
-  showToast('Redirecting to Checkout...', 'success');
-  window.location.href = "{% url 'cart:cart_detail' %}";
+function updateQty(change) {
+  const input = document.getElementById('cartQuantity');
+  let current = parseInt(input.value) || 1;
+  let min = parseInt(input.min) || 1;
+  let max = parseInt(input.max) || 99;
+  let next = current + change;
+  if (next >= min && next <= max) {
+    input.value = next;
+  }
 }
 
 function checkPincode() {
-  const pin = document.getElementById('pincodeInput').value.trim();
+  const pin = document.getElementById('pincodeCheckInput').value.trim();
   const res = document.getElementById('pincodeResult');
-  if (pin.length >= 6) {
+  if (pin.length === 6 && !isNaN(pin)) {
     res.style.display = 'block';
-    res.className = 'small mt-2 text-success fw-semibold';
-    res.innerHTML = '<i class="fas fa-circle-check me-1"></i> Delivery available to <strong>' + pin + '</strong> — Expected by <strong>Tomorrow, 2 PM</strong>';
+    res.innerHTML = '<i class="fas fa-circle-check me-1"></i> Delivery available to Pincode ' + pin + ' by Tomorrow, 2 PM. Cash on Delivery (COD) is Available!';
   } else {
     res.style.display = 'block';
-    res.className = 'small mt-2 text-danger fw-semibold';
-    res.innerHTML = 'Please enter a valid 6-digit Pincode.';
+    res.className = 'mt-2 small fw-bold text-danger';
+    res.innerHTML = '<i class="fas fa-circle-xmark me-1"></i> Please enter a valid 6-digit Indian Pincode.';
   }
 }
 </script>
