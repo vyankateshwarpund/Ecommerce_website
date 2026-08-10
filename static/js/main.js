@@ -1,5 +1,5 @@
 // ============================================================
-// ShopSphere — Main JavaScript
+// SPCart — Main JavaScript
 // ============================================================
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -20,6 +20,22 @@ document.addEventListener('DOMContentLoaded', function () {
     return cookieValue;
   }
   const csrfToken = getCookie('csrftoken');
+
+  // ── Live Navbar Badge Updater ─────────────────────────────
+  window.updateNavbarCounts = function (cartCount, wishlistCount) {
+    if (cartCount !== undefined && cartCount !== null) {
+      document.querySelectorAll('.cart-count').forEach(el => {
+        el.textContent = cartCount;
+        el.style.display = cartCount > 0 ? 'inline-block' : 'none';
+      });
+    }
+    if (wishlistCount !== undefined && wishlistCount !== null) {
+      document.querySelectorAll('.wishlist-count').forEach(el => {
+        el.textContent = wishlistCount;
+        el.style.display = wishlistCount > 0 ? 'inline-block' : 'none';
+      });
+    }
+  };
 
   // ── Toast Notification ────────────────────────────────────
   window.showToast = function (message, type = 'success') {
@@ -102,27 +118,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // ── Cart Quantity Buttons ─────────────────────────────────
-  document.querySelectorAll('.btn-qty-minus').forEach(btn => {
-    btn.addEventListener('click', function () {
-      const input = this.nextElementSibling;
-      if (input && input.value > 1) {
-        input.value = parseInt(input.value) - 1;
-        input.form.submit();
-      }
-    });
-  });
-
-  document.querySelectorAll('.btn-qty-plus').forEach(btn => {
-    btn.addEventListener('click', function () {
-      const input = this.previousElementSibling;
-      if (input) {
-        input.value = parseInt(input.value) + 1;
-        input.form.submit();
-      }
-    });
-  });
-
   // ── Add to Cart AJAX ──────────────────────────────────────
   document.querySelectorAll('.btn-add-cart').forEach(btn => {
     btn.addEventListener('click', function (e) {
@@ -134,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
       fetch(`/cart/add/${productId}/`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-length-urlencoded',
+          'Content-Type': 'application/x-www-form-urlencoded',
           'X-CSRFToken': csrfToken,
           'X-Requested-With': 'XMLHttpRequest'
         },
@@ -143,14 +138,51 @@ document.addEventListener('DOMContentLoaded', function () {
       .then(res => res.json())
       .then(data => {
         if (data.status === 'success' || data.success) {
-          const badge = document.querySelector('.cart-badge-count');
-          if (badge) badge.textContent = data.cart_count;
+          if (data.cart_count !== undefined) {
+            updateNavbarCounts(data.cart_count, null);
+          }
           showToast(data.message || 'Product added to cart!', 'success');
         } else {
           showToast(data.message || 'Could not add product to cart.', 'danger');
         }
       })
       .catch(() => showToast('Error adding product to cart.', 'danger'));
+    });
+  });
+
+  // ── Wishlist Toggle AJAX ───────────────────────────────────
+  document.querySelectorAll('.btn-wishlist-toggle').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const productId = this.getAttribute('data-product-id');
+      const url = this.getAttribute('href') || `/wishlist/toggle/${productId}/`;
+
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === 'success' || data.success) {
+          if (data.wishlist_count !== undefined) {
+            updateNavbarCounts(null, data.wishlist_count);
+          }
+          const icon = this.querySelector('i');
+          if (icon) {
+            if (data.added || data.in_wishlist) {
+              icon.className = 'fas fa-heart text-danger';
+            } else {
+              icon.className = 'far fa-heart';
+            }
+          }
+          showToast(data.message || 'Wishlist updated!', 'info');
+        } else {
+          showToast(data.message || 'Please login to add items to wishlist.', 'warning');
+        }
+      })
+      .catch(() => showToast('Error updating wishlist.', 'danger'));
     });
   });
 

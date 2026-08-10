@@ -44,7 +44,7 @@
           <li class="nav-item ms-lg-2">
             <a href="{% url 'wishlist:wishlist_detail' %}" class="nav-icon-btn text-decoration-none" title="Wishlist">
               <i class="far fa-heart"></i>
-              <span class="nav-badge wishlist-count" style="{% if not wishlist_count %}display:none;{% endif %}">
+              <span class="nav-badge wishlist-count" style="{% if not wishlist_count or wishlist_count == 0 %}display:none;{% endif %}">
                 {{ wishlist_count|default:0 }}
               </span>
             </a>
@@ -54,7 +54,7 @@
           <li class="nav-item ms-lg-1">
             <a href="{% url 'cart:cart_detail' %}" class="nav-icon-btn text-decoration-none" title="Shopping Cart">
               <i class="fas fa-cart-shopping"></i>
-              <span class="nav-badge cart-count" style="{% if not cart_count %}display:none;{% endif %}">
+              <span class="nav-badge cart-count" style="{% if not cart_count or cart_count == 0 %}display:none;{% endif %}">
                 {{ cart_count|default:0 }}
               </span>
             </a>

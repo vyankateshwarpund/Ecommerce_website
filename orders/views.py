@@ -209,7 +209,7 @@ def order_success_view(request, order_number):
 @login_required
 def order_history_view(request):
     orders = Order.objects.filter(user=request.user)
-    return render(request, 'orders/order_history.html', {'orders': orders})
+    return render(request, 'orders/history.html', {'orders': orders})
 
 
 @login_required
