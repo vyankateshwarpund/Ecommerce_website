@@ -3,4 +3,6 @@ from . import views
 
 app_name = 'reviews'
 
-urlpatterns = []
+urlpatterns = [
+    path('add/<int:product_id>/', views.add_review_view, name='add_review'),
+]

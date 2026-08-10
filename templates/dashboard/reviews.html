@@ -1,0 +1,62 @@
+{% extends 'dashboard/base_admin.html' %}
+
+{% block title %}Review Moderation | SPCart Admin{% endblock %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h3 class="fw-bold text-dark mb-1"><i class="fas fa-star text-warning me-2"></i>Customer Reviews Moderation</h3>
+    <p class="text-muted small mb-0">Approve, hide, or moderate customer product reviews and 5-star ratings.</p>
+  </div>
+</div>
+
+<div class="bg-white rounded-5 border shadow-sm overflow-hidden">
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0 small">
+      <thead class="table-light text-uppercase">
+        <tr>
+          <th>Product</th>
+          <th>Customer</th>
+          <th>Rating</th>
+          <th>Review Title & Comment</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in reviews %}
+        <tr>
+          <td><strong class="text-dark">{{ r.product.name }}</strong></td>
+          <td><span class="text-muted">{{ r.user.email }}</span></td>
+          <td>
+            <div class="text-warning fw-bold">
+              {% for i in "12345"|make_list %}
+                {% if forloop.counter <= r.rating %}★{% else %}☆{% endif %}
+              {% endfor %}
+            </div>
+          </td>
+          <td>
+            <strong class="text-dark d-block">{{ r.title }}</strong>
+            <span class="text-muted small">{{ r.comment|truncatewords:15 }}</span>
+          </td>
+          <td>
+            {% if r.is_approved %}
+              <span class="badge bg-success">Approved</span>
+            {% else %}
+              <span class="badge bg-secondary">Hidden</span>
+            {% endif %}
+          </td>
+          <td class="text-muted">{{ r.created_at|date:"M d, Y" }}</td>
+          <td class="text-end">
+            <a href="{% url 'dashboard:toggle_review_status' r.id %}" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+              {% if r.is_approved %}Hide{% else %}Approve{% endif %}
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

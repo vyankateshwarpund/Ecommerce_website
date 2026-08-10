@@ -7,3 +7,6 @@ def cart_context(request):
         'cart': cart,
         'cart_count': len(cart)
     }
+
+# Alias for compatibility with both 'cart' and 'cart_context' path references
+cart = cart_context

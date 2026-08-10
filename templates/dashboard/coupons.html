@@ -1,0 +1,82 @@
+{% extends 'dashboard/base_admin.html' %}
+
+{% block title %}Coupons & Deals Management | SPCart Admin{% endblock %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h3 class="fw-bold text-dark mb-1"><i class="fas fa-ticket text-primary me-2"></i>Marketing & Promo Coupons</h3>
+    <p class="text-muted small mb-0">Create promotional coupons, discount percentage codes, and minimum order requirements.</p>
+  </div>
+</div>
+
+<div class="row g-4">
+  <!-- CREATE COUPON FORM -->
+  <div class="col-lg-5">
+    <div class="bg-white rounded-5 border p-4 shadow-sm">
+      <h5 class="fw-bold text-dark mb-3 border-bottom pb-2">Create New Coupon</h5>
+      
+      <form method="POST" action="{% url 'dashboard:coupons' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label small fw-semibold text-dark">Coupon Code *</label>
+          <input type="text" name="code" class="form-control text-uppercase font-monospace fw-bold" placeholder="e.g. SPCART10" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label small fw-semibold text-dark">Discount Percentage (%) *</label>
+          <input type="number" step="0.01" name="discount" class="form-control" placeholder="10.00" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label small fw-semibold text-dark">Minimum Order Amount (₹)</label>
+          <input type="number" step="0.01" name="min_order" class="form-control" value="999.00">
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label small fw-semibold text-dark">Maximum Discount Cap (₹)</label>
+          <input type="number" step="0.01" name="max_discount" class="form-control" value="500.00">
+        </div>
+
+        <button type="submit" class="btn btn-primary-custom w-100 py-2.5 rounded-4 shadow-sm fw-bold">
+          <i class="fas fa-ticket me-2"></i>Create Promo Coupon
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- COUPONS TABLE -->
+  <div class="col-lg-7">
+    <div class="bg-white rounded-5 border shadow-sm overflow-hidden">
+      <div class="p-4 border-bottom">
+        <h5 class="fw-bold text-dark mb-0">Active Store Coupons</h5>
+      </div>
+      
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0 small">
+          <thead class="table-light">
+            <tr>
+              <th>Coupon Code</th>
+              <th>Discount</th>
+              <th>Min Order</th>
+              <th>Status</th>
+              <th>Created</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for c in coupons %}
+            <tr>
+              <td><strong class="font-monospace text-primary fs-6">{{ c.code }}</strong></td>
+              <td class="fw-bold text-success">{{ c.discount_percentage }}% OFF</td>
+              <td class="text-muted">₹{{ c.min_order_amount|floatformat:"0" }}</td>
+              <td><span class="badge bg-success">Active</span></td>
+              <td class="text-muted">{{ c.created_at|date:"M d, Y" }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

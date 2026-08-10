@@ -1,0 +1,89 @@
+{% extends 'dashboard/base_admin.html' %}
+
+{% block title %}Smart Inventory Management | SPCart Admin{% endblock %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h3 class="fw-bold text-dark mb-1"><i class="fas fa-boxes-packing text-primary me-2"></i>Smart Inventory Management</h3>
+    <p class="text-muted small mb-0">Monitor stock levels, update product inventory, and prevent out-of-stock overselling.</p>
+  </div>
+</div>
+
+<!-- INVENTORY STATUS SUMMARY COUNTERS -->
+<div class="row g-4 mb-4">
+  <div class="col-md-4">
+    <div class="metric-card border-start border-success border-4">
+      <span class="text-muted small fw-bold text-uppercase">🟢 In Stock Products</span>
+      <h2 class="fw-bold text-success mb-0 mt-1">{{ in_stock.count }}</h2>
+      <span class="small text-muted">Stock level > 5 units</span>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="metric-card border-start border-warning border-4">
+      <span class="text-muted small fw-bold text-uppercase">🟡 Low Stock Warnings</span>
+      <h2 class="fw-bold text-warning mb-0 mt-1">{{ low_stock.count }}</h2>
+      <span class="small text-muted">Stock level <= 5 units</span>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="metric-card border-start border-danger border-4">
+      <span class="text-muted small fw-bold text-uppercase">🔴 Out of Stock Alerts</span>
+      <h2 class="fw-bold text-danger mb-0 mt-1">{{ out_of_stock.count }}</h2>
+      <span class="small text-muted">Stock level = 0 units</span>
+    </div>
+  </div>
+</div>
+
+<!-- INVENTORY MANAGEMENT TABLE -->
+<div class="bg-white rounded-5 border shadow-sm overflow-hidden">
+  <div class="p-4 border-bottom">
+    <h5 class="fw-bold text-dark mb-0">Inventory Stock Controller</h5>
+  </div>
+  
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0 small">
+      <thead class="table-light text-uppercase" style="letter-spacing: 0.5px;">
+        <tr>
+          <th>Product Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Stock Status</th>
+          <th class="text-center" style="width: 250px;">Update Stock Level</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in products %}
+        <tr>
+          <td>
+            <strong class="text-dark">{{ p.name }}</strong>
+            <div class="small text-muted">SKU: <code>SPC-{{ p.id|stringformat:"05d" }}</code></div>
+          </td>
+          <td><span class="badge bg-primary-subtle text-primary">{{ p.category.name }}</span></td>
+          <td class="fw-bold">₹{{ p.effective_price|floatformat:"0" }}</td>
+          <td>
+            {% if p.stock > 5 %}
+              <span class="badge bg-success-subtle text-success fw-bold fs-6">🟢 In Stock ({{ p.stock }})</span>
+            {% elif p.stock > 0 %}
+              <span class="badge bg-warning-subtle text-dark fw-bold fs-6 border border-warning-subtle" style="color:#B45309 !important;">🟡 Low Stock ({{ p.stock }})</span>
+            {% else %}
+              <span class="badge bg-danger-subtle text-danger fw-bold fs-6">🔴 Out of Stock (0)</span>
+            {% endif %}
+          </td>
+          <td>
+            <form method="POST" action="{% url 'dashboard:inventory' %}" class="d-flex align-items-center gap-2">
+              {% csrf_token %}
+              <input type="hidden" name="product_id" value="{{ p.id }}">
+              <input type="number" name="stock" value="{{ p.stock }}" min="0" class="form-control form-control-sm text-center fw-bold" style="width: 80px;">
+              <button type="submit" class="btn btn-primary btn-sm px-3 fw-bold">Update</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

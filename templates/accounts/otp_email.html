@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPCart Email Verification OTP</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #F8FAFC; font-family: 'Segoe UI', Arial, sans-serif; color: #0F172A;">
+  
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #F8FAFC; padding: 40px 15px;">
+    <tr>
+      <td align="center">
+        
+        <!-- CARD CONTAINER -->
+        <table role="presentation" width="100%" style="max-width: 520px; background-color: #FFFFFF; border-radius: 16px; border: 1px solid #E2E8F0; box-shadow: 0 10px 25px rgba(0,0,0,0.05); overflow: hidden;" cellspacing="0" cellpadding="0">
+          
+          <!-- BRAND HEADER -->
+          <tr>
+            <td style="background-color: #0F172A; padding: 24px 32px; text-align: center;">
+              <h1 style="color: #FFFFFF; font-size: 24px; font-weight: 800; margin: 0; letter-spacing: -0.5px;">
+                <span style="color: #3B82F6;">SP</span>Cart
+              </h1>
+              <div style="color: #94A3B8; font-size: 12px; margin-top: 4px;">Smart Shopping, Everyday.</div>
+            </td>
+          </tr>
+
+          <!-- CARD BODY -->
+          <tr>
+            <td style="padding: 36px 32px; text-align: center;">
+              <div style="background-color: #EFF6FF; color: #2563EB; width: 64px; height: 64px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 16px;">
+                🔒
+              </div>
+
+              <h2 style="font-size: 22px; font-weight: 700; color: #0F172A; margin-top: 0; margin-bottom: 12px;">
+                Email Verification Code
+              </h2>
+              
+              <p style="font-size: 14px; line-height: 1.6; color: #475569; margin-bottom: 24px;">
+                Hi <strong>{{ user.first_name|default:user.username }}</strong>,<br>
+                Thank you for creating an account with SPCart. Please use the 6-digit OTP code below to verify your email address:
+              </p>
+
+              <!-- OTP CODE BADGE BOX -->
+              <div style="background-color: #F8FAFC; border: 2px dashed #CBD5E1; border-radius: 12px; padding: 18px 24px; margin: 0 auto 24px auto; display: inline-block;">
+                <span style="font-size: 36px; font-weight: 800; letter-spacing: 8px; color: #2563EB; font-family: 'Courier New', monospace;">
+                  {{ otp_code }}
+                </span>
+              </div>
+
+              <p style="font-size: 13px; color: #64748B; margin-bottom: 24px;">
+                ⏱️ This code is valid for <strong>10 minutes</strong>. Do not share this OTP with anyone.
+              </p>
+
+              <div style="border-top: 1px solid #E2E8F0; padding-top: 20px; font-size: 12px; color: #94A3B8; line-height: 1.5;">
+                If you did not request this account creation, please disregard this email.<br><br>
+                Best regards,<br>
+                <strong>The SPCart Team</strong>
+              </div>
+            </td>
+          </tr>
+
+          <!-- FOOTER -->
+          <tr>
+            <td style="background-color: #F8FAFC; padding: 16px 32px; text-align: center; border-top: 1px solid #E2E8F0; font-size: 12px; color: #94A3B8;">
+              © 2026 SPCart E-Commerce Inc. All rights reserved.
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

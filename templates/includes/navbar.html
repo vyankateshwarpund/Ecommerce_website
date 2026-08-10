@@ -17,7 +17,7 @@
       <!-- Collapsible Menu -->
       <div class="collapse navbar-collapse" id="navbarMain">
         <!-- Search Bar (Height: 48px, Border Radius: 12px) -->
-        <form class="search-form d-flex my-0 me-lg-auto flex-grow-1" style="max-width: 460px;" action="{% url 'products:search' %}" method="GET">
+        <form class="search-form d-flex my-0 me-lg-auto flex-grow-1" style="max-width: 460px;" action="{% url 'products:product_search' %}" method="GET">
           <input class="form-control" type="search" name="q" id="search-input" placeholder="Search products, brands, categories..." value="{{ request.GET.q|default:'' }}" aria-label="Search">
           <button class="btn btn-search d-flex align-items-center gap-2 px-3 fw-semibold" type="submit">
             <i class="fas fa-search"></i>
@@ -31,7 +31,7 @@
             <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'core:home' %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if request.resolver_match.url_name == 'product_list' or request.resolver_match.url_name == 'search' %}active{% endif %}" href="{% url 'products:product_list' %}">Shop</a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'product_list' or request.resolver_match.url_name == 'product_search' %}active{% endif %}" href="{% url 'products:product_list' %}">Shop</a>
           </li>
           <li class="nav-item">
             <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'core:about' %}">About</a>
@@ -110,7 +110,7 @@
         <span>{{ cat.name }}</span>
       </a>
       {% endfor %}
-
+      
       <!-- Remaining categories inside "More" Dropdown -->
       {% if all_categories|length > 6 %}
       <div class="dropdown position-relative">

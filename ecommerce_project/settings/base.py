@@ -1,59 +1,50 @@
 """
-ShopSphere — Base Settings
-Shared configuration for all environments.
+ShopSphere — Base Django Settings
+Shared settings across development and production environments.
 """
 
 import os
 from pathlib import Path
 import environ
 
-# ─── Paths ───────────────────────────────────────────────────────────────────
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# ─── Environment Variables ────────────────────────────────────────────────────
-env = environ.Env(DEBUG=(bool, False))
+env = environ.Env()
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-# ─── Security ─────────────────────────────────────────────────────────────────
-SECRET_KEY = env('SECRET_KEY')
-DEBUG = env('DEBUG')
+SECRET_KEY = env('SECRET_KEY', default='django-insecure-shopsphere-dev-key-change-this-in-production-abc123xyz')
+
+DEBUG = env.bool('DEBUG', default=True)
+
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1'])
 
-# ─── Installed Applications ───────────────────────────────────────────────────
-DJANGO_APPS = [
+# Application Definition
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.humanize',
+
+    # Third-Party Apps
+    # 'cloudinary',
+    # 'cloudinary_storage',
+
+    # Local Apps (Modular Structure)
+    'core.apps.CoreConfig',
+    'accounts.apps.AccountsConfig',
+    'products.apps.ProductsConfig',
+    'categories.apps.CategoriesConfig',
+    'cart.apps.CartConfig',
+    'wishlist.apps.WishlistConfig',
+    'orders.apps.OrdersConfig',
+    'payments.apps.PaymentsConfig',
+    'reviews.apps.ReviewsConfig',
+    'notifications.apps.NotificationsConfig',
+    'dashboard.apps.DashboardConfig',
 ]
 
-THIRD_PARTY_APPS = [
-    'cloudinary',
-    'cloudinary_storage',
-    'crispy_forms',
-    'crispy_bootstrap5',
-]
-
-LOCAL_APPS = [
-    'accounts',
-    'categories',
-    'products',
-    'cart',
-    'wishlist',
-    'orders',
-    'payments',
-    'reviews',
-    'notifications',
-    'dashboard',
-    'core',
-]
-
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
-
-# ─── Middleware ────────────────────────────────────────────────────────────────
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -65,10 +56,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# ─── URL Configuration ─────────────────────────────────────────────────────────
 ROOT_URLCONF = 'ecommerce_project.urls'
 
-# ─── Templates ────────────────────────────────────────────────────────────────
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -80,10 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # Custom context processors
                 'cart.context_processors.cart_context',
-                'wishlist.context_processors.wishlist_context',
-                'notifications.context_processors.notifications_context',
                 'categories.context_processors.categories_processor',
             ],
         },
@@ -93,10 +79,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ecommerce_project.wsgi.application'
 
 # ─── Database ──────────────────────────────────────────────────────────────────
-# Default MySQL configuration, fallback to SQLite if DB_ENGINE is sqlite3 or MySQL fails in dev
-DB_ENGINE = env('DB_ENGINE', default='django.db.backends.mysql')
+USE_MYSQL = env.bool('USE_MYSQL', default=True)
 
-if DB_ENGINE == 'sqlite3':
+if not USE_MYSQL:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -107,14 +92,14 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': env('DB_NAME', default='shopsphere_db'),
+            'NAME': env('DB_NAME', default='spcart_db'),
             'USER': env('DB_USER', default='root'),
             'PASSWORD': env('DB_PASSWORD', default=''),
-            'HOST': env('DB_HOST', default='localhost'),
+            'HOST': env('DB_HOST', default='127.0.0.1'),
             'PORT': env('DB_PORT', default='3306'),
             'OPTIONS': {
-                'charset': 'utf8mb4',
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+                'charset': 'utf8mb4',
             },
         }
     }
@@ -122,83 +107,43 @@ else:
 # ─── Custom User Model ─────────────────────────────────────────────────────────
 AUTH_USER_MODEL = 'accounts.User'
 
-# ─── Authentication ────────────────────────────────────────────────────────────
-AUTHENTICATION_BACKENDS = [
-    'accounts.backends.EmailBackend',
-    'django.contrib.auth.backends.ModelBackend',
-]
-
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
-
 # ─── Password Validation ───────────────────────────────────────────────────────
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', 'OPTIONS': {'min_length': 8}},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# ─── Internationalisation ──────────────────────────────────────────────────────
+# ─── Internationalization ──────────────────────────────────────────────────────
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Kolkata'
 USE_I18N = True
 USE_TZ = True
 
-# ─── Static Files ─────────────────────────────────────────────────────────────
+# ─── Static & Media Files ──────────────────────────────────────────────────────
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# ─── Media Files ──────────────────────────────────────────────────────────────
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# ─── Cloudinary (Optional) ────────────────────────────────────────────────────
-USE_CLOUDINARY = env.bool('USE_CLOUDINARY', default=False)
+# WhiteNoise Storage
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-if USE_CLOUDINARY:
-    import cloudinary
-    cloudinary.config(
-        cloud_name=env('CLOUDINARY_CLOUD_NAME', default=''),
-        api_key=env('CLOUDINARY_API_KEY', default=''),
-        api_secret=env('CLOUDINARY_API_SECRET', default=''),
-    )
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-# ─── Default Primary Key ───────────────────────────────────────────────────────
+# Default Auto Field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# ─── Crispy Forms ─────────────────────────────────────────────────────────────
-CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
-CRISPY_TEMPLATE_PACK = 'bootstrap5'
-
-# ─── Email (Brevo SMTP) ───────────────────────────────────────────────────────
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = env('EMAIL_HOST', default='smtp-relay.brevo.com')
+# ─── Email Configuration (Gmail SMTP Default) ──────────────────────────────────
+EMAIL_BACKEND = env('EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
+EMAIL_HOST = env('EMAIL_HOST', default='smtp.gmail.com')
 EMAIL_PORT = env.int('EMAIL_PORT', default=587)
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='')
+EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
+EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='pundsaurav@gmail.com')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='noreply@spcart.com')
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='SPCart Support <pundsaurav@gmail.com>')
 
-# ─── Messages ─────────────────────────────────────────────────────────────────
-from django.contrib.messages import constants as messages
-MESSAGE_TAGS = {
-    messages.DEBUG: 'secondary',
-    messages.INFO: 'info',
-    messages.SUCCESS: 'success',
-    messages.WARNING: 'warning',
-    messages.ERROR: 'danger',
-}
-
-# ─── Security Headers ─────────────────────────────────────────────────────────
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
-X_FRAME_OPTIONS = 'DENY'
-
-# ─── Session ──────────────────────────────────────────────────────────────────
-SESSION_COOKIE_AGE = 86400 * 7  # 7 days
-SESSION_SAVE_EVERY_REQUEST = True
+# ─── Razorpay Payment Gateway Credentials ──────────────────────────────────────
+RAZORPAY_KEY_ID = env('RAZORPAY_KEY_ID', default='rzp_test_TO6AddByUy1ngY')
+RAZORPAY_KEY_SECRET = env('RAZORPAY_KEY_SECRET', default='x0DmYbAgeblxmKGjvQJDbouM')

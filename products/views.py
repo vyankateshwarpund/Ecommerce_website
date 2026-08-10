@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
+from django.http import JsonResponse
 from django.core.paginator import Paginator
 from categories.models import Category
+from reviews.models import Review
 from .models import Product, Brand
 
 def product_list(request):
@@ -89,10 +91,13 @@ def product_list(request):
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug, is_available=True)
     
+    # Fetch approved customer reviews
+    approved_reviews = Review.objects.filter(product=product, is_approved=True)
+    
     # 1. Fetch products in same category
     related_products = list(Product.objects.filter(category=product.category, is_available=True).exclude(id=product.id)[:4])
     
-    # 2. Fallback if fewer than 4 items in same category: populate from other available products
+    # 2. Fallback if fewer than 4 items in same category
     if len(related_products) < 4:
         needed = 4 - len(related_products)
         existing_ids = [p.id for p in related_products] + [product.id]
@@ -101,6 +106,7 @@ def product_detail(request, slug):
 
     context = {
         'product': product,
+        'approved_reviews': approved_reviews,
         'related_products': related_products,
     }
     return render(request, 'products/product_detail.html', context)
@@ -124,3 +130,23 @@ def product_search(request):
         'total_count': products.count(),
     }
     return render(request, 'products/search_results.html', context)
+
+
+def search_autocomplete(request):
+    query = request.GET.get('q', '').strip()
+    results = []
+    if len(query) >= 2:
+        matches = Product.objects.filter(
+            Q(name__icontains=query) | Q(category__name__icontains=query) | Q(brand__name__icontains=query),
+            is_available=True
+        )[:6]
+        for p in matches:
+            results.append({
+                'id': p.id,
+                'name': p.name,
+                'category': p.category.name,
+                'price': f"₹{p.effective_price:.0f}",
+                'url': f"/products/{p.slug}/",
+                'image': p.main_image.url if p.main_image else '/static/images/featured_laptop.jpg'
+            })
+    return JsonResponse({'results': results})

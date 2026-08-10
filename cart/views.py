@@ -28,17 +28,41 @@ def cart_detail(request):
 def cart_add(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
-    quantity = int(request.POST.get('quantity', 1))
+    requested_qty = int(request.POST.get('quantity', 1))
 
-    cart.add(product=product, quantity=quantity)
-    messages.success(request, f'Added "{product.name}" to your shopping cart!')
+    # Rule 1: Out of Stock Protection
+    if product.stock <= 0 or not product.is_available:
+        msg = f'Sorry, "{product.name}" is currently out of stock!'
+        messages.error(request, msg)
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            return JsonResponse({'status': 'error', 'success': False, 'message': msg})
+        return redirect('products:product_list')
+
+    # Existing quantity in cart
+    existing_qty = cart.cart.get(str(product.id), {}).get('quantity', 0)
+    total_requested = existing_qty + requested_qty
+
+    # Rule 2: Stock Quantity Capping
+    if total_requested > product.stock:
+        allowed_add = max(0, product.stock - existing_qty)
+        if allowed_add > 0:
+            cart.add(product=product, quantity=allowed_add)
+            msg = f'Only {product.stock} units of "{product.name}" in stock. Quantity updated to {product.stock} units.'
+            messages.warning(request, msg)
+        else:
+            msg = f'You already have the maximum available stock ({product.stock} units) of "{product.name}" in your cart.'
+            messages.warning(request, msg)
+    else:
+        cart.add(product=product, quantity=requested_qty)
+        msg = f'Added "{product.name}" to your shopping cart!'
+        messages.success(request, msg)
 
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         return JsonResponse({
             'status': 'success',
             'success': True,
             'cart_count': len(cart),
-            'message': f'Added {product.name} to cart!'
+            'message': msg
         })
 
     return redirect('cart:cart_detail')
@@ -48,10 +72,15 @@ def cart_add(request, product_id):
 def cart_update(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
-    quantity = int(request.POST.get('quantity', 1))
+    requested_qty = int(request.POST.get('quantity', 1))
 
-    if quantity > 0:
-        cart.add(product=product, quantity=quantity, override_quantity=True)
+    # Rule 2: Stock Quantity Capping during update
+    if requested_qty > product.stock:
+        requested_qty = product.stock
+        messages.warning(request, f'Capped "{product.name}" quantity to available stock ({product.stock} units).')
+
+    if requested_qty > 0 and product.stock > 0:
+        cart.add(product=product, quantity=requested_qty, override_quantity=True)
         messages.success(request, f'Updated quantity for "{product.name}".')
     else:
         cart.remove(product)

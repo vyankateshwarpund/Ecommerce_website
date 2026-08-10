@@ -1,3 +1,4 @@
+import random
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
@@ -13,6 +14,28 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+
+
+class EmailOTP(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='otps')
+    otp_code = models.CharField(max_length=6)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    @classmethod
+    def generate_otp(cls, user):
+        code = str(random.randint(100000, 999999))
+        cls.objects.filter(user=user).delete()  # Invalidate old OTPs
+        return cls.objects.create(user=user, otp_code=code)
+
+    def is_valid(self):
+        delta = timezone.now() - self.created_at
+        return delta.total_seconds() < 600  # 10 minutes validity
+
+    def __str__(self):
+        return f"OTP for {self.user.email}: {self.otp_code}"
 
 
 class Profile(models.Model):

@@ -1,0 +1,132 @@
+{% extends 'dashboard/base_admin.html' %}
+
+{% block title %}Manage Catalog Products | SPCart Admin{% endblock %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h3 class="fw-bold text-dark mb-1"><i class="fas fa-box-archive text-primary me-2"></i>Product Catalog Management</h3>
+    <p class="text-muted small mb-0">View, search, filter, and add products to your SPCart catalog.</p>
+  </div>
+  <div class="d-flex gap-2">
+    <a href="{% url 'dashboard:export_reports' 'products' %}" class="btn btn-outline-dark rounded-pill px-3 py-2 small fw-semibold">
+      <i class="fas fa-file-csv me-1"></i> Export CSV
+    </a>
+    <a href="{% url 'dashboard:product_add' %}" class="btn btn-primary rounded-pill px-4 shadow-sm">
+      <i class="fas fa-plus me-1"></i> + Add Product
+    </a>
+  </div>
+</div>
+
+<!-- FILTERS TOOLBAR -->
+<div class="bg-white rounded-5 p-4 border shadow-sm mb-4">
+  <form method="GET" action="{% url 'dashboard:products' %}">
+    <div class="row g-3 align-items-end">
+      
+      <div class="col-md-4">
+        <label class="form-label small fw-semibold text-muted">Search Products</label>
+        <div class="input-group input-group-sm">
+          <input type="text" name="q" class="form-control" placeholder="Search product name..." value="{{ query }}">
+          <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label small fw-semibold text-muted">Category</label>
+        <select name="category" class="form-select form-select-sm" onchange="this.form.submit()">
+          <option value="">All Categories</option>
+          {% for c in categories %}
+            <option value="{{ c.slug }}" {% if selected_category == c.slug %}selected{% endif %}>{{ c.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label small fw-semibold text-muted">Stock Status</label>
+        <select name="stock" class="form-select form-select-sm" onchange="this.form.submit()">
+          <option value="">All Stock Levels</option>
+          <option value="in" {% if selected_stock == 'in' %}selected{% endif %}>🟢 In Stock</option>
+          <option value="low" {% if selected_stock == 'low' %}selected{% endif %}>🟡 Low Stock (<=5)</option>
+          <option value="out" {% if selected_stock == 'out' %}selected{% endif %}>🔴 Out of Stock (0)</option>
+        </select>
+      </div>
+
+      <div class="col-md-2 text-end">
+        <a href="{% url 'dashboard:products' %}" class="btn btn-outline-danger btn-sm w-100">Reset</a>
+      </div>
+
+    </div>
+  </form>
+</div>
+
+<!-- PRODUCTS TABLE -->
+<div class="bg-white rounded-5 border shadow-sm overflow-hidden">
+  {% if products %}
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0 small">
+      <thead class="table-light text-uppercase" style="letter-spacing: 0.5px;">
+        <tr>
+          <th style="width: 80px;">Image</th>
+          <th>Product Name</th>
+          <th>Category</th>
+          <th>Brand</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Status</th>
+          <th class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in products %}
+        <tr>
+          <td>
+            <div class="p-1 bg-light rounded-3 border text-center" style="width: 50px; height: 50px;">
+              {% if p.main_image %}
+                <img src="{{ p.main_image.url }}" class="img-fluid" style="max-height: 40px; object-fit: contain;">
+              {% endif %}
+            </div>
+          </td>
+          <td>
+            <h6 class="fw-bold mb-0 text-dark">{{ p.name }}</h6>
+            <span class="small text-muted">SKU: <code>SPC-{{ p.id|stringformat:"05d" }}</code></span>
+          </td>
+          <td><span class="badge bg-primary-subtle text-primary">{{ p.category.name }}</span></td>
+          <td><span class="fw-semibold text-dark">{{ p.brand.name|default:"SPCart" }}</span></td>
+          <td>
+            <span class="fw-bold text-dark fs-6">₹{{ p.effective_price|floatformat:"0" }}</span>
+            {% if p.discount_price %}
+              <div class="small text-muted text-decoration-line-through">₹{{ p.price|floatformat:"0" }}</div>
+            {% endif %}
+          </td>
+          <td>
+            {% if p.stock > 5 %}
+              <span class="badge bg-success-subtle text-success fw-bold">🟢 {{ p.stock }} in stock</span>
+            {% elif p.stock > 0 %}
+              <span class="badge bg-warning-subtle text-dark fw-bold">🟡 {{ p.stock }} left</span>
+            {% else %}
+              <span class="badge bg-danger-subtle text-danger fw-bold">🔴 Out of Stock</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if p.is_available %}
+              <span class="badge bg-success">Active</span>
+            {% else %}
+              <span class="badge bg-secondary">Disabled</span>
+            {% endif %}
+          </td>
+          <td class="text-end">
+            <a href="{% url 'products:product_detail' p.slug %}" class="btn btn-outline-secondary btn-sm rounded-circle" target="_blank" title="View"><i class="fas fa-eye"></i></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+    <div class="text-center py-5">
+      <i class="fas fa-box-open display-3 text-muted mb-3"></i>
+      <h5>No Products Found</h5>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

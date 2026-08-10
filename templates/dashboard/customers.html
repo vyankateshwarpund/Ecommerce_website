@@ -1,0 +1,57 @@
+{% extends 'dashboard/base_admin.html' %}
+
+{% block title %}Manage Customers | SPCart Admin{% endblock %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h3 class="fw-bold text-dark mb-1"><i class="fas fa-users text-primary me-2"></i>Customer Management</h3>
+    <p class="text-muted small mb-0">View registered customers, purchase history, total spending, and account status.</p>
+  </div>
+  <a href="{% url 'dashboard:export_reports' 'customers' %}" class="btn btn-outline-dark rounded-pill px-3 py-2 small fw-semibold">
+    <i class="fas fa-file-csv me-1"></i> Export Customers CSV
+  </a>
+</div>
+
+<div class="bg-white rounded-5 border shadow-sm overflow-hidden">
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0 small">
+      <thead class="table-light text-uppercase" style="letter-spacing: 0.5px;">
+        <tr>
+          <th>Customer Name</th>
+          <th>Email Address</th>
+          <th>Total Orders</th>
+          <th>Total Spent</th>
+          <th>Account Status</th>
+          <th>Registration Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in customers %}
+        <tr>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              <div class="bg-primary text-white fw-bold rounded-circle d-flex align-items-center justify-content-center" style="width: 34px; height: 34px;">
+                {{ c.username|slice:":1"|upper }}
+              </div>
+              <strong class="text-dark">{{ c.get_full_name|default:c.username }}</strong>
+            </div>
+          </td>
+          <td><span class="text-muted">{{ c.email }}</span></td>
+          <td><span class="badge bg-primary-subtle text-primary fw-bold fs-6">{{ c.order_count }} orders</span></td>
+          <td class="fw-bold text-dark fs-6">₹{{ c.total_spent|default:0|floatformat:"0" }}</td>
+          <td>
+            {% if c.is_active %}
+              <span class="badge bg-success">🟢 Active</span>
+            {% else %}
+              <span class="badge bg-danger">🔴 Inactive</span>
+            {% endif %}
+          </td>
+          <td class="text-muted">{{ c.created_at|date:"M d, Y" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
