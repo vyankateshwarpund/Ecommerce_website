@@ -4,6 +4,7 @@ Shared settings across development and production environments.
 """
 
 import os
+import socket
 from pathlib import Path
 import environ
 
@@ -26,10 +27,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # Third-Party Apps
-    # 'cloudinary',
-    # 'cloudinary_storage',
 
     # Local Apps (Modular Structure)
     'core.apps.CoreConfig',
@@ -80,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ecommerce_project.wsgi.application'
 
-import socket
 
 # ─── Database ──────────────────────────────────────────────────────────────────
 USE_MYSQL = env.bool('USE_MYSQL', default=True)
@@ -163,8 +159,8 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# WhiteNoise Storage
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Static files storage (use plain default for local development)
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Default Auto Field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
