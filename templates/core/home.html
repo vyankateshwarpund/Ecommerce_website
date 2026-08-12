@@ -435,8 +435,8 @@
       <!-- First Set of Database Brands -->
       {% for brand in brands %}
       <a href="{% url 'products:product_list' %}?brand={{ brand.slug }}" class="brand-simple-card" title="Shop {{ brand.name }}">
-        {% if brand.logo %}
-          <img src="{{ brand.logo.url }}" alt="{{ brand.name }} Logo">
+        {% if brand.has_logo %}
+          <img src="{{ brand.logo.url }}" alt="{{ brand.name }} Logo" loading="lazy" decoding="async">
         {% else %}
           <span class="fw-bold fs-5 text-dark">{{ brand.name }}</span>
         {% endif %}
@@ -446,8 +446,8 @@
       <!-- Duplicate Set for Seamless Infinite Loop -->
       {% for brand in brands %}
       <a href="{% url 'products:product_list' %}?brand={{ brand.slug }}" class="brand-simple-card" title="Shop {{ brand.name }}">
-        {% if brand.logo %}
-          <img src="{{ brand.logo.url }}" alt="{{ brand.name }} Logo">
+        {% if brand.has_logo %}
+          <img src="{{ brand.logo.url }}" alt="{{ brand.name }} Logo" loading="lazy" decoding="async">
         {% else %}
           <span class="fw-bold fs-5 text-dark">{{ brand.name }}</span>
         {% endif %}

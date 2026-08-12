@@ -1,3 +1,4 @@
+import os
 from django.db import models
 from django.utils.text import slugify
 from categories.models import Category
@@ -17,10 +18,19 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def has_logo(self):
+        """Returns True only if the logo file actually exists on disk."""
+        try:
+            return bool(self.logo and self.logo.name and os.path.exists(self.logo.path))
+        except Exception:
+            return False
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
+
 
 
 class Product(models.Model):

@@ -6,7 +6,7 @@
     <div class="container">
       <!-- Logo -->
       <a class="navbar-brand d-flex align-items-center p-0 me-lg-3 me-2" href="{% url 'core:home' %}">
-        <img src="{% static 'images/header_logo.png' %}?v={% now 'U' %}" alt="SPCart Logo" style="height:42px; width:auto; max-width:160px; object-fit:contain;" class="d-inline-block">
+        <img src="{% static 'images/header_logo.png' %}?v=1.0.0" alt="SPCart Logo" width="160" height="42" style="height:42px; width:auto; max-width:160px; object-fit:contain;" class="d-inline-block">
       </a>
 
       <!-- Mobile Quick Action Icons & Hamburger Toggle -->
@@ -162,7 +162,7 @@
               </div>
               <div class="flex-grow-1">
                 <div class="fw-semibold text-dark">{{ cat.name }}</div>
-                <span class="text-muted fw-normal" style="font-size: 11px;">{{ cat.products.count }} Products</span>
+                <span class="text-muted fw-normal" style="font-size: 11px;">{{ cat.product_count|default:cat.products.count }} Products</span>
               </div>
               <i class="fas fa-chevron-right text-muted" style="font-size: 11px;"></i>
             </a>

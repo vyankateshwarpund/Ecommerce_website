@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.core.cache import cache
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -24,3 +25,8 @@ class Category(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
+        cache.delete('all_categories_cached')
+
+    def delete(self, *args, **kwargs):
+        super().delete(*args, **kwargs)
+        cache.delete('all_categories_cached')
