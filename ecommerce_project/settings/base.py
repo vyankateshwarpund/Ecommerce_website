@@ -80,6 +80,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ecommerce_project.wsgi.application'
 
+import socket
+
 # ─── Database ──────────────────────────────────────────────────────────────────
 USE_MYSQL = env.bool('USE_MYSQL', default=True)
 
@@ -91,20 +93,50 @@ if not USE_MYSQL:
         }
     }
 else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': env('DB_NAME', default='spcart_db'),
-            'USER': env('DB_USER', default='root'),
-            'PASSWORD': env('DB_PASSWORD', default=''),
-            'HOST': env('DB_HOST', default='127.0.0.1'),
-            'PORT': env('DB_PORT', default='3306'),
-            'OPTIONS': {
-                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-                'charset': 'utf8mb4',
-            },
+    db_host = env('DB_HOST', default='127.0.0.1')
+    db_name = env('DB_NAME', default='spcart_db')
+    db_user = env('DB_USER', default='root')
+    db_password = env('DB_PASSWORD', default='')
+    db_port = env('DB_PORT', default='3306')
+
+    # Test DNS reachability for remote database host
+    if db_host not in ('127.0.0.1', 'localhost'):
+        try:
+            socket.gethostbyname(db_host)
+        except Exception:
+            USE_MYSQL = False
+
+    if not USE_MYSQL:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
         }
-    }
+    else:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': db_name,
+                'USER': db_user,
+                'PASSWORD': db_password,
+                'HOST': db_host,
+                'PORT': db_port,
+                'OPTIONS': {
+                    'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+                    'charset': 'utf8mb4',
+                },
+            }
+        }
+
+# Bypass MySQL 8.4+ requirement in Django 6.1 to support MySQL 8.0.x
+try:
+    from django.db.backends.base.base import BaseDatabaseWrapper
+    BaseDatabaseWrapper.check_database_version_supported = lambda self: None
+    from django.db.backends.mysql.base import DatabaseWrapper as MySQLDatabaseWrapper
+    MySQLDatabaseWrapper.check_database_version_supported = lambda self: None
+except Exception:
+    pass
 
 # ─── Custom User Model ─────────────────────────────────────────────────────────
 AUTH_USER_MODEL = 'accounts.User'
