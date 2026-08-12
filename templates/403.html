@@ -1,21 +1,29 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}403 Access Denied{% endblock %}
+{% block title %}403 — Access Forbidden | SPCart{% endblock %}
 
 {% block content %}
-<div class="container section-padding text-center">
-  <div class="py-5">
-    <div class="display-1 text-danger fw-bold">403</div>
-    <div class="empty-state-icon">
-      <i class="fas fa-lock text-muted"></i>
+<section class="section-padding bg-light d-flex align-items-center justify-content-center" style="min-height: 70vh;">
+  <div class="container text-center" style="max-width: 600px;">
+    <div class="bg-white rounded-5 p-5 border shadow-lg">
+      <div class="display-1 fw-extrabold text-danger mb-3">403</div>
+      <div class="mb-4">
+        <i class="fas fa-user-shield display-3 text-danger opacity-75"></i>
+      </div>
+      <h2 class="fw-bold text-dark mb-2">Access Denied</h2>
+      <p class="text-secondary leading-relaxed mb-4 fs-6">
+        Sorry, you do not have permission to access this page or resource.
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="{% url 'core:home' %}" class="btn btn-primary-custom btn-lg px-4 rounded-pill shadow-sm">
+          <i class="fas fa-house me-2"></i>Back to Homepage
+        </a>
+        <a href="{% url 'accounts:login' %}" class="btn btn-outline-danger btn-lg px-4 rounded-pill">
+          <i class="fas fa-lock me-2"></i>Login Account
+        </a>
+      </div>
     </div>
-    <h2 class="empty-state-title mt-3">Access Denied</h2>
-    <p class="empty-state-text mx-auto" style="max-width: 500px;">
-      You don't have permission to access this page. Please log in with appropriate administrative privileges.
-    </p>
-    <a href="{% url 'core:home' %}" class="btn btn-primary-custom">
-      <i class="fas fa-house me-2"></i>Back to Homepage
-    </a>
   </div>
-</div>
+</section>
 {% endblock %}

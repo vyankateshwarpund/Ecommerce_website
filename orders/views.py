@@ -96,7 +96,7 @@ def place_order_view(request):
     else:
         shipping_name = request.POST.get('full_name')
         shipping_phone = request.POST.get('phone')
-        shipping_address = request.POST.get('street_address')
+        shipping_address = request.POST.get('street_address') or request.POST.get('address_line_1') or request.POST.get('address', '')
         shipping_city = request.POST.get('city')
         shipping_state = request.POST.get('state')
         shipping_pincode = request.POST.get('pincode')
@@ -196,6 +196,14 @@ def place_order_view(request):
             item['product'].save()
 
     cart.clear()
+
+    # Trigger In-App Notification & Email Notification
+    try:
+        from core.email_utils import notify_order_status_change
+        notify_order_status_change(order, 'confirmed')
+    except Exception as e:
+        print(f"Order notification trigger error: {e}")
+
     messages.success(request, f'🎉 Order #{order.order_number} placed successfully!')
     return redirect('orders:order_success', order_number=order.order_number)
 

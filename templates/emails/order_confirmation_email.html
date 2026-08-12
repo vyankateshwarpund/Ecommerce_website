@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f8fafc; margin: 0; padding: 20px; color: #334155; }
+    .container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 16px; padding: 40px; border: 1px solid #e2e8f0; }
+    .title { font-size: 22px; font-weight: 800; color: #2563eb; text-align: center; margin-bottom: 8px; }
+    .order-num { text-align: center; font-family: monospace; font-size: 16px; color: #64748b; margin-bottom: 24px; }
+    .content { font-size: 15px; line-height: 1.6; }
+    .table { width: 100%; border-collapse: collapse; margin-top: 16px; margin-bottom: 16px; }
+    .table th, .table td { padding: 10px; border-bottom: 1px solid #e2e8f0; text-align: left; font-size: 14px; }
+    .btn { display: inline-block; background-color: #2563eb; color: #ffffff !important; text-decoration: none; padding: 12px 24px; border-radius: 30px; font-weight: 700; text-align: center; }
+    .footer { font-size: 12px; color: #94a3b8; text-align: center; margin-top: 32px; border-top: 1px solid #e2e8f0; padding-top: 16px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">Order Confirmed! 🎉</div>
+    <div class="order-num">Order #{{ order.order_number }}</div>
+    <div class="content">
+      <p>Hello <strong>{{ order.full_name }}</strong>,</p>
+      <p>Thank you for shopping with SPCart! We have received your order and are preparing it for express dispatch.</p>
+      
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in order.items.all %}
+          <tr>
+            <td>{{ item.product_name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>₹{{ item.total_price|floatformat:"0" }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <p><strong>Total Amount Paid:</strong> ₹{{ order.total_amount|floatformat:"0" }}</p>
+      <p><strong>Delivery Address:</strong> {{ order.address_line_1 }}, {{ order.city }} - {{ order.pincode }}</p>
+
+      <div style="text-align: center; margin-top: 24px;">
+        <a href="http://127.0.0.1:8000/orders/history/" class="btn">View Order Status</a>
+      </div>
+    </div>
+    <div class="footer">
+      © 2026 SPCart Order Fulfillment Team
+    </div>
+  </div>
+</body>
+</html>

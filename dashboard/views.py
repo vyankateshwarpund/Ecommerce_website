@@ -2,6 +2,7 @@ import csv
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.admin.views.decorators import staff_member_required
 from django.db.models import Sum, Count, Q
+from django.db.models.functions import TruncMonth
 from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
 from orders.models import Order, OrderItem
@@ -22,11 +23,27 @@ def index(request):
     low_stock_products = Product.objects.filter(stock__lte=5, is_available=True)
     activity_logs = ActivityLog.objects.all()[:5]
 
+    # Best Sellers
+    best_sellers = Product.objects.annotate(
+        total_sold=Sum('orderitem__quantity')
+    ).filter(total_sold__gt=0).order_by('-total_sold')[:5]
+
     # Notifications count
     out_of_stock_count = Product.objects.filter(stock=0).count()
     low_stock_count = low_stock_products.count()
     new_orders_count = Order.objects.filter(status='pending').count()
     total_notifications = out_of_stock_count + low_stock_count + new_orders_count
+
+    # Chart.js Dataset: Monthly Revenue (Database Portable)
+    monthly_sales = Order.objects.values('created_at__year', 'created_at__month').annotate(total=Sum('total_amount')).order_by('created_at__year', 'created_at__month')
+    chart_months = [f"{m['created_at__month']}/{m['created_at__year']}" for m in monthly_sales]
+    chart_revenue = [float(m['total']) for m in monthly_sales]
+
+    # Chart.js Dataset: Order Status Breakdown
+    status_counts = Order.objects.values('status').annotate(count=Count('id'))
+    status_dict = dict(Order.STATUS_CHOICES)
+    status_labels = [status_dict.get(s['status'], s['status']) for s in status_counts]
+    status_values = [s['count'] for s in status_counts]
 
     context = {
         'total_revenue': total_revenue,
@@ -35,18 +52,23 @@ def index(request):
         'total_users': total_users,
         'recent_orders': recent_orders,
         'low_stock_products': low_stock_products,
+        'best_sellers': best_sellers,
         'activity_logs': activity_logs,
         'out_of_stock_count': out_of_stock_count,
         'low_stock_count': low_stock_count,
         'new_orders_count': new_orders_count,
         'total_notifications': total_notifications,
+        'chart_months': chart_months,
+        'chart_revenue': chart_revenue,
+        'status_labels': status_labels,
+        'status_values': status_values,
     }
     return render(request, 'dashboard/index.html', context)
 
 
 @staff_member_required
 def orders_list(request):
-    orders = Order.objects.all()
+    orders = Order.objects.all().order_by('-created_at')
     q = request.GET.get('q', '').strip()
     status = request.GET.get('status', '')
     payment = request.GET.get('payment', '')
@@ -75,6 +97,12 @@ def orders_list(request):
 
 
 @staff_member_required
+def order_detail_staff(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    return render(request, 'dashboard/order_detail.html', {'order': order, 'status_choices': Order.STATUS_CHOICES})
+
+
+@staff_member_required
 def update_order_status(request, order_id):
     if request.method == 'POST':
         order = get_object_or_404(Order, id=order_id)
@@ -84,6 +112,13 @@ def update_order_status(request, order_id):
             order.status = new_status
             order.save()
             
+            # Trigger Dual Email & In-App Notification
+            try:
+                from core.email_utils import notify_order_status_change
+                notify_order_status_change(order, new_status)
+            except Exception as e:
+                print(f"Order status notification error: {e}")
+
             ActivityLog.objects.create(
                 user=request.user,
                 action=f"Updated Order #{order.order_number} status",
@@ -95,7 +130,7 @@ def update_order_status(request, order_id):
 
 @staff_member_required
 def products_list(request):
-    products = Product.objects.all()
+    products = Product.objects.all().order_by('-created_at')
     categories = Category.objects.filter(is_active=True)
     brands = Brand.objects.filter(is_active=True)
 
@@ -177,6 +212,15 @@ def product_add(request):
 
 
 @staff_member_required
+def product_delete(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    p_name = product.name
+    product.delete()
+    messages.info(request, f'Product "{p_name}" has been deleted.')
+    return redirect('dashboard:products')
+
+
+@staff_member_required
 def inventory_view(request):
     products = Product.objects.all().order_by('stock')
 
@@ -212,13 +256,101 @@ def customers_list(request):
         total_spent=Sum('orders__total_amount')
     ).order_by('-created_at')
 
+    if request.method == 'POST':
+        email = request.POST.get('email', '').strip()
+        first_name = request.POST.get('first_name', '').strip()
+        last_name = request.POST.get('last_name', '').strip()
+        password = request.POST.get('password', '').strip()
+
+        if email and password:
+            if User.objects.filter(email=email).exists():
+                messages.error(request, f'Customer with email {email} already exists!')
+            else:
+                user = User.objects.create_user(
+                    username=email,
+                    email=email,
+                    password=password,
+                    first_name=first_name,
+                    last_name=last_name,
+                    is_active=True,
+                    is_email_verified=True
+                )
+                messages.success(request, f'Customer account for "{user.email}" created successfully!')
+                return redirect('dashboard:customers')
+
     return render(request, 'dashboard/customers.html', {'customers': customers})
+
+
+@staff_member_required
+def toggle_user_status(request, user_id):
+    u = get_object_or_404(User, id=user_id)
+    if u.is_superuser:
+        messages.error(request, 'Superuser account status cannot be modified!')
+    else:
+        u.is_active = not u.is_active
+        u.save()
+        status_label = "Active (Unblocked)" if u.is_active else "Blocked"
+        messages.success(request, f'User account {u.email} is now {status_label}.')
+    return redirect('dashboard:customers')
+
+
+@staff_member_required
+def customer_delete(request, user_id):
+    u = get_object_or_404(User, id=user_id)
+    if u.is_superuser:
+        messages.error(request, 'Superuser accounts cannot be deleted!')
+    else:
+        email = u.email
+        u.delete()
+        messages.info(request, f'Customer account "{email}" deleted.')
+    return redirect('dashboard:customers')
 
 
 @staff_member_required
 def categories_list(request):
     categories = Category.objects.annotate(product_count=Count('products')).order_by('order')
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        icon = request.POST.get('icon', 'fas fa-box')
+        if name:
+            cat = Category.objects.create(name=name, icon=icon, is_active=True)
+            messages.success(request, f'Category "{cat.name}" created successfully!')
+            return redirect('dashboard:categories')
+
     return render(request, 'dashboard/categories.html', {'categories': categories})
+
+
+@staff_member_required
+def category_delete(request, category_id):
+    cat = get_object_or_404(Category, id=category_id)
+    c_name = cat.name
+    cat.delete()
+    messages.info(request, f'Category "{c_name}" deleted.')
+    return redirect('dashboard:categories')
+
+
+@staff_member_required
+def brands_list(request):
+    brands = Brand.objects.annotate(product_count=Count('products')).order_by('name')
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        if name:
+            brand = Brand.objects.create(name=name, is_active=True)
+            messages.success(request, f'Brand "{brand.name}" created successfully!')
+            return redirect('dashboard:brands')
+
+    return render(request, 'dashboard/brands.html', {'brands': brands})
+
+
+@staff_member_required
+def brand_delete(request, brand_id):
+    brand = get_object_or_404(Brand, id=brand_id)
+    b_name = brand.name
+    brand.delete()
+    messages.info(request, f'Brand "{b_name}" deleted.')
+    return redirect('dashboard:brands')
 
 
 @staff_member_required
@@ -234,6 +366,14 @@ def toggle_review_status(request, review_id):
     review.save()
     status_label = "Approved" if review.is_approved else "Hidden"
     messages.success(request, f'Review for "{review.product.name}" by {review.user.email} marked as {status_label}.')
+    return redirect('dashboard:reviews')
+
+
+@staff_member_required
+def review_delete(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+    review.delete()
+    messages.info(request, 'Review deleted successfully.')
     return redirect('dashboard:reviews')
 
 

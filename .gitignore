@@ -1,4 +1,21 @@
-# Python
+# ==============================================================================
+# SPCart — Security & Production GitIgnore Policy
+# Prevents sensitive credentials, API keys, local databases, and temporary files
+# from being committed to version control or deployment repositories.
+# ==============================================================================
+
+# ── Environment & Security Credentials ─────────────────────────────────────────
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.cert
+*.crt
+secrets.json
+credentials.json
+
+# ── Python Cache & Compiled Files ──────────────────────────────────────────────
 __pycache__/
 *.py[cod]
 *$py.class
@@ -15,45 +32,65 @@ sdist/
 wheels/
 *.egg-link
 .installed.cfg
+*.manifest
+*.spec
 
-# Virtual Environment
+# ── Virtual Environments ───────────────────────────────────────────────────────
 venv/
+.venv/
 env/
 ENV/
+env.bak/
+venv.bak/
 
-# Django
-*.log
-local_settings.py
+# ── Local Databases & SQL Dumps ────────────────────────────────────────────────
 db.sqlite3
 db.sqlite3-journal
-media/
+db.sqlite3-shm
+db.sqlite3-wal
+*.sqlite3
+*.db
+*.sql
+*.dump
 
-# Environment Variables
-.env
-
-# Static files
+# ── Media Uploads & Temporary Storage ──────────────────────────────────────────
+media/*
+!media/.gitkeep
 staticfiles/
+*.log
 
-# VS Code
-.vscode/
-*.code-workspace
-
-# PyCharm
-.idea/
-
-# OS
+# ── Operating System & Editor Files ────────────────────────────────────────────
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 desktop.ini
 
-# Migrations (keep these in version control)
-# !*/migrations/*.py
+# ── IDEs & Code Editors ────────────────────────────────────────────────────────
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+.idea/
+*.iws
+*.iml
+*.ipr
 
-# Jupyter
-.ipynb_checkpoints
-
-# Coverage
+# ── Testing & Coverage ────────────────────────────────────────────────────────
 htmlcov/
 .coverage
 .coverage.*
 coverage.xml
+*.cover
+.pytest_cache/
+.tox/
+
+# ── Antigravity / AI Agent Artifacts & System Logs ────────────────────────────
+.gemini/
+scratch/
+*.jsonl

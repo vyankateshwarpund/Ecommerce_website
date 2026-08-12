@@ -2,79 +2,202 @@
 // SPCart — Main JavaScript
 // ============================================================
 
-document.addEventListener('DOMContentLoaded', function () {
-
-  // ── CSRF Token Helper ──────────────────────────────────────
-  function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.startsWith(name + '=')) {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-          break;
-        }
+// ── Global CSRF Token Helper ──────────────────────────────────
+function getCsrfToken() {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith('csrftoken=')) {
+        cookieValue = decodeURIComponent(cookie.substring(10));
+        break;
       }
     }
-    return cookieValue;
   }
-  const csrfToken = getCookie('csrftoken');
+  if (!cookieValue) {
+    const csrfInput = document.querySelector('[name=csrfmiddlewaretoken]');
+    if (csrfInput) cookieValue = csrfInput.value;
+  }
+  return cookieValue;
+}
 
-  // ── Live Navbar Badge Updater ─────────────────────────────
-  window.updateNavbarCounts = function (cartCount, wishlistCount) {
-    if (cartCount !== undefined && cartCount !== null) {
-      document.querySelectorAll('.cart-count').forEach(el => {
-        el.textContent = cartCount;
-        el.style.display = cartCount > 0 ? 'inline-block' : 'none';
-      });
-    }
-    if (wishlistCount !== undefined && wishlistCount !== null) {
-      document.querySelectorAll('.wishlist-count').forEach(el => {
-        el.textContent = wishlistCount;
-        el.style.display = wishlistCount > 0 ? 'inline-block' : 'none';
-      });
-    }
+// ── Global Live Navbar Badge Updater ──────────────────────────
+window.updateNavbarCounts = function (cartCount, wishlistCount) {
+  if (cartCount !== undefined && cartCount !== null) {
+    document.querySelectorAll('.cart-count').forEach(el => {
+      el.textContent = cartCount;
+      el.style.display = cartCount > 0 ? 'inline-block' : 'none';
+    });
+  }
+  if (wishlistCount !== undefined && wishlistCount !== null) {
+    document.querySelectorAll('.wishlist-count').forEach(el => {
+      el.textContent = wishlistCount;
+      el.style.display = wishlistCount > 0 ? 'inline-block' : 'none';
+    });
+  }
+};
+
+// ── Global Toast Notification ─────────────────────────────────
+window.showToast = function (message, type = 'success') {
+  const icons = {
+    success: 'fa-circle-check',
+    danger: 'fa-circle-xmark',
+    warning: 'fa-triangle-exclamation',
+    info: 'fa-circle-info',
+  };
+  const colors = {
+    success: '#22C55E',
+    danger: '#EF4444',
+    warning: '#F59E0B',
+    info: '#2563EB',
   };
 
-  // ── Toast Notification ────────────────────────────────────
-  window.showToast = function (message, type = 'success') {
-    const icons = {
-      success: 'fa-circle-check',
-      danger: 'fa-circle-xmark',
-      warning: 'fa-triangle-exclamation',
-      info: 'fa-circle-info',
-    };
-    const colors = {
-      success: '#22C55E',
-      danger: '#EF4444',
-      warning: '#F59E0B',
-      info: '#2563EB',
-    };
-
-    const toastContainer = document.getElementById('toast-container') || createToastContainer();
-    const toastEl = document.createElement('div');
-    toastEl.className = 'toast toast-shopsphere show align-items-center mb-2';
-    toastEl.style.borderLeftColor = colors[type] || colors.success;
-    toastEl.innerHTML = `
-      <div class="d-flex align-items-center p-3 gap-3">
-        <i class="fas ${icons[type] || icons.success}" style="color: ${colors[type]}; font-size: 20px;"></i>
-        <span style="font-size:14px; font-weight:500;">${message}</span>
-        <button type="button" class="btn-close ms-auto" onclick="this.closest('.toast').remove()"></button>
-      </div>`;
-    toastContainer.appendChild(toastEl);
-    setTimeout(() => toastEl.remove(), 4000);
-  };
-
-  function createToastContainer() {
-    const container = document.createElement('div');
-    container.id = 'toast-container';
-    container.className = 'toast-container';
-    document.body.appendChild(container);
-    return container;
+  let toastContainer = document.getElementById('toast-container');
+  if (!toastContainer) {
+    toastContainer = document.createElement('div');
+    toastContainer.id = 'toast-container';
+    toastContainer.className = 'toast-container';
+    document.body.appendChild(toastContainer);
   }
 
-  // ── Real-Time Search Autocomplete ─────────────────────────
+  const toastEl = document.createElement('div');
+  toastEl.className = 'toast toast-shopsphere show align-items-center mb-2';
+  toastEl.style.borderLeftColor = colors[type] || colors.success;
+  toastEl.innerHTML = `
+    <div class="d-flex align-items-center p-3 gap-3">
+      <i class="fas ${icons[type] || icons.success}" style="color: ${colors[type]}; font-size: 20px;"></i>
+      <span style="font-size:14px; font-weight:500;">${message}</span>
+      <button type="button" class="btn-close ms-auto" onclick="this.closest('.toast').remove()"></button>
+    </div>`;
+  toastContainer.appendChild(toastEl);
+  setTimeout(() => toastEl.remove(), 4000);
+};
+
+// ── Global Add to Cart Function ──────────────────────────────
+window.addToCart = function (productId, event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  if (!productId) return;
+
+  const btn = (event && (event.currentTarget || event.target)) 
+    ? (event.currentTarget || event.target).closest('.btn-add-cart')
+    : document.querySelector(`.btn-add-cart[data-product-id="${productId}"]`);
+
+  const qtyInput = document.getElementById(`qty-${productId}`);
+  const quantity = qtyInput ? qtyInput.value : 1;
+
+  let originalHTML = '';
+  if (btn) {
+    originalHTML = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Adding...';
+    btn.disabled = true;
+  }
+
+  const csrfToken = getCsrfToken();
+
+  fetch(`/cart/add/${productId}/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRFToken': csrfToken,
+      'X-Requested-With': 'XMLHttpRequest'
+    },
+    body: `quantity=${quantity}`
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (btn) {
+      btn.innerHTML = originalHTML;
+      btn.disabled = false;
+    }
+
+    if (data.status === 'success' || data.success) {
+      if (data.cart_count !== undefined) {
+        window.updateNavbarCounts(data.cart_count, null);
+      }
+      window.showToast(data.message || 'Product added to cart!', 'success');
+    } else {
+      window.showToast(data.message || 'Could not add product to cart.', 'danger');
+    }
+  })
+  .catch(err => {
+    console.error('Add to Cart Error:', err);
+    if (btn) {
+      btn.innerHTML = originalHTML;
+      btn.disabled = false;
+    }
+    window.showToast('Error adding product to cart.', 'danger');
+  });
+};
+
+// ── Global Wishlist Toggle Function ───────────────────────────
+window.toggleWishlist = function (productId, event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  if (!productId) return;
+
+  const btn = (event && (event.currentTarget || event.target))
+    ? (event.currentTarget || event.target).closest('.btn-wishlist, .btn-wishlist-toggle, .wishlist-btn')
+    : document.querySelector(`[data-product-id="${productId}"]`);
+
+  fetch(`/wishlist/toggle/${productId}/`, {
+    method: 'GET',
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest'
+    }
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.status === 'success' || data.success) {
+      if (data.wishlist_count !== undefined) {
+        window.updateNavbarCounts(null, data.wishlist_count);
+      }
+      if (btn) {
+        const icon = btn.querySelector('i');
+        if (icon) {
+          icon.className = (data.added || data.in_wishlist) ? 'fas fa-heart text-danger' : 'far fa-heart';
+        }
+      }
+      window.showToast(data.message || 'Wishlist updated!', 'info');
+    } else {
+      window.showToast(data.message || 'Please login to add items to wishlist.', 'warning');
+    }
+  })
+  .catch(err => {
+    console.error('Wishlist Error:', err);
+    window.showToast('Error updating wishlist.', 'danger');
+  });
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  // ── Global Event Delegation ────────────────────────────────
+  document.addEventListener('click', function (e) {
+    const addCartBtn = e.target.closest('.btn-add-cart');
+    if (addCartBtn) {
+      const pid = addCartBtn.getAttribute('data-product-id');
+      if (pid) {
+        window.addToCart(pid, e);
+      }
+      return;
+    }
+
+    const wishlistBtn = e.target.closest('.btn-wishlist, .btn-wishlist-toggle, .wishlist-btn');
+    if (wishlistBtn) {
+      const pid = wishlistBtn.getAttribute('data-product-id');
+      if (pid) {
+        window.toggleWishlist(pid, e);
+      }
+      return;
+    }
+  });
+
+  // ── Real-Time Search Autocomplete ───────────────────────────
   const searchInput = document.querySelector('input[name="q"]');
   if (searchInput) {
     let autoSuggestBox = document.createElement('div');
@@ -117,73 +240,5 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }
-
-  // ── Add to Cart AJAX ──────────────────────────────────────
-  document.querySelectorAll('.btn-add-cart').forEach(btn => {
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      const productId = this.getAttribute('data-product-id');
-      const qtyInput = document.getElementById(`qty-${productId}`);
-      const quantity = qtyInput ? qtyInput.value : 1;
-
-      fetch(`/cart/add/${productId}/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'X-CSRFToken': csrfToken,
-          'X-Requested-With': 'XMLHttpRequest'
-        },
-        body: `quantity=${quantity}`
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.status === 'success' || data.success) {
-          if (data.cart_count !== undefined) {
-            updateNavbarCounts(data.cart_count, null);
-          }
-          showToast(data.message || 'Product added to cart!', 'success');
-        } else {
-          showToast(data.message || 'Could not add product to cart.', 'danger');
-        }
-      })
-      .catch(() => showToast('Error adding product to cart.', 'danger'));
-    });
-  });
-
-  // ── Wishlist Toggle AJAX ───────────────────────────────────
-  document.querySelectorAll('.btn-wishlist-toggle').forEach(btn => {
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      const productId = this.getAttribute('data-product-id');
-      const url = this.getAttribute('href') || `/wishlist/toggle/${productId}/`;
-
-      fetch(url, {
-        method: 'GET',
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest'
-        }
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.status === 'success' || data.success) {
-          if (data.wishlist_count !== undefined) {
-            updateNavbarCounts(null, data.wishlist_count);
-          }
-          const icon = this.querySelector('i');
-          if (icon) {
-            if (data.added || data.in_wishlist) {
-              icon.className = 'fas fa-heart text-danger';
-            } else {
-              icon.className = 'far fa-heart';
-            }
-          }
-          showToast(data.message || 'Wishlist updated!', 'info');
-        } else {
-          showToast(data.message || 'Please login to add items to wishlist.', 'warning');
-        }
-      })
-      .catch(() => showToast('Error updating wishlist.', 'danger'));
-    });
-  });
 
 });

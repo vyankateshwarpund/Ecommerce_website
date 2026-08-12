@@ -124,10 +124,10 @@
             <form action="{% url 'cart:cart_add' product.id %}" method="POST" class="mb-4">
               {% csrf_token %}
               <div class="d-flex align-items-center gap-3">
-                <div class="quantity-input-group border rounded-pill d-flex align-items-center px-2 bg-light">
-                  <button type="button" class="btn btn-link text-dark p-1 text-decoration-none" onclick="updateQty(-1)">-</button>
-                  <input type="number" id="cartQuantity" name="quantity" value="1" min="1" max="{{ product.stock }}" class="form-control border-0 bg-transparent text-center fw-bold" style="width: 50px;">
-                  <button type="button" class="btn btn-link text-dark p-1 text-decoration-none" onclick="updateQty(1)">+</button>
+                <div class="quantity-input-group border rounded-pill d-flex align-items-center px-2 bg-light" style="height: 48px;">
+                  <button type="button" class="btn btn-link text-dark p-0 px-2 text-decoration-none fs-5 fw-bold" onclick="updateQty(-1)">-</button>
+                  <input type="number" id="cartQuantity" name="quantity" value="1" min="1" max="{{ product.stock }}" class="form-control border-0 bg-transparent text-center fw-bold fs-5 text-dark p-0 shadow-none" style="width: 45px; height: 100%;">
+                  <button type="button" class="btn btn-link text-dark p-0 px-2 text-decoration-none fs-5 fw-bold" onclick="updateQty(1)">+</button>
                 </div>
 
                 <button type="submit" class="btn btn-primary-custom btn-lg rounded-4 flex-grow-1 fw-bold shadow-sm">

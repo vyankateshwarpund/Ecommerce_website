@@ -1,0 +1,73 @@
+{% extends 'dashboard/base_admin.html' %}
+{% load static %}
+
+{% block title %}Brand Management | SPCart Admin{% endblock %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h3 class="fw-bold text-dark mb-1">Brand Management</h3>
+    <span class="text-muted small">Add, view, and manage brand partners in your store catalog.</span>
+  </div>
+  <button type="button" class="btn btn-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#addBrandModal">
+    <i class="fas fa-plus me-2"></i>+ Add Brand
+  </button>
+</div>
+
+<div class="bg-white rounded-5 border p-4 shadow-sm">
+  {% if brands %}
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="table-light">
+        <tr>
+          <th>ID</th>
+          <th>Brand Name</th>
+          <th>Slug</th>
+          <th>Total Products</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for brand in brands %}
+        <tr>
+          <td>#{{ brand.id }}</td>
+          <td><strong class="text-dark">{{ brand.name }}</strong></td>
+          <td><code class="text-primary">{{ brand.slug }}</code></td>
+          <td><span class="badge bg-primary-subtle text-primary px-3 py-1 rounded-pill">{{ brand.product_count }} Products</span></td>
+          <td>
+            <a href="{% url 'dashboard:brand_delete' brand.id %}" class="btn btn-outline-danger btn-sm rounded-pill px-3" onclick="return confirm('Are you sure you want to delete brand {{ brand.name }}?')">
+              Delete
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+    <p class="text-muted text-center py-4 mb-0">No brands found. Click "+ Add Brand" to create one.</p>
+  {% endif %}
+</div>
+
+<!-- ADD BRAND MODAL -->
+<div class="modal fade" id="addBrandModal" tabindex="-1" aria-labelledby="addBrandModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-5 border-0 shadow-lg overflow-hidden">
+      <div class="modal-header bg-primary text-white border-0 py-3 px-4">
+        <h5 class="modal-title fw-bold" id="addBrandModalLabel"><i class="fas fa-copyright me-2"></i>Add New Brand</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="POST" action="{% url 'dashboard:brands' %}" class="p-4">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label small fw-bold">Brand Name</label>
+          <input type="text" name="name" class="form-control rounded-3" placeholder="e.g. Apple, Nike, Sony..." required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-sm">
+          Save Brand
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

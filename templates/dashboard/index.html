@@ -62,6 +62,23 @@
   </div>
 </div>
 
+<!-- CHART.JS ANALYTICS ROW -->
+<div class="row g-4 mb-4">
+  <div class="col-lg-8">
+    <div class="bg-white rounded-5 border p-4 shadow-sm h-100">
+      <h5 class="fw-bold text-dark mb-3"><i class="fas fa-chart-line text-primary me-2"></i>Monthly Revenue Analytics</h5>
+      <canvas id="monthlyRevenueChart" style="max-height: 280px;"></canvas>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="bg-white rounded-5 border p-4 shadow-sm h-100">
+      <h5 class="fw-bold text-dark mb-3"><i class="fas fa-chart-pie text-success me-2"></i>Order Status Breakdown</h5>
+      <canvas id="orderStatusChart" style="max-height: 280px;"></canvas>
+    </div>
+  </div>
+</div>
+
 <!-- QUICK ACTIONS PANEL -->
 <div class="bg-white rounded-5 p-4 border shadow-sm mb-4">
   <h6 class="fw-bold text-dark text-uppercase mb-3 small" style="letter-spacing: 0.5px;">⚡ Quick Actions</h6>
@@ -107,7 +124,7 @@
               <th>Customer</th>
               <th>Total</th>
               <th>Status</th>
-              <th>Update Status</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -120,14 +137,9 @@
                 <span class="badge bg-primary-subtle text-primary">{{ order.get_status_display }}</span>
               </td>
               <td>
-                <form method="POST" action="{% url 'dashboard:update_order_status' order.id %}">
-                  {% csrf_token %}
-                  <select name="status" class="form-select form-select-sm border-secondary-subtle" onchange="this.form.submit()">
-                    {% for val, label in order.STATUS_CHOICES %}
-                      <option value="{{ val }}" {% if order.status == val %}selected{% endif %}>{{ label }}</option>
-                    {% endfor %}
-                  </select>
-                </form>
+                <a href="{% url 'dashboard:order_detail_staff' order.id %}" class="btn btn-sm btn-outline-primary rounded-pill px-2.5">
+                  View
+                </a>
               </td>
             </tr>
             {% endfor %}
@@ -140,20 +152,21 @@
     </div>
   </div>
 
-  <!-- LOW STOCK ALERTS -->
+  <!-- LOW STOCK & BEST SELLERS SIDEBAR -->
   <div class="col-lg-4">
-    <div class="bg-white rounded-5 border p-4 shadow-sm h-100">
+    <!-- LOW STOCK ALERTS -->
+    <div class="bg-white rounded-5 border p-4 shadow-sm mb-4">
       <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
-        <h5 class="fw-bold text-dark mb-0"><i class="fas fa-triangle-exclamation text-warning me-2"></i>Low Stock Alerts</h5>
+        <h6 class="fw-bold text-dark mb-0"><i class="fas fa-triangle-exclamation text-warning me-2"></i>Low Stock Alerts</h6>
         <a href="{% url 'dashboard:inventory' %}" class="small text-primary text-decoration-none fw-semibold">Inventory →</a>
       </div>
       
       {% if low_stock_products %}
-        <div class="d-flex flex-column gap-3">
+        <div class="d-flex flex-column gap-2">
           {% for p in low_stock_products %}
           <div class="d-flex align-items-center justify-content-between p-2 bg-light rounded-3 border">
             <div>
-              <h6 class="fw-bold mb-0 text-dark small">{{ p.name }}</h6>
+              <h6 class="fw-bold mb-0 text-dark small">{{ p.name|truncatewords:4 }}</h6>
               <span class="small text-muted">{{ p.category.name }}</span>
             </div>
             <span class="badge bg-warning text-dark fw-bold px-2 py-1">Only {{ p.stock }} left</span>
@@ -161,13 +174,77 @@
           {% endfor %}
         </div>
       {% else %}
-        <div class="text-center py-4">
-          <i class="fas fa-circle-check text-success fs-3 mb-2"></i>
+        <div class="text-center py-3">
+          <i class="fas fa-circle-check text-success fs-4 mb-1"></i>
           <p class="text-muted small mb-0">All stock levels healthy!</p>
         </div>
+      {% endif %}
+    </div>
+
+    <!-- BEST SELLERS -->
+    <div class="bg-white rounded-5 border p-4 shadow-sm">
+      <h6 class="fw-bold text-dark mb-3 border-bottom pb-3"><i class="fas fa-fire text-danger me-2"></i>Best Sellers</h6>
+      {% if best_sellers %}
+        <div class="d-flex flex-column gap-2">
+          {% for p in best_sellers %}
+          <div class="d-flex align-items-center justify-content-between p-2 bg-light rounded-3 border">
+            <div>
+              <h6 class="fw-bold mb-0 text-dark small">{{ p.name|truncatewords:4 }}</h6>
+              <span class="small text-muted">₹{{ p.price|floatformat:"0" }}</span>
+            </div>
+            <span class="badge bg-success text-white fw-bold px-2.5 py-1">{{ p.total_sold }} sold</span>
+          </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="text-muted small text-center py-2 mb-0">No sales data yet.</p>
       {% endif %}
     </div>
   </div>
 
 </div>
+
+<!-- CHART.JS CDN & INITIALIZATION -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Monthly Revenue Line Chart
+  const revCtx = document.getElementById('monthlyRevenueChart').getContext('2d');
+  new Chart(revCtx, {
+    type: 'line',
+    data: {
+      labels: {{ chart_months|safe }},
+      datasets: [{
+        label: 'Revenue (₹)',
+        data: {{ chart_revenue|safe }},
+        borderColor: '#2563eb',
+        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+        fill: true,
+        tension: 0.4
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } }
+    }
+  });
+
+  // Order Status Doughnut Chart
+  const statusCtx = document.getElementById('orderStatusChart').getContext('2d');
+  new Chart(statusCtx, {
+    type: 'doughnut',
+    data: {
+      labels: {{ status_labels|safe }},
+      datasets: [{
+        data: {{ status_values|safe }},
+        backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6']
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position: 'bottom' } }
+    }
+  });
+});
+</script>
 {% endblock %}

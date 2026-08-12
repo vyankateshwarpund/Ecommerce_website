@@ -185,7 +185,7 @@
                   {% endif %}
                 </div>
 
-                <button class="btn btn-primary-custom w-100 btn-add-cart mt-auto" data-product-id="{{ product.id }}">
+                <button class="btn btn-primary-custom w-100 btn-add-cart mt-auto" data-product-id="{{ product.id }}" onclick="addToCart({{ product.id }}, event)">
                   <i class="fas fa-cart-shopping me-2"></i>Add to Cart
                 </button>
               </div>

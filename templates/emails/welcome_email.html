@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f8fafc; margin: 0; padding: 20px; color: #334155; }
+    .container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 16px; padding: 40px; border: 1px solid #e2e8f0; }
+    .logo { text-align: center; margin-bottom: 24px; }
+    .title { font-size: 24px; font-weight: 800; color: #2563eb; text-align: center; margin-bottom: 16px; }
+    .content { font-size: 15px; line-height: 1.6; }
+    .btn { display: inline-block; background-color: #2563eb; color: #ffffff !important; text-decoration: none; padding: 14px 28px; border-radius: 30px; font-weight: 700; margin-top: 24px; text-align: center; }
+    .footer { font-size: 12px; color: #94a3b8; text-align: center; margin-top: 32px; border-top: 1px solid #e2e8f0; padding-top: 16px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">Welcome to SPCart! 🎉</div>
+    <div class="content">
+      <p>Hello <strong>{{ user.first_name|default:user.username }}</strong>,</p>
+      <p>Thank you for joining <strong>SPCart — Smart Shopping, Everyday!</strong></p>
+      <p>Your account is officially active. You can now explore thousands of premium products across 16 categories with instant express delivery and secure Razorpay online payments.</p>
+      <div style="text-align: center;">
+        <a href="http://127.0.0.1:8000/products/" class="btn">Explore Catalog Now</a>
+      </div>
+    </div>
+    <div class="footer">
+      © 2026 SPCart Inc. All rights reserved. • Need help? Contact support@spcart.com
+    </div>
+  </div>
+</body>
+</html>

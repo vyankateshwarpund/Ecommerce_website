@@ -70,8 +70,13 @@ def verify_otp_view(request):
             latest_otp.delete()
             del request.session['verify_user_id']
 
-            # Auto Login
+            # Auto Login & Send Welcome Email
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            try:
+                from core.email_utils import send_welcome_email
+                send_welcome_email(user)
+            except Exception as e:
+                print(f"Welcome email trigger error: {e}")
             messages.success(request, f'🎉 Account verified successfully! Welcome to SPCart, {user.first_name or user.username}.')
             return redirect('core:home')
         else:
