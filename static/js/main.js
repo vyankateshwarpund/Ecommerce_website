@@ -109,9 +109,23 @@ window.addToCart = function (productId, event) {
       'X-CSRFToken': csrfToken,
       'X-Requested-With': 'XMLHttpRequest'
     },
+    credentials: 'same-origin',
     body: `quantity=${quantity}`
   })
-  .then(res => res.json())
+  .then(async res => {
+    const contentType = res.headers.get('content-type');
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error(`Add to Cart Server Error (HTTP ${res.status} ${res.statusText}):`, errorText);
+      throw new Error(`Server returned HTTP ${res.status} (${res.statusText})`);
+    }
+    if (contentType && contentType.includes('application/json')) {
+      return res.json();
+    }
+    const text = await res.text();
+    console.error('Non-JSON response received from server:', text);
+    throw new Error('Server returned invalid non-JSON response');
+  })
   .then(data => {
     if (btn) {
       btn.innerHTML = originalHTML;
@@ -133,7 +147,7 @@ window.addToCart = function (productId, event) {
       btn.innerHTML = originalHTML;
       btn.disabled = false;
     }
-    window.showToast('Error adding product to cart.', 'danger');
+    window.showToast(err.message || 'Error adding product to cart.', 'danger');
   });
 };
 

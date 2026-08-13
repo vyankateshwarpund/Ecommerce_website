@@ -165,6 +165,10 @@ if DEBUG:
 else:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Enable HTTPS recognition behind reverse proxy (PythonAnywhere, Heroku, Nginx)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+
 # Security headers — active only in production (DEBUG=False)
 if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
