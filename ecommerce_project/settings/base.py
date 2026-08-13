@@ -17,7 +17,7 @@ SECRET_KEY = env('SECRET_KEY', default='django-insecure-shopsphere-dev-key-chang
 
 DEBUG = env.bool('DEBUG', default=True)
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1'])
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 
 # Application Definition
 INSTALLED_APPS = [
