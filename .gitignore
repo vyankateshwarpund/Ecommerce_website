@@ -54,8 +54,12 @@ db.sqlite3-wal
 *.dump
 
 # ── Media Uploads & Temporary Storage ──────────────────────────────────────────
+# Allow product & brand images (seeded, part of project)
 media/*
-!media/.gitkeep
+!media/products/
+!media/products/**
+!media/brands/
+!media/brands/**
 staticfiles/
 *.log
 

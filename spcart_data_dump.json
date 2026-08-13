@@ -1,0 +1,5680 @@
+[
+{
+  "model": "sessions.session",
+  "pk": "cyr5weuhfl0t2wwqiwqxo58j23t9pm1a",
+  "fields": {
+    "session_data": ".eJxVjDEOgzAMAP_iGUVOwEAZu_cNkeOYQlslEoEJ8fcKiaFd7063g-dtnfxWdPFzhAEcVL8ssLw1nSK-OD2zkZzWZQ7mTMxli3nkqJ_71f4NJi4TDBBEAlHd1xgwus6hqJVox6aOnRPLgW7uFjsmVOoFm5ZURwwWR2qt1R4qKFrKnJMXXlYY9uP4AhZJPpM:1wuEJP:6XFroq-T_7hp2f24evUrw8R6lAyyvwNOnHPK2zILDCc",
+    "expire_date": "2026-08-26T19:08:27.088Z"
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$mGHcXOvlzSrTGyKZcACm6q$DwIFPs07jUVF+kJqfE567IzHcwQ9dcfGoXervVn+a/I=",
+    "last_login": "2026-08-10T18:34:09.923Z",
+    "is_superuser": true,
+    "username": "saurav",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-08-07T13:15:23.943Z",
+    "email": "pundsaurav@gmail.com",
+    "is_email_verified": false,
+    "created_at": "2026-08-07T13:15:23.943Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$znRMTlnzlbljihHsvPQWFE$lpe9xnpHpP0Z3Hhr5dWuQAKVRvRLRmwH1RVCxtDUYWk=",
+    "last_login": "2026-08-12T19:07:29.703Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "Admin",
+    "last_name": "User",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-08-09T10:51:50.243Z",
+    "email": "admin@spcart.com",
+    "is_email_verified": false,
+    "created_at": "2026-08-09T10:51:50.243Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$0GF8B6NoUGBDtc9GZL4Hv2$QqKzVJkk/KsNHIVDMcoRXuvfCjw5ElU0y3QW6IppD0k=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "rs",
+    "first_name": "Rahul",
+    "last_name": "Sharma",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-09T10:55:55.628Z",
+    "email": "rs@gmail.com",
+    "is_email_verified": false,
+    "created_at": "2026-08-09T10:55:55.628Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$Z2koDQqbw0GhTCVDc6oRqp$SMeL3wVfpz+B9YTwCSwiFMh9Uli5I807Ukj/NrO3TBs=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "kk",
+    "first_name": "karan",
+    "last_name": "kadalkar",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-09T11:13:52.625Z",
+    "email": "kk@gmail.com",
+    "is_email_verified": false,
+    "created_at": "2026-08-09T11:13:52.625Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$QUVWIFevr1Ht6KT5KxYqAZ$vfedc5JXl9Y6ALmSKMFxOZjGEEA8VCHlQUJeQlvBmcE=",
+    "last_login": "2026-08-09T11:15:58.903Z",
+    "is_superuser": false,
+    "username": "kk1",
+    "first_name": "karan",
+    "last_name": "kadalkar",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-09T11:15:57.266Z",
+    "email": "kk1@gmail.com",
+    "is_email_verified": false,
+    "created_at": "2026-08-09T11:15:57.266Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$JGdD9pyJ1wfqU0hHgYXON2$qLOIpY8shs7jp6YmpCPH5Jetv5lkEbI28THstTVvMkU=",
+    "last_login": "2026-08-09T11:26:09.329Z",
+    "is_superuser": false,
+    "username": "pundsaurav1",
+    "first_name": "Saurav",
+    "last_name": "Pund",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-09T11:26:07.808Z",
+    "email": "pundsaurav1@gmail.com",
+    "is_email_verified": false,
+    "created_at": "2026-08-09T11:26:07.808Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$rKHa57PMUpEZQeGak5eUmj$/dgV8J+DhVt5c+/1YJCOs203utbk5rZxsUrQEfsZZbc=",
+    "last_login": "2026-08-09T12:49:38.958Z",
+    "is_superuser": false,
+    "username": "pundsaurav12",
+    "first_name": "Saurav",
+    "last_name": "Pund",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-09T12:11:21.356Z",
+    "email": "pundsaurav12@gmail.com",
+    "is_email_verified": false,
+    "created_at": "2026-08-09T12:11:21.356Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$A2BAqLgz3OCUyswWjDoxDe$4Mfk1y18R973AeCSM3vnKcI2LAFQaBIdbvtHDCwaRnQ=",
+    "last_login": "2026-08-12T18:55:58.290Z",
+    "is_superuser": false,
+    "username": "sauravpund162",
+    "first_name": "Saurav",
+    "last_name": "Pund",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-09T12:56:34.421Z",
+    "email": "sauravpund162@gmail.com",
+    "is_email_verified": false,
+    "created_at": "2026-08-09T12:56:34.421Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$TWAYh1AIpJoQrwu8Cd0NnE$vHagbSvSDd2Sv8NVts9sn6RGTMEoWkKhPGzIhUZrFFA=",
+    "last_login": "2026-08-10T13:51:49.317Z",
+    "is_superuser": false,
+    "username": "sharmasaurya838",
+    "first_name": "sharam",
+    "last_name": "pund",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-10T13:51:17.635Z",
+    "email": "sharmasaurya838@gmail.com",
+    "is_email_verified": true,
+    "created_at": "2026-08-10T13:51:17.636Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "amit.sharma",
+    "first_name": "Amit",
+    "last_name": "Sharma",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-10T18:07:32.708Z",
+    "email": "amit.sharma@example.com",
+    "is_email_verified": false,
+    "created_at": "2026-08-10T18:07:32.708Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "neha.gupta",
+    "first_name": "Neha",
+    "last_name": "Gupta",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-10T18:07:32.767Z",
+    "email": "neha.gupta@example.com",
+    "is_email_verified": false,
+    "created_at": "2026-08-10T18:07:32.767Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "rahul.v",
+    "first_name": "Rahul",
+    "last_name": "Verma",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-08-10T18:07:32.774Z",
+    "email": "rahul.v@example.com",
+    "is_email_verified": false,
+    "created_at": "2026-08-10T18:07:32.774Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "phone": "",
+    "profile_image": "profiles/default-avatar.png",
+    "gender": "",
+    "date_of_birth": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "phone": "",
+    "profile_image": "profiles/default-avatar.png",
+    "gender": "",
+    "date_of_birth": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "rs@gmail.com"
+    ],
+    "phone": "",
+    "profile_image": "profiles/default-avatar.png",
+    "gender": "",
+    "date_of_birth": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "kk@gmail.com"
+    ],
+    "phone": "",
+    "profile_image": "profiles/default-avatar.png",
+    "gender": "",
+    "date_of_birth": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "kk1@gmail.com"
+    ],
+    "phone": "",
+    "profile_image": "profiles/default-avatar.png",
+    "gender": "",
+    "date_of_birth": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "pundsaurav1@gmail.com"
+    ],
+    "phone": "",
+    "profile_image": "profiles/default-avatar.png",
+    "gender": "",
+    "date_of_birth": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "pundsaurav12@gmail.com"
+    ],
+    "phone": "",
+    "profile_image": "profiles/default-avatar.png",
+    "gender": "",
+    "date_of_birth": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 8,
+  "fields": {
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "phone": "",
+    "profile_image": "profiles/default-avatar.png",
+    "gender": "",
+    "date_of_birth": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 13,
+  "fields": {
+    "user": [
+      "sharmasaurya838@gmail.com"
+    ],
+    "phone": "",
+    "profile_image": "profiles/default-avatar.png",
+    "gender": "",
+    "date_of_birth": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 14,
+  "fields": {
+    "user": [
+      "amit.sharma@example.com"
+    ],
+    "phone": "",
+    "profile_image": "profiles/default-avatar.png",
+    "gender": "",
+    "date_of_birth": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 15,
+  "fields": {
+    "user": [
+      "neha.gupta@example.com"
+    ],
+    "phone": "",
+    "profile_image": "profiles/default-avatar.png",
+    "gender": "",
+    "date_of_birth": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 16,
+  "fields": {
+    "user": [
+      "rahul.v@example.com"
+    ],
+    "phone": "",
+    "profile_image": "profiles/default-avatar.png",
+    "gender": "",
+    "date_of_birth": null
+  }
+},
+{
+  "model": "accounts.address",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "pundsaurav1@gmail.com"
+    ],
+    "full_name": "Saurav Pund",
+    "phone": "8010145688",
+    "country": "India",
+    "state": "Maharashtra",
+    "city": "Akot",
+    "area": "MG ROad",
+    "postal_code": "444101",
+    "address_line": "32",
+    "is_default": true,
+    "created_at": "2026-08-09T11:28:22.336Z"
+  }
+},
+{
+  "model": "accounts.address",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "pundsaurav12@gmail.com"
+    ],
+    "full_name": "Saurav Pund",
+    "phone": "8010145688",
+    "country": "India",
+    "state": "Maharashtra",
+    "city": "Akot",
+    "area": "Akot",
+    "postal_code": "444101",
+    "address_line": "32",
+    "is_default": true,
+    "created_at": "2026-08-09T12:16:14.987Z"
+  }
+},
+{
+  "model": "accounts.address",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "full_name": "Saurav Pund",
+    "phone": "9876543210",
+    "country": "India",
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "area": "",
+    "postal_code": "400050",
+    "address_line": "Flat 402, Highrise Tower, Bandra West",
+    "is_default": true,
+    "created_at": "2026-08-09T12:24:36.500Z"
+  }
+},
+{
+  "model": "accounts.address",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "full_name": "Saurav Pund",
+    "phone": "8010145688",
+    "country": "India",
+    "state": "Maharashtra",
+    "city": "Akot",
+    "area": "Akot",
+    "postal_code": "444101",
+    "address_line": "dff",
+    "is_default": true,
+    "created_at": "2026-08-10T14:01:50.622Z"
+  }
+},
+{
+  "model": "accounts.address",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "full_name": "Saurav Pund",
+    "phone": "9876543210",
+    "country": "India",
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "area": "Mumbai",
+    "postal_code": "400001",
+    "address_line": "Flat 101 MG Road",
+    "is_default": false,
+    "created_at": "2026-08-10T14:08:47.300Z"
+  }
+},
+{
+  "model": "accounts.address",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "full_name": "Admin User",
+    "phone": "",
+    "country": "India",
+    "state": "",
+    "city": "",
+    "area": "",
+    "postal_code": "",
+    "address_line": "",
+    "is_default": true,
+    "created_at": "2026-08-10T14:09:28.357Z"
+  }
+},
+{
+  "model": "accounts.address",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "full_name": "Saurav Pund",
+    "phone": "9876543210",
+    "country": "India",
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "area": "Mumbai",
+    "postal_code": "400001",
+    "address_line": "Flat 101 MG Road",
+    "is_default": false,
+    "created_at": "2026-08-10T14:10:04.391Z"
+  }
+},
+{
+  "model": "accounts.address",
+  "pk": 8,
+  "fields": {
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "full_name": "Saurav Pund",
+    "phone": "9876543210",
+    "country": "India",
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "area": "Mumbai",
+    "postal_code": "400001",
+    "address_line": "Flat 101 MG Road",
+    "is_default": false,
+    "created_at": "2026-08-10T14:26:06.575Z"
+  }
+},
+{
+  "model": "accounts.address",
+  "pk": 9,
+  "fields": {
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "full_name": "Saurav Pund",
+    "phone": "9876543210",
+    "country": "India",
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "area": "Mumbai",
+    "postal_code": "400001",
+    "address_line": "Flat 101 MG Road",
+    "is_default": false,
+    "created_at": "2026-08-10T14:28:11.601Z"
+  }
+},
+{
+  "model": "accounts.address",
+  "pk": 10,
+  "fields": {
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "full_name": "Saurav Pund",
+    "phone": "9876543210",
+    "country": "India",
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "area": "Mumbai",
+    "postal_code": "400001",
+    "address_line": "Flat 101 MG Road",
+    "is_default": false,
+    "created_at": "2026-08-10T14:30:49.350Z"
+  }
+},
+{
+  "model": "accounts.address",
+  "pk": 11,
+  "fields": {
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "full_name": "Saurav Pund",
+    "phone": "9876543210",
+    "country": "India",
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "area": "Mumbai",
+    "postal_code": "400001",
+    "address_line": "Flat 101 MG Road",
+    "is_default": false,
+    "created_at": "2026-08-10T14:42:00.158Z"
+  }
+},
+{
+  "model": "accounts.address",
+  "pk": 12,
+  "fields": {
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "full_name": "Saurav Pund",
+    "phone": "9876543210",
+    "country": "India",
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "area": "Mumbai",
+    "postal_code": "400001",
+    "address_line": "Flat 101 MG Road",
+    "is_default": false,
+    "created_at": "2026-08-10T17:54:10.305Z"
+  }
+},
+{
+  "model": "accounts.address",
+  "pk": 13,
+  "fields": {
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "full_name": "Saurav Pund",
+    "phone": "9876543210",
+    "country": "India",
+    "state": "Maharashtra",
+    "city": "Mumbai",
+    "area": "Mumbai",
+    "postal_code": "400001",
+    "address_line": "Flat 101 MG Road",
+    "is_default": false,
+    "created_at": "2026-08-10T17:54:23.798Z"
+  }
+},
+{
+  "model": "accounts.address",
+  "pk": 14,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "full_name": "Saurav Pund",
+    "phone": "9876543210",
+    "country": "India",
+    "state": "Maharashtra",
+    "city": "Pune",
+    "area": "Pune",
+    "postal_code": "411001",
+    "address_line": "Flat 402, Green Valley Towers",
+    "is_default": false,
+    "created_at": "2026-08-11T13:31:11.879Z"
+  }
+},
+{
+  "model": "accounts.address",
+  "pk": 15,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "full_name": "Saurav Pund",
+    "phone": "9876543210",
+    "country": "India",
+    "state": "Maharashtra",
+    "city": "Pune",
+    "area": "Pune",
+    "postal_code": "411001",
+    "address_line": "Flat 402, Green Valley Towers",
+    "is_default": false,
+    "created_at": "2026-08-11T13:31:52.179Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 89,
+  "fields": {
+    "name": "70mai",
+    "slug": "70mai",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:01.976Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 31,
+  "fields": {
+    "name": "AMD",
+    "slug": "amd",
+    "logo": "brands/amd.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:38:03.409Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 12,
+  "fields": {
+    "name": "ASUS",
+    "slug": "asus",
+    "logo": "brands/asus.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.469Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 13,
+  "fields": {
+    "name": "Acer",
+    "slug": "acer",
+    "logo": "brands/acer.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.477Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 5,
+  "fields": {
+    "name": "Adidas",
+    "slug": "adidas",
+    "logo": "brands/adidas.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:15:26.046Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 66,
+  "fields": {
+    "name": "Allen Solly",
+    "slug": "allen-solly",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:00.567Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 53,
+  "fields": {
+    "name": "Amazfit",
+    "slug": "amazfit",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:35.447Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 37,
+  "fields": {
+    "name": "AmazonBasics",
+    "slug": "amazonbasics",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:33.396Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 135,
+  "fields": {
+    "name": "American Tourister",
+    "slug": "american-tourister",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:05.375Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 48,
+  "fields": {
+    "name": "Anker",
+    "slug": "anker",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:35.031Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 1,
+  "fields": {
+    "name": "Apple",
+    "slug": "apple",
+    "logo": "brands/apple.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:15:26.034Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 96,
+  "fields": {
+    "name": "Armor All",
+    "slug": "armor-all",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:02.499Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 56,
+  "fields": {
+    "name": "Audio-Technica",
+    "slug": "audio-technica",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:36.020Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 94,
+  "fields": {
+    "name": "Autoify",
+    "slug": "autoify",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:02.317Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 84,
+  "fields": {
+    "name": "Bajaj",
+    "slug": "bajaj",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:01.673Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 90,
+  "fields": {
+    "name": "Bergmann",
+    "slug": "bergmann",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:02.068Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 112,
+  "fields": {
+    "name": "Beyblade",
+    "slug": "beyblade",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:03.709Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 95,
+  "fields": {
+    "name": "Blaupunkt",
+    "slug": "blaupunkt",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:02.439Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 119,
+  "fields": {
+    "name": "Boldfit",
+    "slug": "boldfit",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:04.124Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 81,
+  "fields": {
+    "name": "Bosch",
+    "slug": "bosch",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:01.475Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 21,
+  "fields": {
+    "name": "Bose",
+    "slug": "bose",
+    "logo": "brands/bose.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.647Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 28,
+  "fields": {
+    "name": "Canon",
+    "slug": "canon",
+    "logo": "brands/canon.png",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.695Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 134,
+  "fields": {
+    "name": "Captain Zack",
+    "slug": "captain-zack",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:05.311Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 39,
+  "fields": {
+    "name": "Casio",
+    "slug": "casio",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:33.526Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 73,
+  "fields": {
+    "name": "Cetaphil",
+    "slug": "cetaphil",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:00.981Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 109,
+  "fields": {
+    "name": "Chicco",
+    "slug": "chicco",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:03.486Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 38,
+  "fields": {
+    "name": "Classmate",
+    "slug": "classmate",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:33.459Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 60,
+  "fields": {
+    "name": "Cosbyte",
+    "slug": "cosbyte",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:36.655Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 118,
+  "fields": {
+    "name": "Cosco",
+    "slug": "cosco",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:04.056Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 148,
+  "fields": {
+    "name": "Cross",
+    "slug": "cross",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:06.730Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 104,
+  "fields": {
+    "name": "Darius Foroux",
+    "slug": "darius-foroux",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:03.122Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 116,
+  "fields": {
+    "name": "Decathlon",
+    "slug": "decathlon",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:03.939Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 10,
+  "fields": {
+    "name": "Dell",
+    "slug": "dell",
+    "logo": "brands/dell.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.450Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 130,
+  "fields": {
+    "name": "Drools",
+    "slug": "drools",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:05.061Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 82,
+  "fields": {
+    "name": "Dyson",
+    "slug": "dyson",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:01.547Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 61,
+  "fields": {
+    "name": "Elgato",
+    "slug": "elgato",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:36.712Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 143,
+  "fields": {
+    "name": "F Gear",
+    "slug": "f-gear",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:06.298Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 36,
+  "fields": {
+    "name": "Faber-Castell",
+    "slug": "faber-castell",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:33.329Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 147,
+  "fields": {
+    "name": "Fastrack",
+    "slug": "fastrack",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:06.608Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 42,
+  "fields": {
+    "name": "Fellowes",
+    "slug": "fellowes",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:33.721Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 52,
+  "fields": {
+    "name": "Fire-Boltt",
+    "slug": "fire-boltt",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:35.387Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 110,
+  "fields": {
+    "name": "Fisher-Price",
+    "slug": "fisher-price",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:03.563Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 50,
+  "fields": {
+    "name": "Fitbit",
+    "slug": "fitbit",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:35.265Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 145,
+  "fields": {
+    "name": "Fossil",
+    "slug": "fossil",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:06.440Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 114,
+  "fields": {
+    "name": "Funskool",
+    "slug": "funskool",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:03.825Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 49,
+  "fields": {
+    "name": "Garmin",
+    "slug": "garmin",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:35.202Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 8,
+  "fields": {
+    "name": "Google",
+    "slug": "google",
+    "logo": "brands/google.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:15:26.057Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 64,
+  "fields": {
+    "name": "H&M",
+    "slug": "hm",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:00.390Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 9,
+  "fields": {
+    "name": "HP",
+    "slug": "hp",
+    "logo": "brands/hp.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:09.349Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 86,
+  "fields": {
+    "name": "Hamilton Beach",
+    "slug": "hamilton-beach",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:01.802Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 100,
+  "fields": {
+    "name": "HarperCollins",
+    "slug": "harpercollins",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:02.872Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 105,
+  "fields": {
+    "name": "HarperOne",
+    "slug": "harperone",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:03.187Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 98,
+  "fields": {
+    "name": "Harriman House",
+    "slug": "harriman-house",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:02.684Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 132,
+  "fields": {
+    "name": "Heads Up For Tails",
+    "slug": "heads-up-for-tails",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:05.189Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 108,
+  "fields": {
+    "name": "Hot Wheels",
+    "slug": "hot-wheels",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:03.418Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 85,
+  "fields": {
+    "name": "Instant Pot",
+    "slug": "instant-pot",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:01.742Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 30,
+  "fields": {
+    "name": "Intel",
+    "slug": "intel",
+    "logo": "brands/intel.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:38:03.392Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 20,
+  "fields": {
+    "name": "JBL",
+    "slug": "jbl",
+    "logo": "brands/jbl.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.640Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 68,
+  "fields": {
+    "name": "Jack & Jones",
+    "slug": "jack-jones",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:00.684Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 129,
+  "fields": {
+    "name": "KONG",
+    "slug": "kong",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:04.939Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 40,
+  "fields": {
+    "name": "Kangaro",
+    "slug": "kangaro",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:33.606Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 83,
+  "fields": {
+    "name": "Kent",
+    "slug": "kent",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:01.610Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 69,
+  "fields": {
+    "name": "L'Oreal Paris",
+    "slug": "loreal-paris",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:00.739Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 106,
+  "fields": {
+    "name": "LEGO",
+    "slug": "lego",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:03.246Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 6,
+  "fields": {
+    "name": "LG",
+    "slug": "lg",
+    "logo": "brands/lg.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:15:26.049Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 11,
+  "fields": {
+    "name": "Lenovo",
+    "slug": "lenovo",
+    "logo": "brands/lenovo.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.460Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 23,
+  "fields": {
+    "name": "Levis",
+    "slug": "levis",
+    "logo": "brands/levis.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.660Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 27,
+  "fields": {
+    "name": "Logitech",
+    "slug": "logitech",
+    "logo": "brands/logitech.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.688Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 75,
+  "fields": {
+    "name": "MAC",
+    "slug": "mac",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:01.110Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 29,
+  "fields": {
+    "name": "MSI",
+    "slug": "msi",
+    "logo": "brands/msi.png",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:38:03.363Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 78,
+  "fields": {
+    "name": "Mamaearth",
+    "slug": "mamaearth",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:01.298Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 57,
+  "fields": {
+    "name": "Marshall",
+    "slug": "marshall",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:36.080Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 107,
+  "fields": {
+    "name": "Mattel",
+    "slug": "mattel",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:03.343Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 70,
+  "fields": {
+    "name": "Maybelline",
+    "slug": "maybelline",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:00.798Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 128,
+  "fields": {
+    "name": "Meat Up",
+    "slug": "meat-up",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:04.862Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 91,
+  "fields": {
+    "name": "Michelin",
+    "slug": "michelin",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:02.133Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 7,
+  "fields": {
+    "name": "Microsoft",
+    "slug": "microsoft",
+    "logo": "brands/microsoft.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:15:26.053Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 76,
+  "fields": {
+    "name": "Minimalist",
+    "slug": "minimalist",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:01.171Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 140,
+  "fields": {
+    "name": "Mockingbird",
+    "slug": "mockingbird",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:05.894Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 45,
+  "fields": {
+    "name": "Motorola",
+    "slug": "motorola",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:34.125Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 32,
+  "fields": {
+    "name": "NVIDIA",
+    "slug": "nvidia",
+    "logo": "brands/nvidia.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:38:03.415Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 111,
+  "fields": {
+    "name": "Nerf",
+    "slug": "nerf",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:03.647Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 77,
+  "fields": {
+    "name": "Neutrogena",
+    "slug": "neutrogena",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:01.236Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 4,
+  "fields": {
+    "name": "Nike",
+    "slug": "nike",
+    "logo": "brands/nike.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:15:26.044Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 33,
+  "fields": {
+    "name": "Nikon",
+    "slug": "nikon",
+    "logo": "brands/nikon.png",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:38:03.439Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 58,
+  "fields": {
+    "name": "Nintendo",
+    "slug": "nintendo",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:36.369Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 71,
+  "fields": {
+    "name": "Nivea",
+    "slug": "nivea",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:00.860Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 120,
+  "fields": {
+    "name": "Nivia",
+    "slug": "nivia",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:04.193Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 51,
+  "fields": {
+    "name": "Noise",
+    "slug": "noise",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:35.329Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 47,
+  "fields": {
+    "name": "Nothing",
+    "slug": "nothing",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:34.435Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 14,
+  "fields": {
+    "name": "OnePlus",
+    "slug": "oneplus",
+    "logo": "brands/oneplus.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.595Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 18,
+  "fields": {
+    "name": "Oppo",
+    "slug": "oppo",
+    "logo": "brands/oppo.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.627Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 26,
+  "fields": {
+    "name": "Panasonic",
+    "slug": "panasonic",
+    "logo": "brands/panasonic.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.681Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 35,
+  "fields": {
+    "name": "Parker",
+    "slug": "parker",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:32.785Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 127,
+  "fields": {
+    "name": "Pedigree",
+    "slug": "pedigree",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:04.785Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 97,
+  "fields": {
+    "name": "Penguin",
+    "slug": "penguin",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:02.624Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 79,
+  "fields": {
+    "name": "Philips",
+    "slug": "philips",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:01.357Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 87,
+  "fields": {
+    "name": "Pigeon",
+    "slug": "pigeon",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:01.860Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 99,
+  "fields": {
+    "name": "Plata Publishing",
+    "slug": "plata-publishing",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:02.807Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 74,
+  "fields": {
+    "name": "Plum",
+    "slug": "plum",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:01.047Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 101,
+  "fields": {
+    "name": "Portfolio",
+    "slug": "portfolio",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:02.926Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 44,
+  "fields": {
+    "name": "Portronics",
+    "slug": "portronics",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:33.842Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 43,
+  "fields": {
+    "name": "Post-it",
+    "slug": "post-it",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:33.785Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 123,
+  "fields": {
+    "name": "PowerMax",
+    "slug": "powermax",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:04.384Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 80,
+  "fields": {
+    "name": "Preethi",
+    "slug": "preethi",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:01.414Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 22,
+  "fields": {
+    "name": "Puma",
+    "slug": "puma",
+    "logo": "brands/puma.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.653Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 144,
+  "fields": {
+    "name": "Ray-Ban",
+    "slug": "ray-ban",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:06.377Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 34,
+  "fields": {
+    "name": "Razer",
+    "slug": "razer",
+    "logo": "brands/razer.png",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:38:03.444Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 16,
+  "fields": {
+    "name": "Realme",
+    "slug": "realme",
+    "logo": "brands/realme.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.611Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 125,
+  "fields": {
+    "name": "Royal Canin",
+    "slug": "royal-canin",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:04.621Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 138,
+  "fields": {
+    "name": "Safari",
+    "slug": "safari",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:05.687Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 141,
+  "fields": {
+    "name": "Samsonite",
+    "slug": "samsonite",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:06.113Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 2,
+  "fields": {
+    "name": "Samsung",
+    "slug": "samsung",
+    "logo": "brands/samsung.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:15:26.038Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 41,
+  "fields": {
+    "name": "Scotch",
+    "slug": "scotch",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:33.667Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 62,
+  "fields": {
+    "name": "Secretlab",
+    "slug": "secretlab",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:36.775Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 55,
+  "fields": {
+    "name": "Sennheiser",
+    "slug": "sennheiser",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:35.909Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 115,
+  "fields": {
+    "name": "Shumee",
+    "slug": "shumee",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:03.880Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 103,
+  "fields": {
+    "name": "Simon & Schuster",
+    "slug": "simon-schuster",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:03.056Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 137,
+  "fields": {
+    "name": "Skybags",
+    "slug": "skybags",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:05.566Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 3,
+  "fields": {
+    "name": "Sony",
+    "slug": "sony",
+    "logo": "brands/sony.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:15:26.042Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 121,
+  "fields": {
+    "name": "Spalding",
+    "slug": "spalding",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:04.258Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 113,
+  "fields": {
+    "name": "Spin Master",
+    "slug": "spin-master",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:03.766Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 59,
+  "fields": {
+    "name": "SteelSeries",
+    "slug": "steelseries",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:36.595Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 122,
+  "fields": {
+    "name": "Strauss",
+    "slug": "strauss",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:04.323Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 102,
+  "fields": {
+    "name": "TarcherPerigee",
+    "slug": "tarcherperigee",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:02.982Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 72,
+  "fields": {
+    "name": "The Ordinary",
+    "slug": "the-ordinary",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:00.923Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 54,
+  "fields": {
+    "name": "Titan",
+    "slug": "titan",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:35.559Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 65,
+  "fields": {
+    "name": "Tommy Hilfiger",
+    "slug": "tommy-hilfiger",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:00.507Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 142,
+  "fields": {
+    "name": "Travelex",
+    "slug": "travelex",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:06.221Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 131,
+  "fields": {
+    "name": "Trixie",
+    "slug": "trixie",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:05.124Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 92,
+  "fields": {
+    "name": "Turtle Wax",
+    "slug": "turtle-wax",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:02.196Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 67,
+  "fields": {
+    "name": "US Polo Assn",
+    "slug": "us-polo-assn",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:00.622Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 139,
+  "fields": {
+    "name": "VIP",
+    "slug": "vip",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:05.791Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 124,
+  "fields": {
+    "name": "Vector X",
+    "slug": "vector-x",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:04.440Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 17,
+  "fields": {
+    "name": "Vivo",
+    "slug": "vivo",
+    "logo": "brands/vivo.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.618Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 133,
+  "fields": {
+    "name": "Wahl",
+    "slug": "wahl",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:05.250Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 93,
+  "fields": {
+    "name": "Wavex",
+    "slug": "wavex",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:02.258Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 25,
+  "fields": {
+    "name": "Whirlpool",
+    "slug": "whirlpool",
+    "logo": "brands/whirlpool.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.674Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 126,
+  "fields": {
+    "name": "Whiskas",
+    "slug": "whiskas",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:04.706Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 136,
+  "fields": {
+    "name": "Wildcraft",
+    "slug": "wildcraft",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:05.459Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 146,
+  "fields": {
+    "name": "Wildhorn",
+    "slug": "wildhorn",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:06.554Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 88,
+  "fields": {
+    "name": "Wonderchef",
+    "slug": "wonderchef",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:01.915Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 149,
+  "fields": {
+    "name": "Woodland",
+    "slug": "woodland",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:06.859Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 15,
+  "fields": {
+    "name": "Xiaomi",
+    "slug": "xiaomi",
+    "logo": "brands/xiaomi.svg",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.602Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 117,
+  "fields": {
+    "name": "Yonex",
+    "slug": "yonex",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:08:03.993Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 24,
+  "fields": {
+    "name": "Zara",
+    "slug": "zara",
+    "logo": "brands/zara.png",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.666Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 19,
+  "fields": {
+    "name": "boAt",
+    "slug": "boat",
+    "logo": "brands/boat.png",
+    "description": "",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2026-08-07T13:21:10.633Z"
+  }
+},
+{
+  "model": "products.brand",
+  "pk": 46,
+  "fields": {
+    "name": "iQOO",
+    "slug": "iqoo",
+    "logo": "",
+    "description": "",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2026-08-10T18:07:34.246Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 7,
+  "fields": {
+    "name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "slug": "apple-iphone-17-pro-max-cosmic-orange-256gb",
+    "category": 1,
+    "brand": 1,
+    "description": "Experience the pinnacle of smartphone innovation with the Apple iPhone 17 Pro Max in Cosmic Orange (256 GB). Powered by the groundbreaking A19 Pro Bionic chip, featuring a Super Retina XDR OLED display with 120Hz ProMotion, Aerospace-grade Titanium chassis, ceramic shield front, and an advanced 48MP Fusion Triple Camera system with 10x Optical Zoom.",
+    "short_description": "A19 Pro Chip, 6.9-inch Super Retina XDR, 48MP Triple Camera, Titanium Design, Cosmic Orange",
+    "price": "144900.00",
+    "discount_price": "134900.00",
+    "stock": 2,
+    "is_available": true,
+    "is_featured": true,
+    "is_deal": true,
+    "badge": "bestseller",
+    "rating": "4.5",
+    "reviews_count": 1280,
+    "main_image": "products/iphone17_pro_max.jpg",
+    "created_at": "2026-08-09T11:55:24.700Z",
+    "updated_at": "2026-08-12T07:15:16.185Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 6,
+  "fields": {
+    "name": "Ergonomic Mesh Office Chair",
+    "slug": "ergonomic-mesh-office-chair",
+    "category": 5,
+    "brand": 27,
+    "description": "High-back ergonomic chair with adjustable lumbar support, 3D armrests, and breathable mesh backrest for all-day comfort.",
+    "short_description": "High-back ergonomic chair with lumbar support.",
+    "price": "14999.00",
+    "discount_price": "10999.00",
+    "stock": 0,
+    "is_available": true,
+    "is_featured": true,
+    "is_deal": false,
+    "badge": "trending",
+    "rating": "4.5",
+    "reviews_count": 92,
+    "main_image": "products/ergonomic-mesh-office-chair_real_main.jpg",
+    "created_at": "2026-08-07T13:15:26.293Z",
+    "updated_at": "2026-08-10T18:15:13.284Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 5,
+  "fields": {
+    "name": "Air-Cushioned Running Shoes",
+    "slug": "air-cushioned-running-shoes",
+    "category": 3,
+    "brand": 4,
+    "description": "Breathable mesh running shoes with impact-absorbing air cushion soles for maximum comfort during long workouts.",
+    "short_description": "Breathable mesh running shoes with air cushion sole.",
+    "price": "7999.00",
+    "discount_price": "5499.00",
+    "stock": 13,
+    "is_available": true,
+    "is_featured": true,
+    "is_deal": false,
+    "badge": "bestseller",
+    "rating": "4.6",
+    "reviews_count": 145,
+    "main_image": "products/air-cushioned-running-shoes_real_main.jpg",
+    "created_at": "2026-08-07T13:15:26.234Z",
+    "updated_at": "2026-08-12T18:56:26.175Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "name": "Smartwatch Ultra 2 (AMOLED Display)",
+    "slug": "smartwatch-ultra-2",
+    "category": 13,
+    "brand": 1,
+    "description": "Rugged titanium case, precision dual-frequency GPS, heart rate monitor, ECG app, and up to 36 hours of battery life.",
+    "short_description": "Rugged titanium smartwatch with heart rate & GPS.",
+    "price": "29999.00",
+    "discount_price": "22999.00",
+    "stock": 9,
+    "is_available": true,
+    "is_featured": true,
+    "is_deal": true,
+    "badge": "limited",
+    "rating": "4.7",
+    "reviews_count": 320,
+    "main_image": "products/smartwatch-ultra-2-amoled-display_real_main.jpg",
+    "created_at": "2026-08-07T13:15:26.202Z",
+    "updated_at": "2026-08-12T07:15:16.198Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 3,
+  "fields": {
+    "name": "Wireless Noise-Canceling Headphones",
+    "slug": "wireless-noise-canceling-headphones",
+    "category": 14,
+    "brand": 3,
+    "description": "Industry leading active noise cancellation with dual noise sensor technology. Up to 30 hours battery life with quick charging.",
+    "short_description": "Active noise canceling wireless headphones with 30h battery.",
+    "price": "19999.00",
+    "discount_price": "14999.00",
+    "stock": 3,
+    "is_available": true,
+    "is_featured": true,
+    "is_deal": true,
+    "badge": "trending",
+    "rating": "4.2",
+    "reviews_count": 188,
+    "main_image": "products/wireless-noise-canceling-headphones_real_main.jpg",
+    "created_at": "2026-08-07T13:15:26.172Z",
+    "updated_at": "2026-08-10T19:40:00.480Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "name": "Flagship Smartphone 5G (256GB Storage)",
+    "slug": "flagship-smartphone-5g",
+    "category": 1,
+    "brand": 2,
+    "description": "Pro-grade camera with 108MP main sensor, 120Hz AMOLED display, 5000mAh battery, and superfast 5G connectivity.",
+    "short_description": "Pro-grade camera 5G smartphone with 120Hz display.",
+    "price": "69999.00",
+    "discount_price": "49999.00",
+    "stock": 20,
+    "is_available": true,
+    "is_featured": true,
+    "is_deal": true,
+    "badge": "new",
+    "rating": "5.0",
+    "reviews_count": 412,
+    "main_image": "products/flagship-smartphone-5g-256gb-storage_real_main.jpg",
+    "created_at": "2026-08-07T13:15:26.138Z",
+    "updated_at": "2026-08-12T18:56:26.292Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "name": "Pro Ultra Laptop (16GB RAM, 512GB SSD)",
+    "slug": "pro-ultra-laptop-16gb",
+    "category": 2,
+    "brand": 10,
+    "description": "Ultra-thin high performance laptop with M2 chip, 16GB unified memory, and 512GB SSD storage. Retina display with True Tone technology.",
+    "short_description": "Ultra-thin high performance laptop with 16GB RAM & 512GB SSD.",
+    "price": "74999.00",
+    "discount_price": "54999.00",
+    "stock": 14,
+    "is_available": true,
+    "is_featured": true,
+    "is_deal": false,
+    "badge": "bestseller",
+    "rating": "4.8",
+    "reviews_count": 256,
+    "main_image": "products/pro-ultra-laptop-16gb-ram-512gb-ssd_real_main.jpg",
+    "created_at": "2026-08-07T13:15:26.063Z",
+    "updated_at": "2026-08-10T18:15:13.523Z"
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 502,
+  "fields": {
+    "product": 7,
+    "image": "products/gallery/iphone17_front.jpg",
+    "alt_text": "iPhone 17 Pro Max Front View",
+    "created_at": "2026-08-10T18:23:40.356Z"
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 503,
+  "fields": {
+    "product": 7,
+    "image": "products/gallery/iphone17_camera.jpg",
+    "alt_text": "iPhone 17 Pro Max Camera System",
+    "created_at": "2026-08-10T18:23:40.358Z"
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 504,
+  "fields": {
+    "product": 7,
+    "image": "products/gallery/iphone17_side.jpg",
+    "alt_text": "iPhone 17 Pro Max Titanium Side Edge",
+    "created_at": "2026-08-10T18:23:40.360Z"
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 505,
+  "fields": {
+    "product": 6,
+    "image": "products/ergonomic-mesh-office-chair_real_main.jpg",
+    "alt_text": "Ergonomic Mesh Office Chair Studio Angle",
+    "created_at": "2026-08-10T18:23:40.371Z"
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 506,
+  "fields": {
+    "product": 5,
+    "image": "products/air-cushioned-running-shoes_real_main.jpg",
+    "alt_text": "Air-Cushioned Running Shoes Studio Angle",
+    "created_at": "2026-08-10T18:23:40.375Z"
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 507,
+  "fields": {
+    "product": 4,
+    "image": "products/smartwatch-ultra-2-amoled-display_real_main.jpg",
+    "alt_text": "Smartwatch Ultra 2 (AMOLED Display) Studio Angle",
+    "created_at": "2026-08-10T18:23:40.379Z"
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 508,
+  "fields": {
+    "product": 3,
+    "image": "products/wireless-noise-canceling-headphones_real_main.jpg",
+    "alt_text": "Wireless Noise-Canceling Headphones Studio Angle",
+    "created_at": "2026-08-10T18:23:40.384Z"
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 509,
+  "fields": {
+    "product": 2,
+    "image": "products/flagship-smartphone-5g-256gb-storage_real_main.jpg",
+    "alt_text": "Flagship Smartphone 5G (256GB Storage) Studio Angle",
+    "created_at": "2026-08-10T18:23:40.387Z"
+  }
+},
+{
+  "model": "products.productimage",
+  "pk": 510,
+  "fields": {
+    "product": 1,
+    "image": "products/pro-ultra-laptop-16gb-ram-512gb-ssd_real_main.jpg",
+    "alt_text": "Pro Ultra Laptop (16GB RAM, 512GB SSD) Studio Angle",
+    "created_at": "2026-08-10T18:23:40.390Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 11,
+  "fields": {
+    "name": "Office Supplies",
+    "slug": "office",
+    "icon": "fas fa-briefcase",
+    "description": "Stationery, desk organization & paper",
+    "image": "",
+    "is_active": true,
+    "is_featured": false,
+    "order": 0,
+    "created_at": "2026-08-07T13:15:26.025Z",
+    "updated_at": "2026-08-09T11:06:58.520Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 1,
+  "fields": {
+    "name": "Mobiles",
+    "slug": "mobiles",
+    "icon": "fas fa-mobile-screen-button",
+    "description": "Smartphones & 5G Devices",
+    "image": "",
+    "is_active": true,
+    "is_featured": true,
+    "order": 1,
+    "created_at": "2026-08-07T13:15:25.988Z",
+    "updated_at": "2026-08-09T11:07:04.230Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 2,
+  "fields": {
+    "name": "Electronics",
+    "slug": "electronics",
+    "icon": "fas fa-laptop",
+    "description": "Laptops & Computers",
+    "image": "",
+    "is_active": true,
+    "is_featured": true,
+    "order": 2,
+    "created_at": "2026-08-07T13:15:25.992Z",
+    "updated_at": "2026-08-09T11:07:04.235Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 13,
+  "fields": {
+    "name": "Wearables",
+    "slug": "wearables",
+    "icon": "fas fa-clock",
+    "description": "Smartwatches & Fitness Bands",
+    "image": "",
+    "is_active": true,
+    "is_featured": true,
+    "order": 3,
+    "created_at": "2026-08-07T14:13:07.893Z",
+    "updated_at": "2026-08-09T11:07:04.237Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 14,
+  "fields": {
+    "name": "Audio",
+    "slug": "audio",
+    "icon": "fas fa-headphones",
+    "description": "Headphones & Speakers",
+    "image": "",
+    "is_active": true,
+    "is_featured": true,
+    "order": 4,
+    "created_at": "2026-08-07T14:13:07.897Z",
+    "updated_at": "2026-08-09T11:07:04.240Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 4,
+  "fields": {
+    "name": "Gaming",
+    "slug": "gaming",
+    "icon": "fas fa-gamepad",
+    "description": "Consoles & Gaming Gear",
+    "image": "",
+    "is_active": true,
+    "is_featured": true,
+    "order": 5,
+    "created_at": "2026-08-07T13:15:25.998Z",
+    "updated_at": "2026-08-09T11:07:04.243Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 3,
+  "fields": {
+    "name": "Fashion",
+    "slug": "fashion",
+    "icon": "fas fa-shirt",
+    "description": "Clothing & Footwear",
+    "image": "",
+    "is_active": true,
+    "is_featured": true,
+    "order": 6,
+    "created_at": "2026-08-07T13:15:25.995Z",
+    "updated_at": "2026-08-09T11:07:04.246Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 6,
+  "fields": {
+    "name": "Beauty",
+    "slug": "beauty",
+    "icon": "fas fa-wand-magic-sparkles",
+    "description": "Skincare & Cosmetics",
+    "image": "",
+    "is_active": true,
+    "is_featured": true,
+    "order": 7,
+    "created_at": "2026-08-07T13:15:26.006Z",
+    "updated_at": "2026-08-09T11:07:04.249Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 5,
+  "fields": {
+    "name": "Home & Kitchen",
+    "slug": "home",
+    "icon": "fas fa-house",
+    "description": "Furniture & Appliances",
+    "image": "",
+    "is_active": true,
+    "is_featured": true,
+    "order": 8,
+    "created_at": "2026-08-07T13:15:26.002Z",
+    "updated_at": "2026-08-09T11:07:04.251Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 9,
+  "fields": {
+    "name": "Automotive",
+    "slug": "automotive",
+    "icon": "fas fa-car",
+    "description": "Auto Gear & Accessories",
+    "image": "",
+    "is_active": true,
+    "is_featured": true,
+    "order": 9,
+    "created_at": "2026-08-07T13:15:26.016Z",
+    "updated_at": "2026-08-09T11:07:04.254Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 7,
+  "fields": {
+    "name": "Books",
+    "slug": "books",
+    "icon": "fas fa-book-open",
+    "description": "Fiction & Educational Books",
+    "image": "",
+    "is_active": true,
+    "is_featured": true,
+    "order": 10,
+    "created_at": "2026-08-07T13:15:26.010Z",
+    "updated_at": "2026-08-09T11:07:04.257Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 10,
+  "fields": {
+    "name": "Toys & Baby",
+    "slug": "toys",
+    "icon": "fas fa-puzzle-piece",
+    "description": "Baby Toys & Essentials",
+    "image": "",
+    "is_active": true,
+    "is_featured": true,
+    "order": 11,
+    "created_at": "2026-08-07T13:15:26.020Z",
+    "updated_at": "2026-08-09T11:07:04.261Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 8,
+  "fields": {
+    "name": "Sports & Fitness",
+    "slug": "sports",
+    "icon": "fas fa-dumbbell",
+    "description": "Gym & Athletic Equipment",
+    "image": "",
+    "is_active": true,
+    "is_featured": true,
+    "order": 12,
+    "created_at": "2026-08-07T13:15:26.013Z",
+    "updated_at": "2026-08-09T11:07:04.263Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 12,
+  "fields": {
+    "name": "Pet Supplies",
+    "slug": "pets",
+    "icon": "fas fa-paw",
+    "description": "Pet Food & Toys",
+    "image": "",
+    "is_active": true,
+    "is_featured": true,
+    "order": 13,
+    "created_at": "2026-08-07T13:15:26.029Z",
+    "updated_at": "2026-08-09T11:07:04.266Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 16,
+  "fields": {
+    "name": "Bags & Luggage",
+    "slug": "bags",
+    "icon": "fas fa-suitcase",
+    "description": "Travel Bags & Backpacks",
+    "image": "",
+    "is_active": true,
+    "is_featured": true,
+    "order": 14,
+    "created_at": "2026-08-07T14:13:17.196Z",
+    "updated_at": "2026-08-09T11:07:04.269Z"
+  }
+},
+{
+  "model": "categories.category",
+  "pk": 17,
+  "fields": {
+    "name": "Accessories",
+    "slug": "accessories",
+    "icon": "fas fa-plug",
+    "description": "Tech & Mobile Accessories",
+    "image": "",
+    "is_active": true,
+    "is_featured": true,
+    "order": 15,
+    "created_at": "2026-08-07T14:13:17.200Z",
+    "updated_at": "2026-08-09T11:07:04.271Z"
+  }
+},
+{
+  "model": "wishlist.wishlistitem",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "product": 2,
+    "created_at": "2026-08-10T18:38:34.617Z"
+  }
+},
+{
+  "model": "wishlist.wishlistitem",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "pundsaurav12@gmail.com"
+    ],
+    "product": 7,
+    "created_at": "2026-08-09T12:22:09.805Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 48,
+  "fields": {
+    "order_number": "SPC-20260813-C0577A",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_TOxtDparsAQE5L",
+    "razorpay_payment_id": "pay_upi_qr_1786560986016",
+    "razorpay_signature": "sig_upi_valid",
+    "total_amount": "55498.00",
+    "shipping_fee": "0.00",
+    "status": "delivered",
+    "created_at": "2026-08-12T18:56:22.967Z",
+    "updated_at": "2026-08-12T19:07:58.335Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 47,
+  "fields": {
+    "order_number": "SPC-20260812-B3B0F5",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": false,
+    "razorpay_order_id": "order_TOnaZPKyx4EhTx",
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "269800.00",
+    "shipping_fee": "0.00",
+    "status": "delivered",
+    "created_at": "2026-08-12T08:51:47.235Z",
+    "updated_at": "2026-08-12T19:08:08.070Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 46,
+  "fields": {
+    "order_number": "SPC-20260812-020DD8",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_TOlwXzIF267kiV",
+    "razorpay_payment_id": "pay_upi_qr_1786518916144",
+    "razorpay_signature": "sig_upi_valid",
+    "total_amount": "433198.00",
+    "shipping_fee": "0.00",
+    "status": "confirmed",
+    "created_at": "2026-08-12T07:15:11.821Z",
+    "updated_at": "2026-08-12T07:15:16.162Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 45,
+  "fields": {
+    "order_number": "SPC-20260811-235F77",
+    "user": [
+      "admin@spcart.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "9876543210",
+    "shipping_address": "Flat 402, Green Valley Towers",
+    "shipping_city": "Pune",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "411001",
+    "payment_method": "cod",
+    "payment_status": false,
+    "razorpay_order_id": null,
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "delivered",
+    "created_at": "2026-08-11T13:31:52.182Z",
+    "updated_at": "2026-08-12T19:08:10.035Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 44,
+  "fields": {
+    "order_number": "SPC-20260811-CB842F",
+    "user": [
+      "admin@spcart.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "9876543210",
+    "shipping_address": "Flat 402, Green Valley Towers",
+    "shipping_city": "Pune",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "411001",
+    "payment_method": "cod",
+    "payment_status": false,
+    "razorpay_order_id": null,
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "pending",
+    "created_at": "2026-08-11T13:31:11.881Z",
+    "updated_at": "2026-08-11T13:31:11.881Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 43,
+  "fields": {
+    "order_number": "SPC-20260811-F7BCA7",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_TOTctTXLwDuuUK",
+    "razorpay_payment_id": "pay_upi_qr_1786454410774",
+    "razorpay_signature": "sig_upi_valid",
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "confirmed",
+    "created_at": "2026-08-11T13:20:08.009Z",
+    "updated_at": "2026-08-11T13:20:10.795Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 42,
+  "fields": {
+    "order_number": "SPC-20260811-5F8B99",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": false,
+    "razorpay_order_id": "order_TOTcXLKAUGCxA4",
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "pending",
+    "created_at": "2026-08-11T13:19:47.527Z",
+    "updated_at": "2026-08-11T13:19:48.171Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 41,
+  "fields": {
+    "order_number": "SPC-20260811-BDE4F0",
+    "user": [
+      "admin@spcart.com"
+    ],
+    "shipping_name": "Admin User",
+    "shipping_phone": "",
+    "shipping_address": "",
+    "shipping_city": "",
+    "shipping_state": "",
+    "shipping_pincode": "",
+    "payment_method": "cod",
+    "payment_status": false,
+    "razorpay_order_id": null,
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "14999.00",
+    "shipping_fee": "0.00",
+    "status": "pending",
+    "created_at": "2026-08-10T19:40:00.471Z",
+    "updated_at": "2026-08-10T19:40:00.471Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 40,
+  "fields": {
+    "order_number": "SPC-20260811-07B3BF",
+    "user": [
+      "admin@spcart.com"
+    ],
+    "shipping_name": "Admin User",
+    "shipping_phone": "",
+    "shipping_address": "",
+    "shipping_city": "",
+    "shipping_state": "",
+    "shipping_pincode": "",
+    "payment_method": "cod",
+    "payment_status": false,
+    "razorpay_order_id": null,
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "cancelled",
+    "created_at": "2026-08-10T19:08:19.261Z",
+    "updated_at": "2026-08-10T19:19:23.368Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 39,
+  "fields": {
+    "order_number": "SPC-20260811-2DB580",
+    "user": [
+      "admin@spcart.com"
+    ],
+    "shipping_name": "Admin User",
+    "shipping_phone": "",
+    "shipping_address": "",
+    "shipping_city": "",
+    "shipping_state": "",
+    "shipping_pincode": "",
+    "payment_method": "cod",
+    "payment_status": false,
+    "razorpay_order_id": null,
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "5499.00",
+    "shipping_fee": "0.00",
+    "status": "delivered",
+    "created_at": "2026-08-10T19:06:12.111Z",
+    "updated_at": "2026-08-10T19:15:11.741Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 38,
+  "fields": {
+    "order_number": "SPC-20260811-F1B5E9",
+    "user": [
+      "admin@spcart.com"
+    ],
+    "shipping_name": "Admin User",
+    "shipping_phone": "",
+    "shipping_address": "",
+    "shipping_city": "",
+    "shipping_state": "",
+    "shipping_pincode": "",
+    "payment_method": "razorpay",
+    "payment_status": false,
+    "razorpay_order_id": "order_TOAzDMpcFB7mGA",
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "5499.00",
+    "shipping_fee": "0.00",
+    "status": "pending",
+    "created_at": "2026-08-10T19:06:05.341Z",
+    "updated_at": "2026-08-10T19:06:05.967Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 37,
+  "fields": {
+    "order_number": "SPC-20260811-2BA92F",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "cod",
+    "payment_status": false,
+    "razorpay_order_id": null,
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "22999.00",
+    "shipping_fee": "0.00",
+    "status": "delivered",
+    "created_at": "2026-08-10T18:33:19.940Z",
+    "updated_at": "2026-08-10T19:00:27.825Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 36,
+  "fields": {
+    "order_number": "SPC-20260810-162938",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_TO9puzknBTg7d5",
+    "razorpay_payment_id": "pay_TO9rC8Kc0GJWyO",
+    "razorpay_signature": "ef413f5eab3afe8144161715c52ab5205a63d15daa6a18adb03b67fc4b4475e6",
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "delivered",
+    "created_at": "2026-08-10T17:58:35.875Z",
+    "updated_at": "2026-08-10T19:00:30.704Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 35,
+  "fields": {
+    "order_number": "SPC-20260810-C2C267",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_TO9oOc85nVnHET",
+    "razorpay_payment_id": "pay_upi_qr_1786384650693",
+    "razorpay_signature": "sig_upi_valid",
+    "total_amount": "22999.00",
+    "shipping_fee": "0.00",
+    "status": "delivered",
+    "created_at": "2026-08-10T17:57:09.331Z",
+    "updated_at": "2026-08-10T19:00:48.553Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 34,
+  "fields": {
+    "order_number": "SPC-20260810-C08913",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": false,
+    "razorpay_order_id": "order_TO9oE2vByFgsY2",
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "22999.00",
+    "shipping_fee": "0.00",
+    "status": "delivered",
+    "created_at": "2026-08-10T17:56:59.658Z",
+    "updated_at": "2026-08-10T18:59:48.819Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 33,
+  "fields": {
+    "order_number": "SPC-20260810-1821A9",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_TO9m8JXd6ut4RB",
+    "razorpay_payment_id": "pay_upi_qr_1786384510958",
+    "razorpay_signature": "sig_upi_valid",
+    "total_amount": "49999.00",
+    "shipping_fee": "0.00",
+    "status": "delivered",
+    "created_at": "2026-08-10T17:55:00.658Z",
+    "updated_at": "2026-08-10T19:00:57.878Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 32,
+  "fields": {
+    "order_number": "SPC-20260810-0A8AC1",
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "9876543210",
+    "shipping_address": "Flat 101 MG Road",
+    "shipping_city": "Mumbai",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "400001",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_TO9lTodVzlQJ1w",
+    "razorpay_payment_id": "pay_upi_qr_1001",
+    "razorpay_signature": "sig_upi_valid",
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "confirmed",
+    "created_at": "2026-08-10T17:54:23.802Z",
+    "updated_at": "2026-08-10T17:54:24.279Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 31,
+  "fields": {
+    "order_number": "SPC-20260810-ED23FB",
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "9876543210",
+    "shipping_address": "Flat 101 MG Road",
+    "shipping_city": "Mumbai",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "400001",
+    "payment_method": "upi",
+    "payment_status": false,
+    "razorpay_order_id": "order_TO9lF5fmm9loiM",
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "pending",
+    "created_at": "2026-08-10T17:54:10.308Z",
+    "updated_at": "2026-08-10T17:54:10.768Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 30,
+  "fields": {
+    "order_number": "SPC-20260810-CE589C",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": false,
+    "razorpay_order_id": "order_TO9e9wsLptpsZ4",
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "49999.00",
+    "shipping_fee": "0.00",
+    "status": "pending",
+    "created_at": "2026-08-10T17:47:25.968Z",
+    "updated_at": "2026-08-10T17:47:28.557Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 29,
+  "fields": {
+    "order_number": "SPC-20260810-0E1DCA",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_TO6UhWNNz6kl5A",
+    "razorpay_payment_id": "pay_TO6VIypv83M8fe",
+    "razorpay_signature": "2191215ae951839c7b4266f2a08cbbcd7a36d7804917f0297c122949464a27f1",
+    "total_amount": "54999.00",
+    "shipping_fee": "0.00",
+    "status": "confirmed",
+    "created_at": "2026-08-10T14:42:26.719Z",
+    "updated_at": "2026-08-10T14:44:33.392Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 28,
+  "fields": {
+    "order_number": "SPC-20260810-680F90",
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "9876543210",
+    "shipping_address": "Flat 101 MG Road",
+    "shipping_city": "Mumbai",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "400001",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_TO6UEb8E0MeMxn",
+    "razorpay_payment_id": "pay_test_SPCart2026_1001",
+    "razorpay_signature": "test_signature_valid",
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "confirmed",
+    "created_at": "2026-08-10T14:42:00.161Z",
+    "updated_at": "2026-08-10T14:42:00.597Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 27,
+  "fields": {
+    "order_number": "SPC-20260810-C7B9B1",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": false,
+    "razorpay_order_id": "order_TO6QORge2WU66G",
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "54999.00",
+    "shipping_fee": "0.00",
+    "status": "pending",
+    "created_at": "2026-08-10T14:38:20.202Z",
+    "updated_at": "2026-08-10T14:38:22.413Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 26,
+  "fields": {
+    "order_number": "SPC-20260810-D1CDB1",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": false,
+    "razorpay_order_id": "order_TO6Ile2Ss2SzJi",
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "54999.00",
+    "shipping_fee": "0.00",
+    "status": "pending",
+    "created_at": "2026-08-10T14:31:08.815Z",
+    "updated_at": "2026-08-10T14:31:09.278Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 25,
+  "fields": {
+    "order_number": "SPC-20260810-BAFB39",
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "9876543210",
+    "shipping_address": "Flat 101 MG Road",
+    "shipping_city": "Mumbai",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "400001",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_TO6IQK5J5Gm59t",
+    "razorpay_payment_id": "pay_test_SPCart2026_1001",
+    "razorpay_signature": "test_signature_valid",
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "confirmed",
+    "created_at": "2026-08-10T14:30:49.352Z",
+    "updated_at": "2026-08-10T14:30:49.763Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 24,
+  "fields": {
+    "order_number": "SPC-20260810-5A12EE",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": false,
+    "razorpay_order_id": "order_test_24_1001",
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "54999.00",
+    "shipping_fee": "0.00",
+    "status": "pending",
+    "created_at": "2026-08-10T14:29:56.698Z",
+    "updated_at": "2026-08-10T14:29:57.081Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 23,
+  "fields": {
+    "order_number": "SPC-20260810-672EDC",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": false,
+    "razorpay_order_id": "order_test_23_1001",
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "54999.00",
+    "shipping_fee": "0.00",
+    "status": "pending",
+    "created_at": "2026-08-10T14:29:22.081Z",
+    "updated_at": "2026-08-10T14:29:22.423Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 22,
+  "fields": {
+    "order_number": "SPC-20260810-8EFBF5",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": false,
+    "razorpay_order_id": "order_test_22_1001",
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "54999.00",
+    "shipping_fee": "0.00",
+    "status": "pending",
+    "created_at": "2026-08-10T14:28:45.617Z",
+    "updated_at": "2026-08-10T14:28:45.937Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 21,
+  "fields": {
+    "order_number": "SPC-20260810-DD9643",
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "9876543210",
+    "shipping_address": "Flat 101 MG Road",
+    "shipping_city": "Mumbai",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "400001",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_TO6Fe9FrcajLpx",
+    "razorpay_payment_id": "pay_test_SPCart2026_1001",
+    "razorpay_signature": "test_signature_valid",
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "confirmed",
+    "created_at": "2026-08-10T14:28:11.605Z",
+    "updated_at": "2026-08-10T14:28:12.017Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 20,
+  "fields": {
+    "order_number": "SPC-20260810-95DF0A",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_test_20_1001",
+    "razorpay_payment_id": "pay_spcart_1786372027068",
+    "razorpay_signature": "sig_spcart_valid",
+    "total_amount": "14999.00",
+    "shipping_fee": "0.00",
+    "status": "confirmed",
+    "created_at": "2026-08-10T14:26:51.229Z",
+    "updated_at": "2026-08-10T14:27:07.082Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 19,
+  "fields": {
+    "order_number": "SPC-20260810-66E437",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_test_19_1001",
+    "razorpay_payment_id": "pay_spcart_1786371995909",
+    "razorpay_signature": "sig_spcart_valid",
+    "total_amount": "5499.00",
+    "shipping_fee": "0.00",
+    "status": "confirmed",
+    "created_at": "2026-08-10T14:26:34.092Z",
+    "updated_at": "2026-08-10T14:26:35.919Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 18,
+  "fields": {
+    "order_number": "SPC-20260810-5C88AB",
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "9876543210",
+    "shipping_address": "Flat 101 MG Road",
+    "shipping_city": "Mumbai",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "400001",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_TO6DRfWiXp8tol",
+    "razorpay_payment_id": "pay_test_SPCart2026_1001",
+    "razorpay_signature": "test_signature_valid",
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "confirmed",
+    "created_at": "2026-08-10T14:26:06.578Z",
+    "updated_at": "2026-08-10T14:26:06.992Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 17,
+  "fields": {
+    "order_number": "SPC-20260810-891EE3",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_test_17_1001",
+    "razorpay_payment_id": "pay_spcart_1786371880244",
+    "razorpay_signature": "sig_spcart_valid",
+    "total_amount": "5499.00",
+    "shipping_fee": "0.00",
+    "status": "delivered",
+    "created_at": "2026-08-10T14:24:36.133Z",
+    "updated_at": "2026-08-10T19:00:45.437Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 16,
+  "fields": {
+    "order_number": "SPC-20260810-B10EE0",
+    "user": [
+      "admin@spcart.com"
+    ],
+    "shipping_name": "Admin User",
+    "shipping_phone": "",
+    "shipping_address": "",
+    "shipping_city": "",
+    "shipping_state": "",
+    "shipping_pincode": "",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_test_16_1001",
+    "razorpay_payment_id": "pay_spcart_1786371095110",
+    "razorpay_signature": "sig_spcart_valid",
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "confirmed",
+    "created_at": "2026-08-10T14:11:26.671Z",
+    "updated_at": "2026-08-10T14:11:35.123Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 15,
+  "fields": {
+    "order_number": "SPC-20260810-F1E906",
+    "user": [
+      "admin@spcart.com"
+    ],
+    "shipping_name": "Admin User",
+    "shipping_phone": "",
+    "shipping_address": "",
+    "shipping_city": "",
+    "shipping_state": "",
+    "shipping_pincode": "",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_test_15_1001",
+    "razorpay_payment_id": "pay_spcart_1786371053415",
+    "razorpay_signature": "sig_spcart_valid",
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "confirmed",
+    "created_at": "2026-08-10T14:10:39.516Z",
+    "updated_at": "2026-08-10T14:10:53.429Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 14,
+  "fields": {
+    "order_number": "SPC-20260810-66093D",
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "9876543210",
+    "shipping_address": "Flat 101 MG Road",
+    "shipping_city": "Mumbai",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "400001",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_test_14_1001",
+    "razorpay_payment_id": "pay_test_SPCart2026_1001",
+    "razorpay_signature": "test_signature_valid",
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "confirmed",
+    "created_at": "2026-08-10T14:10:04.394Z",
+    "updated_at": "2026-08-10T14:10:04.818Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 13,
+  "fields": {
+    "order_number": "SPC-20260810-A0F601",
+    "user": [
+      "admin@spcart.com"
+    ],
+    "shipping_name": "Admin User",
+    "shipping_phone": "",
+    "shipping_address": "",
+    "shipping_city": "",
+    "shipping_state": "",
+    "shipping_pincode": "",
+    "payment_method": "razorpay",
+    "payment_status": false,
+    "razorpay_order_id": "order_test_13_1001",
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "pending",
+    "created_at": "2026-08-10T14:09:29.465Z",
+    "updated_at": "2026-08-10T14:09:29.805Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 12,
+  "fields": {
+    "order_number": "SPC-20260810-AE14B1",
+    "user": [
+      "admin@spcart.com"
+    ],
+    "shipping_name": "Admin User",
+    "shipping_phone": "",
+    "shipping_address": "",
+    "shipping_city": "",
+    "shipping_state": "",
+    "shipping_pincode": "",
+    "payment_method": "razorpay",
+    "payment_status": false,
+    "razorpay_order_id": "order_test_12_1001",
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "pending",
+    "created_at": "2026-08-10T14:09:20.574Z",
+    "updated_at": "2026-08-10T14:09:20.945Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 11,
+  "fields": {
+    "order_number": "SPC-20260810-9C1A63",
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "9876543210",
+    "shipping_address": "Flat 101 MG Road",
+    "shipping_city": "Mumbai",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "400001",
+    "payment_method": "razorpay",
+    "payment_status": true,
+    "razorpay_order_id": "order_test_11_1001",
+    "razorpay_payment_id": "pay_test_SPCart2026_1001",
+    "razorpay_signature": "test_signature_valid",
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "confirmed",
+    "created_at": "2026-08-10T14:08:47.302Z",
+    "updated_at": "2026-08-10T14:08:47.691Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 10,
+  "fields": {
+    "order_number": "SPC-20260810-ECD15F",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "card",
+    "payment_status": true,
+    "razorpay_order_id": null,
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "10999.00",
+    "shipping_fee": "0.00",
+    "status": "confirmed",
+    "created_at": "2026-08-10T14:05:55.683Z",
+    "updated_at": "2026-08-10T14:06:36.434Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 9,
+  "fields": {
+    "order_number": "SPC-20260810-10D303",
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "dff",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "upi",
+    "payment_status": true,
+    "razorpay_order_id": null,
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "delivered",
+    "created_at": "2026-08-10T14:01:50.626Z",
+    "updated_at": "2026-08-10T19:00:40.300Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 8,
+  "fields": {
+    "order_number": "SPC-20260809-16F902",
+    "user": [
+      "pundsaurav12@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "32",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "cod",
+    "payment_status": false,
+    "razorpay_order_id": null,
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "10999.00",
+    "shipping_fee": "0.00",
+    "status": "shipped",
+    "created_at": "2026-08-09T12:27:32.490Z",
+    "updated_at": "2026-08-09T12:32:51.794Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 7,
+  "fields": {
+    "order_number": "SPC-20260809-982E12",
+    "user": [
+      "pundsaurav12@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "32",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "cod",
+    "payment_status": false,
+    "razorpay_order_id": null,
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "21998.00",
+    "shipping_fee": "0.00",
+    "status": "delivered",
+    "created_at": "2026-08-09T12:27:21.761Z",
+    "updated_at": "2026-08-12T19:08:04.784Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 6,
+  "fields": {
+    "order_number": "SPC-20260809-71F84A",
+    "user": [
+      "pundsaurav12@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "32",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "cod",
+    "payment_status": false,
+    "razorpay_order_id": null,
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "76993.00",
+    "shipping_fee": "0.00",
+    "status": "delivered",
+    "created_at": "2026-08-09T12:27:05.792Z",
+    "updated_at": "2026-08-10T19:20:58.439Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 5,
+  "fields": {
+    "order_number": "SPC-20260809-144C92",
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "9876543210",
+    "shipping_address": "Flat 402, Highrise Tower, Bandra West",
+    "shipping_city": "Mumbai",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "400050",
+    "payment_method": "cod",
+    "payment_status": false,
+    "razorpay_order_id": null,
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "269800.00",
+    "shipping_fee": "0.00",
+    "status": "pending",
+    "created_at": "2026-08-09T12:25:54.126Z",
+    "updated_at": "2026-08-09T12:25:54.126Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 4,
+  "fields": {
+    "order_number": "SPC-20260809-3C95C8",
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "9876543210",
+    "shipping_address": "Flat 402, Highrise Tower, Bandra West",
+    "shipping_city": "Mumbai",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "400050",
+    "payment_method": "cod",
+    "payment_status": false,
+    "razorpay_order_id": null,
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "269800.00",
+    "shipping_fee": "0.00",
+    "status": "pending",
+    "created_at": "2026-08-09T12:25:35.491Z",
+    "updated_at": "2026-08-09T12:25:35.491Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 3,
+  "fields": {
+    "order_number": "SPC-20260809-95686C",
+    "user": [
+      "pundsaurav12@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "32",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "cod",
+    "payment_status": false,
+    "razorpay_order_id": null,
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "120989.00",
+    "shipping_fee": "0.00",
+    "status": "pending",
+    "created_at": "2026-08-09T12:23:26.462Z",
+    "updated_at": "2026-08-09T12:23:26.462Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 2,
+  "fields": {
+    "order_number": "SPC-20260809-D7C9DB",
+    "user": [
+      "pundsaurav12@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "32",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "cod",
+    "payment_status": false,
+    "razorpay_order_id": null,
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "pending",
+    "created_at": "2026-08-09T12:21:23.540Z",
+    "updated_at": "2026-08-09T12:21:23.540Z"
+  }
+},
+{
+  "model": "orders.order",
+  "pk": 1,
+  "fields": {
+    "order_number": "SPC-20260809-D089B1",
+    "user": [
+      "pundsaurav12@gmail.com"
+    ],
+    "shipping_name": "Saurav Pund",
+    "shipping_phone": "8010145688",
+    "shipping_address": "32",
+    "shipping_city": "Akot",
+    "shipping_state": "Maharashtra",
+    "shipping_pincode": "444101",
+    "payment_method": "upi",
+    "payment_status": true,
+    "razorpay_order_id": null,
+    "razorpay_payment_id": null,
+    "razorpay_signature": null,
+    "total_amount": "134900.00",
+    "shipping_fee": "0.00",
+    "status": "delivered",
+    "created_at": "2026-08-09T12:11:55.569Z",
+    "updated_at": "2026-08-10T19:00:52.908Z"
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 1,
+  "fields": {
+    "order": 1,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 2,
+  "fields": {
+    "order": 2,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 3,
+  "fields": {
+    "order": 3,
+    "product": 6,
+    "product_name": "Ergonomic Mesh Office Chair",
+    "price": "10999.00",
+    "quantity": 11
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 4,
+  "fields": {
+    "order": 4,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 2
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 5,
+  "fields": {
+    "order": 5,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 2
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 6,
+  "fields": {
+    "order": 6,
+    "product": 6,
+    "product_name": "Ergonomic Mesh Office Chair",
+    "price": "10999.00",
+    "quantity": 7
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 7,
+  "fields": {
+    "order": 7,
+    "product": 6,
+    "product_name": "Ergonomic Mesh Office Chair",
+    "price": "10999.00",
+    "quantity": 2
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 8,
+  "fields": {
+    "order": 8,
+    "product": 6,
+    "product_name": "Ergonomic Mesh Office Chair",
+    "price": "10999.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 9,
+  "fields": {
+    "order": 9,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 10,
+  "fields": {
+    "order": 10,
+    "product": 6,
+    "product_name": "Ergonomic Mesh Office Chair",
+    "price": "10999.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 11,
+  "fields": {
+    "order": 11,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 12,
+  "fields": {
+    "order": 12,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 13,
+  "fields": {
+    "order": 13,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 14,
+  "fields": {
+    "order": 14,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 15,
+  "fields": {
+    "order": 15,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 16,
+  "fields": {
+    "order": 16,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 17,
+  "fields": {
+    "order": 17,
+    "product": 5,
+    "product_name": "Air-Cushioned Running Shoes",
+    "price": "5499.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 18,
+  "fields": {
+    "order": 18,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 19,
+  "fields": {
+    "order": 19,
+    "product": 5,
+    "product_name": "Air-Cushioned Running Shoes",
+    "price": "5499.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 20,
+  "fields": {
+    "order": 20,
+    "product": 3,
+    "product_name": "Wireless Noise-Canceling Headphones",
+    "price": "14999.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 21,
+  "fields": {
+    "order": 21,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 22,
+  "fields": {
+    "order": 22,
+    "product": 1,
+    "product_name": "Pro Ultra Laptop (16GB RAM, 512GB SSD)",
+    "price": "54999.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 23,
+  "fields": {
+    "order": 23,
+    "product": 1,
+    "product_name": "Pro Ultra Laptop (16GB RAM, 512GB SSD)",
+    "price": "54999.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 24,
+  "fields": {
+    "order": 24,
+    "product": 1,
+    "product_name": "Pro Ultra Laptop (16GB RAM, 512GB SSD)",
+    "price": "54999.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 25,
+  "fields": {
+    "order": 25,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 26,
+  "fields": {
+    "order": 26,
+    "product": 1,
+    "product_name": "Pro Ultra Laptop (16GB RAM, 512GB SSD)",
+    "price": "54999.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 27,
+  "fields": {
+    "order": 27,
+    "product": 1,
+    "product_name": "Pro Ultra Laptop (16GB RAM, 512GB SSD)",
+    "price": "54999.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 28,
+  "fields": {
+    "order": 28,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 29,
+  "fields": {
+    "order": 29,
+    "product": 1,
+    "product_name": "Pro Ultra Laptop (16GB RAM, 512GB SSD)",
+    "price": "54999.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 30,
+  "fields": {
+    "order": 30,
+    "product": 2,
+    "product_name": "Flagship Smartphone 5G (256GB Storage)",
+    "price": "49999.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 31,
+  "fields": {
+    "order": 31,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 32,
+  "fields": {
+    "order": 32,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 33,
+  "fields": {
+    "order": 33,
+    "product": 2,
+    "product_name": "Flagship Smartphone 5G (256GB Storage)",
+    "price": "49999.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 34,
+  "fields": {
+    "order": 34,
+    "product": 4,
+    "product_name": "Smartwatch Ultra 2 (AMOLED Display)",
+    "price": "22999.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 35,
+  "fields": {
+    "order": 35,
+    "product": 4,
+    "product_name": "Smartwatch Ultra 2 (AMOLED Display)",
+    "price": "22999.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 36,
+  "fields": {
+    "order": 36,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 37,
+  "fields": {
+    "order": 37,
+    "product": 4,
+    "product_name": "Smartwatch Ultra 2 (AMOLED Display)",
+    "price": "22999.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 38,
+  "fields": {
+    "order": 38,
+    "product": 5,
+    "product_name": "Air-Cushioned Running Shoes",
+    "price": "5499.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 39,
+  "fields": {
+    "order": 39,
+    "product": 5,
+    "product_name": "Air-Cushioned Running Shoes",
+    "price": "5499.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 40,
+  "fields": {
+    "order": 40,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 41,
+  "fields": {
+    "order": 41,
+    "product": 3,
+    "product_name": "Wireless Noise-Canceling Headphones",
+    "price": "14999.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 42,
+  "fields": {
+    "order": 42,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 43,
+  "fields": {
+    "order": 43,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 44,
+  "fields": {
+    "order": 44,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 45,
+  "fields": {
+    "order": 45,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 46,
+  "fields": {
+    "order": 46,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 3
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 47,
+  "fields": {
+    "order": 46,
+    "product": 5,
+    "product_name": "Air-Cushioned Running Shoes",
+    "price": "5499.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 48,
+  "fields": {
+    "order": 46,
+    "product": 4,
+    "product_name": "Smartwatch Ultra 2 (AMOLED Display)",
+    "price": "22999.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 49,
+  "fields": {
+    "order": 47,
+    "product": 7,
+    "product_name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "price": "134900.00",
+    "quantity": 2
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 50,
+  "fields": {
+    "order": 48,
+    "product": 5,
+    "product_name": "Air-Cushioned Running Shoes",
+    "price": "5499.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "orders.orderitem",
+  "pk": 51,
+  "fields": {
+    "order": 48,
+    "product": 2,
+    "product_name": "Flagship Smartphone 5G (256GB Storage)",
+    "price": "49999.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 4,
+  "fields": {
+    "product": 7,
+    "user": [
+      "sharmasaurya838@gmail.com"
+    ],
+    "rating": 4,
+    "title": "nice shows",
+    "comment": "good i use from lst 1year",
+    "is_approved": true,
+    "created_at": "2026-08-10T13:58:21.073Z"
+  }
+},
+{
+  "model": "reviews.review",
+  "pk": 3,
+  "fields": {
+    "product": 7,
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "rating": 5,
+    "title": "Phenomenal Product!",
+    "comment": "Absolutely high quality, super fast delivery and packaging.",
+    "is_approved": true,
+    "created_at": "2026-08-10T13:53:58.155Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 22,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "title": "Order Delivered #SPC-20260811-235F77",
+    "message": "Your order #SPC-20260811-235F77 has been delivered successfully!",
+    "notification_type": "order",
+    "is_read": false,
+    "link_url": "/orders/SPC-20260811-235F77/",
+    "created_at": "2026-08-12T19:08:10.167Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 21,
+  "fields": {
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "title": "Order Delivered #SPC-20260812-B3B0F5",
+    "message": "Your order #SPC-20260812-B3B0F5 has been delivered successfully!",
+    "notification_type": "order",
+    "is_read": false,
+    "link_url": "/orders/SPC-20260812-B3B0F5/",
+    "created_at": "2026-08-12T19:08:08.209Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 20,
+  "fields": {
+    "user": [
+      "pundsaurav12@gmail.com"
+    ],
+    "title": "Order Delivered #SPC-20260809-982E12",
+    "message": "Your order #SPC-20260809-982E12 has been delivered successfully!",
+    "notification_type": "order",
+    "is_read": false,
+    "link_url": "/orders/SPC-20260809-982E12/",
+    "created_at": "2026-08-12T19:08:04.906Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 19,
+  "fields": {
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "title": "Order Delivered #SPC-20260813-C0577A",
+    "message": "Your order #SPC-20260813-C0577A has been delivered successfully!",
+    "notification_type": "order",
+    "is_read": false,
+    "link_url": "/orders/SPC-20260813-C0577A/",
+    "created_at": "2026-08-12T19:07:58.443Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 18,
+  "fields": {
+    "user": [
+      "sauravpund162@gmail.com"
+    ],
+    "title": "Order Delivered #SPC-20260813-C0577A",
+    "message": "Your order #SPC-20260813-C0577A has been delivered successfully!",
+    "notification_type": "order",
+    "is_read": false,
+    "link_url": "/orders/SPC-20260813-C0577A/",
+    "created_at": "2026-08-12T19:07:52.153Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 17,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "title": "Order Confirmed #SPC-20260811-235F77",
+    "message": "Your order #SPC-20260811-235F77 for ₹134900 has been confirmed!",
+    "notification_type": "order",
+    "is_read": false,
+    "link_url": "/orders/SPC-20260811-235F77/",
+    "created_at": "2026-08-11T13:31:52.193Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 16,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "title": "Order Confirmed #SPC-20260811-CB842F",
+    "message": "Your order #SPC-20260811-CB842F for ₹134900 has been confirmed!",
+    "notification_type": "order",
+    "is_read": false,
+    "link_url": "/orders/SPC-20260811-CB842F/",
+    "created_at": "2026-08-11T13:31:11.927Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 15,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "title": "Order Confirmed #SPC-20260811-BDE4F0",
+    "message": "Your order #SPC-20260811-BDE4F0 for ₹14999 has been confirmed!",
+    "notification_type": "order",
+    "is_read": false,
+    "link_url": "/orders/SPC-20260811-BDE4F0/",
+    "created_at": "2026-08-10T19:40:00.800Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 14,
+  "fields": {
+    "user": [
+      "pundsaurav12@gmail.com"
+    ],
+    "title": "Order Delivered #SPC-20260809-71F84A",
+    "message": "Your order #SPC-20260809-71F84A has been delivered successfully!",
+    "notification_type": "order",
+    "is_read": false,
+    "link_url": "/orders/detail/SPC-20260809-71F84A/",
+    "created_at": "2026-08-10T19:20:58.464Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 13,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "title": "Order Cancelled #SPC-20260811-07B3BF",
+    "message": "Order #SPC-20260811-07B3BF has been cancelled.",
+    "notification_type": "order",
+    "is_read": true,
+    "link_url": "/orders/detail/SPC-20260811-07B3BF/",
+    "created_at": "2026-08-10T19:19:23.373Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 12,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "title": "Order Delivered #SPC-20260811-07B3BF",
+    "message": "Your order #SPC-20260811-07B3BF has been delivered successfully!",
+    "notification_type": "order",
+    "is_read": true,
+    "link_url": "/orders/detail/SPC-20260811-07B3BF/",
+    "created_at": "2026-08-10T19:19:19.617Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 11,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "title": "Order Shipped #SPC-20260811-07B3BF",
+    "message": "Great news! Order #SPC-20260811-07B3BF has been shipped and is on its way.",
+    "notification_type": "order",
+    "is_read": true,
+    "link_url": "/orders/detail/SPC-20260811-07B3BF/",
+    "created_at": "2026-08-10T19:19:15.917Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 10,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "title": "Order Confirmed #SPC-20260811-07B3BF",
+    "message": "Your order #SPC-20260811-07B3BF for ₹134900 has been confirmed!",
+    "notification_type": "order",
+    "is_read": true,
+    "link_url": "/orders/detail/SPC-20260811-07B3BF/",
+    "created_at": "2026-08-10T19:19:12.154Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 9,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "title": "Order Cancelled #SPC-20260811-07B3BF",
+    "message": "Order #SPC-20260811-07B3BF has been cancelled.",
+    "notification_type": "order",
+    "is_read": true,
+    "link_url": "/orders/detail/SPC-20260811-07B3BF/",
+    "created_at": "2026-08-10T19:19:05.191Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 8,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "title": "Order Delivered #SPC-20260811-07B3BF",
+    "message": "Your order #SPC-20260811-07B3BF has been delivered successfully!",
+    "notification_type": "order",
+    "is_read": true,
+    "link_url": "/orders/detail/SPC-20260811-07B3BF/",
+    "created_at": "2026-08-10T19:19:01.372Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "title": "Order Shipped #SPC-20260811-07B3BF",
+    "message": "Great news! Order #SPC-20260811-07B3BF has been shipped and is on its way.",
+    "notification_type": "order",
+    "is_read": true,
+    "link_url": "/orders/detail/SPC-20260811-07B3BF/",
+    "created_at": "2026-08-10T19:18:57.602Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "title": "Order Confirmed #SPC-20260811-07B3BF",
+    "message": "Your order #SPC-20260811-07B3BF for ₹134900 has been confirmed!",
+    "notification_type": "order",
+    "is_read": true,
+    "link_url": "/orders/detail/SPC-20260811-07B3BF/",
+    "created_at": "2026-08-10T19:18:53.825Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "title": "Order #SPC-20260811-2DB580 Delivered",
+    "message": "Good news! Your order #SPC-20260811-2DB580 is now delivered.",
+    "notification_type": "order",
+    "is_read": true,
+    "link_url": "/orders/detail/SPC-20260811-2DB580/",
+    "created_at": "2026-08-10T19:15:15.569Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "title": "Order #SPC-20260811-07B3BF Delivered",
+    "message": "Good news! Your order #SPC-20260811-07B3BF is now delivered.",
+    "notification_type": "order",
+    "is_read": true,
+    "link_url": "/orders/detail/SPC-20260811-07B3BF/",
+    "created_at": "2026-08-10T19:15:06.928Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "title": "Phase 7 Notification Test",
+    "message": "Your Phase 7 notifications and engagement features are active!",
+    "notification_type": "welcome",
+    "is_read": false,
+    "link_url": null,
+    "created_at": "2026-08-10T19:13:03.489Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "title": "Phase 7 Notification Test",
+    "message": "Your Phase 7 notifications and engagement features are active!",
+    "notification_type": "welcome",
+    "is_read": false,
+    "link_url": null,
+    "created_at": "2026-08-10T19:12:51.511Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "title": "Phase 7 Notification Test",
+    "message": "Your Phase 7 notifications and engagement features are active!",
+    "notification_type": "welcome",
+    "is_read": false,
+    "link_url": null,
+    "created_at": "2026-08-10T19:12:40.434Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 28,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated Order #SPC-20260811-235F77 status",
+    "details": "Changed status from Order Placed to Delivered",
+    "created_at": "2026-08-12T19:08:14.485Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 27,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated Order #SPC-20260812-B3B0F5 status",
+    "details": "Changed status from Order Placed to Delivered",
+    "created_at": "2026-08-12T19:08:12.369Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 26,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated Order #SPC-20260809-982E12 status",
+    "details": "Changed status from Order Placed to Delivered",
+    "created_at": "2026-08-12T19:08:09.010Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 25,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated Order #SPC-20260813-C0577A status",
+    "details": "Changed status from Delivered to Delivered",
+    "created_at": "2026-08-12T19:08:02.565Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 24,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated Order #SPC-20260813-C0577A status",
+    "details": "Changed status from Confirmed to Delivered",
+    "created_at": "2026-08-12T19:07:56.790Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 23,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated Order #SPC-20260809-71F84A status",
+    "details": "Changed status from Order Placed to Delivered",
+    "created_at": "2026-08-10T19:21:02.409Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 22,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated Order #SPC-20260811-2DB580 status",
+    "details": "Changed status from Order Placed to Delivered",
+    "created_at": "2026-08-10T19:15:15.581Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 21,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated Order #SPC-20260811-07B3BF status",
+    "details": "Changed status from Order Placed to Delivered",
+    "created_at": "2026-08-10T19:15:06.939Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 20,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated Order #SPC-20260810-1821A9 status",
+    "details": "Changed status from Confirmed to Delivered",
+    "created_at": "2026-08-10T19:00:57.888Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 19,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated Order #SPC-20260809-D089B1 status",
+    "details": "Changed status from Order Placed to Delivered",
+    "created_at": "2026-08-10T19:00:52.911Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 18,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated Order #SPC-20260810-C2C267 status",
+    "details": "Changed status from Confirmed to Delivered",
+    "created_at": "2026-08-10T19:00:48.557Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 17,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated Order #SPC-20260810-891EE3 status",
+    "details": "Changed status from Confirmed to Delivered",
+    "created_at": "2026-08-10T19:00:45.441Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 16,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated Order #SPC-20260810-10D303 status",
+    "details": "Changed status from Order Placed to Delivered",
+    "created_at": "2026-08-10T19:00:40.304Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 15,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated Order #SPC-20260810-162938 status",
+    "details": "Changed status from Confirmed to Delivered",
+    "created_at": "2026-08-10T19:00:30.708Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 14,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated Order #SPC-20260811-2BA92F status",
+    "details": "Changed status from Order Placed to Delivered",
+    "created_at": "2026-08-10T19:00:27.827Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 13,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated Order #SPC-20260810-C08913 status",
+    "details": "Changed status from Order Placed to Delivered",
+    "created_at": "2026-08-10T18:59:48.824Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 12,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Created discount coupon 'SPCART26'",
+    "details": "50% OFF on orders > ₹999.00",
+    "created_at": "2026-08-10T17:44:48.464Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 11,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated Order #SPC-20260810-ECD15F status",
+    "details": "Changed status from Order Placed to Confirmed",
+    "created_at": "2026-08-10T14:06:36.438Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 10,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated inventory stock for Ergonomic Mesh Office Chair",
+    "details": "Stock changed from 10 to 1",
+    "created_at": "2026-08-09T12:38:13.415Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 9,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated inventory stock for Wireless Noise-Canceling Headphones",
+    "details": "Stock changed from 10 to 5",
+    "created_at": "2026-08-09T12:38:07.628Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 8,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated inventory stock for Wireless Noise-Canceling Headphones",
+    "details": "Stock changed from 5 to 10",
+    "created_at": "2026-08-09T12:38:01.626Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated inventory stock for Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
+    "details": "Stock changed from 0 to 20",
+    "created_at": "2026-08-09T12:37:50.826Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated inventory stock for Ergonomic Mesh Office Chair",
+    "details": "Stock changed from 0 to 10",
+    "created_at": "2026-08-09T12:37:44.720Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "admin@spcart.com"
+    ],
+    "action": "Updated inventory stock for Ergonomic Mesh Office Chair",
+    "details": "Stock changed from 0 to 0",
+    "created_at": "2026-08-09T12:37:39.707Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "action": "Approved customer review for Ergonomic Mesh Office Chair",
+    "details": "5 Star Rating by Amit K.",
+    "created_at": "2026-08-09T12:36:08.309Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "action": "Created new discount coupon 'SPCART10'",
+    "details": "10% OFF on minimum order ₹999",
+    "created_at": "2026-08-09T12:36:08.305Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "action": "Changed Order #SPC-20260809-144C92 status to Shipped",
+    "details": "Courier partner: BlueDart Express",
+    "created_at": "2026-08-09T12:36:08.300Z"
+  }
+},
+{
+  "model": "dashboard.activitylog",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "pundsaurav@gmail.com"
+    ],
+    "action": "Updated product stock for Apple iPhone 17 Pro Max",
+    "details": "Stock increased by +10 units",
+    "created_at": "2026-08-09T12:36:08.297Z"
+  }
+},
+{
+  "model": "dashboard.coupon",
+  "pk": 3,
+  "fields": {
+    "code": "SPCART26",
+    "discount_percentage": "50.00",
+    "min_order_amount": "999.00",
+    "max_discount_amount": "500.00",
+    "is_active": true,
+    "created_at": "2026-08-10T17:44:48.456Z"
+  }
+},
+{
+  "model": "dashboard.coupon",
+  "pk": 2,
+  "fields": {
+    "code": "WELCOME20",
+    "discount_percentage": "20.00",
+    "min_order_amount": "1999.00",
+    "max_discount_amount": "1000.00",
+    "is_active": true,
+    "created_at": "2026-08-09T12:36:08.292Z"
+  }
+},
+{
+  "model": "dashboard.coupon",
+  "pk": 1,
+  "fields": {
+    "code": "SPCART10",
+    "discount_percentage": "10.00",
+    "min_order_amount": "999.00",
+    "max_discount_amount": "500.00",
+    "is_active": true,
+    "created_at": "2026-08-09T12:36:08.287Z"
+  }
+}
+]
