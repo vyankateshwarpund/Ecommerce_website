@@ -4,6 +4,10 @@
 
 // ── Global CSRF Token Helper ──────────────────────────────────
 function getCsrfToken() {
+  const metaToken = document.querySelector('meta[name="csrf-token"]');
+  if (metaToken && metaToken.content) {
+    return metaToken.content;
+  }
   let cookieValue = null;
   if (document.cookie && document.cookie !== '') {
     const cookies = document.cookie.split(';');
