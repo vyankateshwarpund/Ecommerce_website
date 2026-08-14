@@ -515,3 +515,24 @@ def export_reports(request, report_type):
 def activity_log_view(request):
     logs = ActivityLog.objects.all()
     return render(request, 'dashboard/activity_log.html', {'logs': logs})
+
+
+@staff_member_required
+def bulk_orders_list(request):
+    from orders.models import BulkOrderInquiry
+    inquiries = BulkOrderInquiry.objects.all()
+    return render(request, 'dashboard/bulk_orders.html', {'inquiries': inquiries})
+
+
+@staff_member_required
+def bulk_order_update_status(request, inquiry_id):
+    from orders.models import BulkOrderInquiry
+    inquiry = get_object_or_404(BulkOrderInquiry, id=inquiry_id)
+    if request.method == 'POST':
+        new_status = request.POST.get('status')
+        if new_status in dict(BulkOrderInquiry.STATUS_CHOICES):
+            inquiry.status = new_status
+            inquiry.save()
+            messages.success(request, f'Bulk Inquiry #{inquiry.id} status updated to {inquiry.get_status_display()}.')
+    return redirect('dashboard:bulk_orders')
+

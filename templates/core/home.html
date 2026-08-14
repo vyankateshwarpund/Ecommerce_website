@@ -268,9 +268,9 @@
                 <!-- Product Image -->
                 <div class="product-card-img-wrap">
                   {% if product.main_image %}
-                    <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="product-card-img">
+                    <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="product-card-img" loading="lazy" decoding="async">
                   {% else %}
-                    <img src="{% static 'images/featured_laptop.jpg' %}" alt="{{ product.name }}" class="product-card-img">
+                    <img src="{% static 'images/featured_laptop.jpg' %}" alt="{{ product.name }}" class="product-card-img" loading="lazy" decoding="async">
                   {% endif %}
 
                   <div class="product-quick-actions">
@@ -400,7 +400,7 @@
               <div class="deal-mini-card text-dark text-center position-relative">
                 <span class="badge bg-danger text-white position-absolute top-0 start-0 m-2 fw-bold" style="font-size: 10px;">-{{ product.discount_percent }}% OFF</span>
                 {% if product.main_image %}
-                  <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="img-fluid rounded-3 my-2" style="height:110px; object-fit:cover;">
+                  <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="img-fluid rounded-3 my-2" style="height:110px; object-fit:cover;" loading="lazy" decoding="async">
                 {% endif %}
                 <h6 class="fw-bold mb-1 text-truncate">{{ product.name }}</h6>
                 <div class="d-flex align-items-center justify-content-center gap-2 mt-2">

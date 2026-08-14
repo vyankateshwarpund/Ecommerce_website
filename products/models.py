@@ -29,6 +29,14 @@ class Brand(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
+        if self.logo and hasattr(self.logo, 'file') and not self.logo.name.lower().endswith('.webp'):
+            try:
+                from core.image_utils import compress_and_convert_to_webp
+                converted = compress_and_convert_to_webp(self.logo, max_size=(600, 600))
+                if converted:
+                    self.logo.save(converted.name, converted, save=False)
+            except Exception:
+                pass
         super().save(*args, **kwargs)
 
 
@@ -73,6 +81,14 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
+        if self.main_image and hasattr(self.main_image, 'file') and not self.main_image.name.lower().endswith('.webp'):
+            try:
+                from core.image_utils import compress_and_convert_to_webp
+                converted = compress_and_convert_to_webp(self.main_image, max_size=(1200, 1200))
+                if converted:
+                    self.main_image.save(converted.name, converted, save=False)
+            except Exception:
+                pass
         super().save(*args, **kwargs)
 
     @property
@@ -99,3 +115,15 @@ class ProductImage(models.Model):
 
     def __str__(self):
         return f"Gallery image for {self.product.name}"
+
+    def save(self, *args, **kwargs):
+        if self.image and hasattr(self.image, 'file') and not self.image.name.lower().endswith('.webp'):
+            try:
+                from core.image_utils import compress_and_convert_to_webp
+                converted = compress_and_convert_to_webp(self.image, max_size=(1200, 1200))
+                if converted:
+                    self.image.save(converted.name, converted, save=False)
+            except Exception:
+                pass
+        super().save(*args, **kwargs)
+

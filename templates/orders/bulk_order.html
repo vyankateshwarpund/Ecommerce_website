@@ -1,0 +1,168 @@
+{% load static %}
+{% extends 'base.html' %}
+
+{% block title %}Corporate & Bulk Orders | SPCart Wholesale{% endblock %}
+
+{% block content %}
+<!-- BREADCRUMB -->
+<div class="breadcrumb-shopsphere">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Bulk & Corporate Orders</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<!-- HERO HEADER -->
+<section class="py-5 bg-white border-bottom">
+  <div class="container text-center" style="max-width: 800px;">
+    <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-1.5 rounded-pill mb-3">
+      <i class="fas fa-building me-1"></i> B2B & Wholesale Solutions
+    </span>
+    <h1 class="display-6 fw-bold text-dark mb-3">Custom Pricing for Bulk & Corporate Orders</h1>
+    <p class="text-muted fs-6 mb-0">
+      Whether you need office equipment, corporate festival gifts, bulk electronics, or wholesale merchandise, SPCart offers tiered wholesale discounts, GST tax invoices, and priority nationwide dispatch.
+    </p>
+  </div>
+</section>
+
+<!-- MAIN SECTION (FORM + VALUE PROPS) -->
+<section class="section-padding bg-light">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+      
+      <!-- LEFT: VALUE PROPOSITIONS -->
+      <div class="col-lg-5">
+        <div class="pe-lg-4">
+          <h4 class="fw-bold text-dark mb-4">Why Partner with SPCart?</h4>
+
+          <!-- Benefit 1 -->
+          <div class="d-flex align-items-start gap-3 mb-4">
+            <div class="bg-primary text-white rounded-4 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 50px; height: 50px; font-size: 20px;">
+              <i class="fas fa-percent"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold text-dark mb-1">Tiered Wholesale Pricing</h6>
+              <p class="small text-muted mb-0">Discounts up to 35% off retail pricing based on order volume and recurrent purchasing.</p>
+            </div>
+          </div>
+
+          <!-- Benefit 2 -->
+          <div class="d-flex align-items-start gap-3 mb-4">
+            <div class="bg-success text-white rounded-4 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 50px; height: 50px; font-size: 20px;">
+              <i class="fas fa-file-invoice-dollar"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold text-dark mb-1">GST Tax Invoices & Input Credit</h6>
+              <p class="small text-muted mb-0">Claim 100% eligible GST input tax credit with compliant business billing invoices.</p>
+            </div>
+          </div>
+
+          <!-- Benefit 3 -->
+          <div class="d-flex align-items-start gap-3 mb-4">
+            <div class="bg-info text-white rounded-4 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 50px; height: 50px; font-size: 20px;">
+              <i class="fas fa-truck-ramp-box"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold text-dark mb-1">Priority Logistics & Multi-Location Delivery</h6>
+              <p class="small text-muted mb-0">Direct dispatch to multiple branch offices or client addresses across 20,000+ Indian pincodes.</p>
+            </div>
+          </div>
+
+          <!-- Benefit 4 -->
+          <div class="d-flex align-items-start gap-3 mb-4">
+            <div class="bg-warning text-dark rounded-4 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 50px; height: 50px; font-size: 20px;">
+              <i class="fas fa-headset"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold text-dark mb-1">Dedicated Account Key Manager</h6>
+              <p class="small text-muted mb-0">Single point of contact for quotations, sample evaluations, contracts, and after-sales support.</p>
+            </div>
+          </div>
+
+          <!-- Contact box -->
+          <div class="bg-white rounded-4 p-4 border shadow-sm mt-4">
+            <div class="d-flex align-items-center gap-3">
+              <i class="fas fa-envelope-open-text text-primary fs-3"></i>
+              <div>
+                <div class="small fw-semibold text-muted">Direct Corporate Desk</div>
+                <strong class="text-dark">b2b@spcart.in</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: INQUIRY FORM -->
+      <div class="col-lg-7">
+        <div class="bg-white rounded-5 border p-4 p-md-5 shadow-sm">
+          <h4 class="fw-bold text-dark mb-1">Request a Bulk Quotation</h4>
+          <p class="text-muted small mb-4">Fill out the requirement details below. Our team responds within 24 hours.</p>
+
+          <form method="POST" action="{% url 'orders:bulk_order' %}">
+            {% csrf_token %}
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold text-dark">Contact Person Name *</label>
+                <input type="text" name="name" class="form-control" placeholder="e.g. Saurav Pund" required value="{% if user.is_authenticated %}{{ user.get_full_name }}{% endif %}">
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold text-dark">Work / Personal Email *</label>
+                <input type="email" name="email" class="form-control" placeholder="e.g. saurav@company.com" required value="{% if user.is_authenticated %}{{ user.email }}{% endif %}">
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold text-dark">Phone Number *</label>
+                <input type="tel" name="phone" class="form-control" placeholder="e.g. +91 9876543210" required>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold text-dark">Company / Organization Name</label>
+                <input type="text" name="company_name" class="form-control" placeholder="e.g. Acme Tech Solutions">
+              </div>
+
+              <div class="col-md-8">
+                <label class="form-label small fw-semibold text-dark">Product Name or Category *</label>
+                <input type="text" name="product_name" class="form-control" placeholder="e.g. Ergonomic Office Chairs or Laptops" required>
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-label small fw-semibold text-dark">Estimated Quantity *</label>
+                <input type="number" min="5" name="quantity" class="form-control" value="10" required>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold text-dark">Approximate Budget (₹)</label>
+                <input type="number" step="1000" name="target_budget" class="form-control" placeholder="e.g. 150000">
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold text-dark">Delivery Pincode / City</label>
+                <input type="text" name="delivery_pincode" class="form-control" placeholder="e.g. 400001, Mumbai">
+              </div>
+
+              <div class="col-12">
+                <label class="form-label small fw-semibold text-dark">Additional Notes or Specifications</label>
+                <textarea name="message" class="form-control" rows="3" placeholder="Specify any custom branding, warranty requirements, delivery schedule, or specific model numbers..."></textarea>
+              </div>
+
+              <div class="col-12 pt-2">
+                <button type="submit" class="btn btn-primary-custom w-100 py-3 rounded-4 fw-bold fs-6 shadow-sm">
+                  <i class="fas fa-paper-plane me-2"></i>Submit Bulk Quotation Request
+                </button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -201,7 +201,7 @@
               <div class="d-flex align-items-center gap-2 mb-2 pb-2 border-bottom">
                 <div class="bg-light p-1 rounded-2 border text-center" style="width: 45px; height: 45px; flex-shrink: 0;">
                   {% if item.product.main_image %}
-                    <img src="{{ item.product.main_image.url }}" class="img-fluid" style="max-height: 35px; object-fit: contain;">
+                    <img src="{{ item.product.main_image.url }}" class="img-fluid" style="max-height: 35px; object-fit: contain;" loading="lazy" decoding="async">
                   {% endif %}
                 </div>
                 <div class="flex-grow-1 min-w-0">

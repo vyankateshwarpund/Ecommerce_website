@@ -38,9 +38,9 @@
 
           <div class="text-center mb-3">
             {% if item.product.main_image %}
-              <img src="{{ item.product.main_image.url }}" alt="{{ item.product.name }}" class="img-fluid" style="max-height: 180px; object-fit: contain;">
+              <img src="{{ item.product.main_image.url }}" alt="{{ item.product.name }}" class="img-fluid" style="max-height: 180px; object-fit: contain;" loading="lazy" decoding="async">
             {% else %}
-              <img src="{% static 'images/featured_laptop.jpg' %}" alt="{{ item.product.name }}" class="img-fluid" style="max-height: 180px; object-fit: contain;">
+              <img src="{% static 'images/featured_laptop.jpg' %}" alt="{{ item.product.name }}" class="img-fluid" style="max-height: 180px; object-fit: contain;" loading="lazy" decoding="async">
             {% endif %}
           </div>
 

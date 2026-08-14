@@ -24,6 +24,14 @@ class Category(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
+        if self.image and hasattr(self.image, 'file') and not self.image.name.lower().endswith('.webp'):
+            try:
+                from core.image_utils import compress_and_convert_to_webp
+                converted = compress_and_convert_to_webp(self.image, max_size=(800, 800))
+                if converted:
+                    self.image.save(converted.name, converted, save=False)
+            except Exception:
+                pass
         super().save(*args, **kwargs)
         cache.delete('all_categories_cached')
 

@@ -54,9 +54,14 @@
             <div class="col-md-4 text-md-end border-start">
               <div class="small text-muted">Total Amount</div>
               <div class="fs-4 fw-bold text-primary mb-2">₹{{ order.total_amount|floatformat:"0" }}</div>
-              <a href="{% url 'orders:order_detail' order.order_number %}" class="btn btn-outline-primary btn-sm rounded-pill px-3">
-                View Details & Invoice
-              </a>
+              <div class="d-flex flex-column gap-2">
+                <a href="{% url 'orders:track_order' order.order_number %}" class="btn btn-primary-custom btn-sm rounded-pill px-3 fw-semibold">
+                  <i class="fas fa-truck-fast me-1"></i>Track Order
+                </a>
+                <a href="{% url 'orders:order_detail' order.order_number %}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">
+                  <i class="fas fa-file-invoice me-1"></i>View Invoice
+                </a>
+              </div>
             </div>
           </div>
 

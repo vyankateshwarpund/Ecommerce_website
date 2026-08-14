@@ -1,0 +1,272 @@
+{% load static %}
+
+<!-- ORDER TRACKING STEPPER COMPONENT -->
+<div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+  
+  <!-- Stepper Header -->
+  <div class="card-header bg-white border-bottom p-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <div>
+        <div class="d-flex align-items-center gap-2 mb-1">
+          <h5 class="fw-bold text-dark mb-0">
+            <i class="fas fa-truck-fast text-primary me-2"></i>Live Order Tracking
+          </h5>
+          {% if order.status == 'delivered' %}
+            <span class="badge bg-success-subtle text-success px-3 py-1 rounded-pill fw-bold">Delivered</span>
+          {% elif order.status == 'cancelled' %}
+            <span class="badge bg-danger-subtle text-danger px-3 py-1 rounded-pill fw-bold">Cancelled</span>
+          {% elif order.status == 'shipped' or order.status == 'out_for_delivery' %}
+            <span class="badge bg-info-subtle text-info-emphasis px-3 py-1 rounded-pill fw-bold">In Transit</span>
+          {% else %}
+            <span class="badge bg-primary-subtle text-primary px-3 py-1 rounded-pill fw-bold">In Progress</span>
+          {% endif %}
+        </div>
+        <div class="text-muted small">
+          Tracking ID: <strong class="text-dark font-monospace" id="trackingId">{{ order.tracking_number }}</strong>
+          <button type="button" class="btn btn-link btn-sm p-0 ms-1 text-decoration-none text-primary" onclick="copyTrackingId()" title="Copy Tracking ID">
+            <i class="far fa-copy"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Actions: Confirm COD & Cancel Order -->
+      <div class="d-flex align-items-center gap-2">
+        {% if order.payment_method == 'cod' and not order.is_confirmed and not order.is_cancelled %}
+          <a href="{% url 'orders:confirm_cod_order' order.order_number %}" class="btn btn-success btn-sm rounded-pill px-3 fw-semibold">
+            <i class="fas fa-circle-check me-1"></i>Confirm COD Order
+          </a>
+        {% endif %}
+        {% if order.is_cancellable %}
+          <button type="button" class="btn btn-outline-danger btn-sm rounded-pill px-3 fw-semibold" data-bs-toggle="modal" data-bs-target="#cancelOrderModal">
+            <i class="fas fa-ban me-1"></i>Cancel Order
+          </button>
+        {% endif %}
+        <button type="button" class="btn btn-light btn-sm rounded-pill px-3 text-muted" onclick="location.reload()" title="Refresh tracking status">
+          <i class="fas fa-rotate me-1"></i>Refresh
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body p-4 p-md-5 bg-white">
+
+    {% if order.is_cancelled %}
+      <!-- CANCELLED ORDER BANNER -->
+      <div class="alert alert-danger border-0 rounded-4 p-4 mb-4 d-flex align-items-start gap-3">
+        <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 44px; height: 44px; font-size: 20px;">
+          <i class="fas fa-xmark"></i>
+        </div>
+        <div>
+          <h6 class="fw-bold text-danger mb-1">This order has been cancelled</h6>
+          <p class="mb-1 small text-dark">
+            Order <strong>#{{ order.order_number }}</strong> was cancelled. If payment was made online via Razorpay or Card/UPI, your refund will automatically be credited to your original payment method within 5–7 business days.
+          </p>
+          <div class="text-muted small">Updated on: {{ order.updated_at|date:"M d, Y, h:i A" }}</div>
+        </div>
+      </div>
+    {% else %}
+      <!-- ESTIMATED DELIVERY BANNER -->
+      <div class="bg-light rounded-4 p-3 mb-4 d-flex flex-wrap align-items-center justify-content-between gap-3 border">
+        <div class="d-flex align-items-center gap-3">
+          <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; font-size: 18px;">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <div>
+            <div class="small text-muted text-uppercase fw-semibold" style="letter-spacing: 0.5px;">
+              {% if order.status == 'delivered' %}Delivered On{% else %}Estimated Delivery{% endif %}
+            </div>
+            <div class="fw-bold text-dark fs-6">
+              {% if order.status == 'delivered' %}
+                {{ order.updated_at|date:"l, F d, Y" }}
+              {% else %}
+                {{ order.estimated_delivery_date|date:"l, F d, Y" }} (By 8:00 PM)
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="text-md-end small">
+          <span class="text-muted">Courier:</span> <strong class="text-dark">SPCart Express Logistics</strong><br>
+          <span class="text-muted">Shipment Mode:</span> <strong class="text-dark">Standard Surface</strong>
+        </div>
+      </div>
+
+      <!-- VISUAL PROGRESS STEPPER -->
+      <div class="order-stepper-wrapper my-4">
+        
+        <!-- Progress Bar Background & Active Fill -->
+        <div class="stepper-track-container position-relative mb-4">
+          <div class="progress" style="height: 6px; background-color: #E2E8F0; border-radius: 10px;">
+            <div class="progress-bar bg-primary" role="progressbar" 
+                 style="width: {{ order.progress_percentage }}%; transition: width 0.8s ease-in-out; border-radius: 10px;"
+                 aria-valuenow="{{ order.progress_percentage }}" aria-valuemin="0" aria-valuemax="100">
+            </div>
+          </div>
+        </div>
+
+        <!-- Stepper Nodes Grid -->
+        <div class="row g-2 text-center stepper-nodes-row">
+          {% for step in order.tracking_steps %}
+          <div class="col-4 col-md-2 stepper-node">
+            
+            <!-- Step Circle Icon -->
+            <div class="stepper-circle mx-auto mb-2 d-flex align-items-center justify-content-center rounded-circle
+                        {% if step.state == 'completed' %}
+                          bg-success text-white shadow-sm
+                        {% elif step.state == 'active' %}
+                          bg-primary text-white shadow-lg pulse-active
+                        {% else %}
+                          bg-white border text-muted opacity-75
+                        {% endif %}"
+                 style="width: 48px; height: 48px; font-size: 18px; transition: all 0.3s ease;">
+              {% if step.state == 'completed' %}
+                <i class="fas fa-check"></i>
+              {% else %}
+                <i class="fas {{ step.icon }}"></i>
+              {% endif %}
+            </div>
+
+            <!-- Step Title -->
+            <div class="stepper-title small fw-bold mb-1
+                        {% if step.state == 'completed' %}
+                          text-success
+                        {% elif step.state == 'active' %}
+                          text-primary
+                        {% else %}
+                          text-muted
+                        {% endif %}">
+              {{ step.title }}
+            </div>
+
+            <!-- Step Description / Status indicator -->
+            <div class="stepper-desc text-muted d-none d-md-block" style="font-size: 11px; line-height: 1.3;">
+              {% if step.state == 'active' %}
+                <span class="badge bg-primary-subtle text-primary fw-semibold">Current Step</span>
+              {% elif step.state == 'completed' %}
+                <span class="text-success small"><i class="fas fa-check-circle me-1"></i>Done</span>
+              {% else %}
+                <span>Pending</span>
+              {% endif %}
+            </div>
+
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+
+    {% endif %}
+
+    <!-- SHIPPING DESTINATION SUMMARY -->
+    <div class="border-top pt-4 mt-4">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="d-flex align-items-start gap-2">
+            <i class="fas fa-location-dot text-primary mt-1"></i>
+            <div>
+              <div class="small fw-bold text-dark text-uppercase" style="letter-spacing: 0.5px;">Delivery Destination</div>
+              <div class="fw-semibold text-dark">{{ order.shipping_name }}</div>
+              <div class="text-muted small">{{ order.shipping_address }}, {{ order.shipping_city }}, {{ order.shipping_state }} - {{ order.shipping_pincode }}</div>
+              <div class="text-muted small">Contact: {{ order.shipping_phone }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="d-flex align-items-start gap-2">
+            <i class="fas fa-receipt text-primary mt-1"></i>
+            <div>
+              <div class="small fw-bold text-dark text-uppercase" style="letter-spacing: 0.5px;">Payment & Invoice Info</div>
+              <div class="small text-muted">Method: <strong class="text-dark">{{ order.get_payment_method_display }}</strong></div>
+              <div class="small text-muted">Payment Status: 
+                {% if order.payment_status %}
+                  <span class="badge bg-success-subtle text-success">Paid Online</span>
+                {% else %}
+                  <span class="badge bg-warning-subtle text-dark">Cash on Delivery / Pending</span>
+                {% endif %}
+              </div>
+              <div class="small text-muted mt-1">Total Paid: <strong class="text-primary fs-6">₹{{ order.total_amount|floatformat:"0" }}</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CANCEL ORDER CONFIRMATION MODAL -->
+{% if order.is_cancellable %}
+<div class="modal fade" id="cancelOrderModal" tabindex="-1" aria-labelledby="cancelOrderModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 border-0 shadow">
+      <div class="modal-header border-bottom">
+        <h5 class="modal-title fw-bold text-danger" id="cancelOrderModalLabel">
+          <i class="fas fa-triangle-exclamation me-2"></i>Cancel Order #{{ order.order_number }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="POST" action="{% url 'orders:cancel_order' order.order_number %}">
+        {% csrf_token %}
+        <div class="modal-body p-4">
+          <p class="text-muted small mb-3">
+            Are you sure you want to cancel this order? Once cancelled, this action cannot be undone. Product stock will be returned to store inventory.
+          </p>
+          <div class="mb-3">
+            <label class="form-label small fw-semibold text-dark">Please select a reason for cancellation:</label>
+            <select name="cancel_reason" class="form-select small" required>
+              <option value="Ordered by mistake">Ordered by mistake</option>
+              <option value="Found a better price elsewhere">Found a better price elsewhere</option>
+              <option value="Shipping time is too long">Shipping time is too long</option>
+              <option value="Changed payment method / address">Need to change payment method or delivery address</option>
+              <option value="Other">Other reason</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer bg-light rounded-bottom-4 border-top">
+          <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Keep My Order</button>
+          <button type="submit" class="btn btn-danger rounded-pill px-4 fw-semibold">
+            <i class="fas fa-trash me-1"></i>Confirm Cancellation
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- STEPPER STYLES & SCRIPT -->
+<style>
+  .pulse-active {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+    }
+  }
+  .stepper-node:hover .stepper-circle {
+    transform: translateY(-2px);
+  }
+</style>
+
+<script>
+function copyTrackingId() {
+  const el = document.getElementById('trackingId');
+  if (el) {
+    navigator.clipboard.writeText(el.innerText.trim()).then(() => {
+      if (window.showToast) {
+        window.showToast('Tracking ID copied to clipboard!', 'info');
+      } else {
+        alert('Tracking ID copied: ' + el.innerText.trim());
+      }
+    });
+  }
+}
+</script>

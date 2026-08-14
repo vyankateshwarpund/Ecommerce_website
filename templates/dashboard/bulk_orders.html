@@ -1,0 +1,96 @@
+{% extends 'dashboard/base_admin.html' %}
+
+{% block title %}Bulk & Corporate Orders | SPCart Admin{% endblock %}
+
+{% block admin_content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h3 class="fw-bold text-dark mb-1"><i class="fas fa-building text-primary me-2"></i>Bulk & Corporate Inquiries</h3>
+    <p class="text-muted small mb-0">Manage customer wholesale quotation requests, pricing negotiations, and status updates.</p>
+  </div>
+</div>
+
+<div class="bg-white rounded-5 border shadow-sm overflow-hidden">
+  <div class="p-4 border-bottom d-flex justify-content-between align-items-center">
+    <h5 class="fw-bold text-dark mb-0">All Inquiries ({{ inquiries|length }})</h5>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0 small">
+      <thead class="table-light">
+        <tr>
+          <th>Ref ID</th>
+          <th>Contact & Company</th>
+          <th>Product & Qty</th>
+          <th>Target Budget</th>
+          <th>Location</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th class="text-end">Update Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for inq in inquiries %}
+        <tr>
+          <td><strong class="font-monospace text-primary">#{{ inq.id }}</strong></td>
+          <td>
+            <div class="fw-bold text-dark">{{ inq.name }}</div>
+            {% if inq.company_name %}<div class="text-muted small"><i class="fas fa-building me-1"></i>{{ inq.company_name }}</div>{% endif %}
+            <div class="small text-muted"><i class="fas fa-phone me-1"></i>{{ inq.phone }} | <i class="fas fa-envelope me-1"></i>{{ inq.email }}</div>
+          </td>
+          <td>
+            <span class="fw-bold text-dark">{{ inq.product_name }}</span>
+            <div class="badge bg-primary-subtle text-primary">Qty: {{ inq.quantity }} units</div>
+            {% if inq.message %}<div class="text-muted small text-truncate mt-1" style="max-width: 200px;" title="{{ inq.message }}">{{ inq.message }}</div>{% endif %}
+          </td>
+          <td>
+            {% if inq.target_budget %}
+              <strong class="text-success">₹{{ inq.target_budget|floatformat:"0" }}</strong>
+            {% else %}
+              <span class="text-muted">Not Specified</span>
+            {% endif %}
+          </td>
+          <td>
+            <span class="text-muted">{{ inq.delivery_pincode|default:"N/A" }}</span>
+          </td>
+          <td>
+            {% if inq.status == 'pending' %}
+              <span class="badge bg-warning text-dark">Pending</span>
+            {% elif inq.status == 'contacted' %}
+              <span class="badge bg-info">In Discussion</span>
+            {% elif inq.status == 'quoted' %}
+              <span class="badge bg-primary">Quote Sent</span>
+            {% elif inq.status == 'completed' %}
+              <span class="badge bg-success">Completed</span>
+            {% else %}
+              <span class="badge bg-secondary">Closed</span>
+            {% endif %}
+          </td>
+          <td class="text-muted">{{ inq.created_at|date:"M d, Y" }}</td>
+          <td class="text-end">
+            <form method="POST" action="{% url 'dashboard:bulk_order_update_status' inq.id %}" class="d-inline-flex align-items-center gap-1">
+              {% csrf_token %}
+              <select name="status" class="form-select form-select-sm py-1" style="font-size: 11px; width: 120px;">
+                <option value="pending" {% if inq.status == 'pending' %}selected{% endif %}>Pending</option>
+                <option value="contacted" {% if inq.status == 'contacted' %}selected{% endif %}>Contacted</option>
+                <option value="quoted" {% if inq.status == 'quoted' %}selected{% endif %}>Quote Sent</option>
+                <option value="completed" {% if inq.status == 'completed' %}selected{% endif %}>Completed</option>
+                <option value="cancelled" {% if inq.status == 'cancelled' %}selected{% endif %}>Closed</option>
+              </select>
+              <button type="submit" class="btn btn-outline-primary btn-sm py-1 px-2" title="Save status"><i class="fas fa-check"></i></button>
+            </form>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="8" class="text-center py-5 text-muted">
+            <i class="fas fa-building display-6 mb-2 opacity-50 d-block"></i>
+            No bulk order inquiries received yet.
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

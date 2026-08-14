@@ -37,6 +37,8 @@ class Order(models.Model):
 
     payment_method = models.CharField(max_length=30, choices=PAYMENT_METHOD_CHOICES, default='cod')
     payment_status = models.BooleanField(default=False)
+    is_confirmed = models.BooleanField(default=False, help_text="For COD order verification")
+    confirmed_at = models.DateTimeField(null=True, blank=True)
 
     # Razorpay Transaction Identifiers
     razorpay_order_id = models.CharField(max_length=100, blank=True, null=True)
@@ -61,7 +63,85 @@ class Order(models.Model):
         try:
             return self.STEPS_ORDER.index(self.status)
         except ValueError:
+            return -1 if self.status == 'cancelled' else 0
+
+    @property
+    def is_cancelled(self):
+        return self.status == 'cancelled'
+
+    @property
+    def is_cancellable(self):
+        return self.status in ['pending', 'confirmed']
+
+    @property
+    def progress_percentage(self):
+        if self.status == 'cancelled':
             return 0
+        total_steps = len(self.STEPS_ORDER) - 1
+        idx = max(0, self.current_step_index)
+        return int((idx / total_steps) * 100)
+
+    @property
+    def estimated_delivery_date(self):
+        from datetime import timedelta
+        return self.created_at + timedelta(days=3)
+
+    @property
+    def tracking_number(self):
+        clean_num = ''.join(c for c in self.order_number if c.isalnum())
+        return f"SPC-TRK-{clean_num[-8:]}"
+
+    @property
+    def tracking_steps(self):
+        steps_meta = [
+            {
+                'key': 'pending',
+                'title': 'Order Placed',
+                'desc': 'We have received your order.',
+                'icon': 'fa-clipboard-check',
+            },
+            {
+                'key': 'confirmed',
+                'title': 'Confirmed',
+                'desc': 'Order verified and confirmed.',
+                'icon': 'fa-circle-check',
+            },
+            {
+                'key': 'processing',
+                'title': 'Processing',
+                'desc': 'Items packed & ready for courier.',
+                'icon': 'fa-box-open',
+            },
+            {
+                'key': 'shipped',
+                'title': 'Shipped',
+                'desc': 'In transit with logistics partner.',
+                'icon': 'fa-truck-fast',
+            },
+            {
+                'key': 'out_for_delivery',
+                'title': 'Out for Delivery',
+                'desc': 'Agent out for delivery to your address.',
+                'icon': 'fa-motorcycle',
+            },
+            {
+                'key': 'delivered',
+                'title': 'Delivered',
+                'desc': 'Package delivered successfully.',
+                'icon': 'fa-house-circle-check',
+            },
+        ]
+        curr_idx = self.current_step_index
+        for idx, step in enumerate(steps_meta):
+            if self.is_cancelled:
+                step['state'] = 'cancelled'
+            elif idx < curr_idx:
+                step['state'] = 'completed'
+            elif idx == curr_idx:
+                step['state'] = 'active'
+            else:
+                step['state'] = 'upcoming'
+        return steps_meta
 
 
 class OrderItem(models.Model):
@@ -77,3 +157,34 @@ class OrderItem(models.Model):
     @property
     def total_price(self):
         return self.price * self.quantity
+
+
+class BulkOrderInquiry(models.Model):
+    STATUS_CHOICES = (
+        ('pending', 'Pending Review'),
+        ('contacted', 'Contacted / In Discussion'),
+        ('quoted', 'Quote Sent'),
+        ('completed', 'Completed'),
+        ('cancelled', 'Closed / Rejected'),
+    )
+
+    name = models.CharField(max_length=150)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    company_name = models.CharField(max_length=200, blank=True)
+    product_name = models.CharField(max_length=255)
+    quantity = models.PositiveIntegerField(default=10)
+    target_budget = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True, help_text="Total budget in INR")
+    delivery_pincode = models.CharField(max_length=20, blank=True)
+    message = models.TextField(blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name_plural = 'Bulk Order Inquiries'
+
+    def __str__(self):
+        return f"Bulk #{self.id} - {self.product_name} ({self.quantity} units) from {self.name}"
+

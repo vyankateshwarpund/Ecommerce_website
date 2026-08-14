@@ -28,4 +28,7 @@ urlpatterns = [
     path('analytics/', views.analytics_view, name='analytics'),
     path('export/<str:report_type>/', views.export_reports, name='export_reports'),
     path('activity-log/', views.activity_log_view, name='activity_log'),
+    path('bulk-orders/', views.bulk_orders_list, name='bulk_orders'),
+    path('bulk-orders/<int:inquiry_id>/status/', views.bulk_order_update_status, name='bulk_order_update_status'),
 ]
+

@@ -57,9 +57,9 @@
                     <div class="d-flex align-items-center gap-3 py-2">
                       <div class="bg-light p-2 rounded-3 border text-center" style="width: 70px; height: 70px; flex-shrink: 0;">
                         {% if item.product.main_image %}
-                          <img src="{{ item.product.main_image.url }}" alt="{{ item.product.name }}" class="img-fluid" style="max-height: 50px; object-fit: contain;">
+                          <img src="{{ item.product.main_image.url }}" alt="{{ item.product.name }}" class="img-fluid" style="max-height: 50px; object-fit: contain;" loading="lazy" decoding="async">
                         {% else %}
-                          <img src="{% static 'images/featured_laptop.jpg' %}" alt="{{ item.product.name }}" class="img-fluid" style="max-height: 50px; object-fit: contain;">
+                          <img src="{% static 'images/featured_laptop.jpg' %}" alt="{{ item.product.name }}" class="img-fluid" style="max-height: 50px; object-fit: contain;" loading="lazy" decoding="async">
                         {% endif %}
                       </div>
                       <div>

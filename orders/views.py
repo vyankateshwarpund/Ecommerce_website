@@ -9,7 +9,7 @@ from django.conf import settings
 from cart.cart import Cart
 from accounts.models import Address
 from products.models import Product
-from .models import Order, OrderItem
+from .models import Order, OrderItem, BulkOrderInquiry
 
 @login_required
 def checkout_view(request):
@@ -251,3 +251,114 @@ def order_history_view(request):
 def order_detail_view(request, order_number):
     order = get_object_or_404(Order, order_number=order_number, user=request.user)
     return render(request, 'orders/order_detail.html', {'order': order})
+
+
+@login_required
+def track_order_view(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number, user=request.user)
+    return render(request, 'orders/order_detail.html', {'order': order, 'tracking_focus': True})
+
+
+@login_required
+def cancel_order_view(request, order_number):
+    if request.method != 'POST':
+        return redirect('orders:order_detail', order_number=order_number)
+
+    order = get_object_or_404(Order, order_number=order_number, user=request.user)
+    if not order.is_cancellable:
+        messages.error(request, f'Order #{order.order_number} cannot be cancelled because it is already {order.get_status_display().lower()}.')
+        return redirect('orders:order_detail', order_number=order.order_number)
+
+    reason = request.POST.get('cancel_reason', 'Cancelled by customer')
+    order.status = 'cancelled'
+    order.save()
+
+    # Restore inventory stock
+    for item in order.items.all():
+        if item.product:
+            item.product.stock += item.quantity
+            item.product.save()
+
+    # Log in activity log
+    try:
+        from dashboard.models import ActivityLog
+        ActivityLog.objects.create(
+            user=request.user,
+            action=f"Order #{order.order_number} cancelled by customer",
+            details=f"Reason: {reason}"
+        )
+    except Exception:
+        pass
+
+    # Trigger In-App Notification
+    try:
+        from core.email_utils import notify_order_status_change
+        notify_order_status_change(order, 'cancelled')
+    except Exception:
+        pass
+
+    messages.info(request, f'Order #{order.order_number} has been cancelled successfully. If paid online, your refund will be processed within 5-7 business days.')
+    return redirect('orders:order_detail', order_number=order.order_number)
+
+
+@login_required
+def confirm_cod_order_view(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number, user=request.user)
+    if order.payment_method == 'cod' and not order.is_confirmed:
+        from django.utils import timezone
+        order.is_confirmed = True
+        order.confirmed_at = timezone.now()
+        if order.status == 'pending':
+            order.status = 'confirmed'
+        order.save()
+        messages.success(request, f'🎉 Thank you! Your Cash on Delivery order #{order.order_number} is now verified and confirmed.')
+    return redirect('orders:order_detail', order_number=order.order_number)
+
+
+def bulk_order_view(request):
+    if request.method == 'POST':
+        name = request.POST.get('name', '').strip()
+        email = request.POST.get('email', '').strip()
+        phone = request.POST.get('phone', '').strip()
+        company = request.POST.get('company_name', '').strip()
+        product = request.POST.get('product_name', '').strip()
+        qty = request.POST.get('quantity', '10')
+        budget = request.POST.get('target_budget', '')
+        pincode = request.POST.get('delivery_pincode', '').strip()
+        message = request.POST.get('message', '').strip()
+
+        if not (name and email and phone and product):
+            messages.error(request, 'Please fill in all required fields marked with *.')
+            return render(request, 'orders/bulk_order.html')
+
+        try:
+            qty_int = int(qty)
+        except ValueError:
+            qty_int = 10
+
+        from decimal import Decimal
+        budget_dec = None
+        if budget:
+            try:
+                budget_dec = Decimal(str(budget))
+            except Exception:
+                budget_dec = None
+
+        inquiry = BulkOrderInquiry.objects.create(
+            name=name,
+            email=email,
+            phone=phone,
+            company_name=company,
+            product_name=product,
+            quantity=qty_int,
+            target_budget=budget_dec,
+            delivery_pincode=pincode,
+            message=message,
+        )
+
+        messages.success(request, f'✅ Bulk inquiry received! Reference #{inquiry.id}. Our corporate sales team will contact you within 24 hours.')
+        return redirect('orders:bulk_order')
+
+    return render(request, 'orders/bulk_order.html')
+
+

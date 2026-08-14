@@ -142,9 +142,9 @@
               
               <div class="product-card-img-wrap text-center p-3">
                 {% if product.main_image %}
-                  <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="product-card-img img-fluid">
+                  <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="product-card-img img-fluid" loading="lazy" decoding="async">
                 {% else %}
-                  <img src="{% static 'images/featured_laptop.jpg' %}" alt="{{ product.name }}" class="product-card-img img-fluid">
+                  <img src="{% static 'images/featured_laptop.jpg' %}" alt="{{ product.name }}" class="product-card-img img-fluid" loading="lazy" decoding="async">
                 {% endif %}
 
                 <div class="product-quick-actions">
@@ -207,9 +207,9 @@
                     <div class="col-md-6 text-center">
                       <div class="p-3 bg-light rounded-4 border">
                         {% if product.main_image %}
-                          <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="img-fluid rounded-3" style="max-height:280px; object-fit:contain;">
+                          <img src="{{ product.main_image.url }}" alt="{{ product.name }}" class="img-fluid rounded-3" style="max-height:280px; object-fit:contain;" loading="lazy" decoding="async">
                         {% else %}
-                          <img src="{% static 'images/featured_laptop.jpg' %}" alt="{{ product.name }}" class="img-fluid rounded-3" style="max-height:280px; object-fit:contain;">
+                          <img src="{% static 'images/featured_laptop.jpg' %}" alt="{{ product.name }}" class="img-fluid rounded-3" style="max-height:280px; object-fit:contain;" loading="lazy" decoding="async">
                         {% endif %}
                       </div>
                     </div>

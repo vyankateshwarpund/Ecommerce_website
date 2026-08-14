@@ -19,8 +19,8 @@
     <div class="content">
       <p>Hello <strong>{{ order.full_name }}</strong>,</p>
       <p>Great news! Your package for Order <strong>#{{ order.order_number }}</strong> has been handed over to our courier partner and is on its way to your delivery location.</p>
-      <p><strong>Tracking Number:</strong> <span style="font-family: monospace; font-size: 16px; font-weight: bold; color: #2563eb;">SPC-{{ order.order_number }}</span></p>
-      <p><strong>Estimated Delivery:</strong> Tomorrow, by 2:00 PM</p>
+      <p><strong>Tracking Number:</strong> <span style="font-family: monospace; font-size: 16px; font-weight: bold; color: #2563eb;">{{ order.tracking_number }}</span></p>
+      <p><strong>Estimated Delivery:</strong> {{ order.estimated_delivery_date|date:"l, F d, Y" }} (By 8:00 PM)</p>
       <div style="text-align: center;">
         <a href="http://127.0.0.1:8000/orders/history/" class="btn">Track Shipment Live</a>
       </div>

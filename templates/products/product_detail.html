@@ -37,9 +37,9 @@
               {% endif %}
 
               {% if product.main_image %}
-                <img id="mainProductImage" src="{{ product.main_image.url }}" alt="{{ product.name }}" class="img-fluid main-preview-img" style="max-height: 400px; object-fit: contain;">
+                <img id="mainProductImage" src="{{ product.main_image.url }}" alt="{{ product.name }}" class="img-fluid main-preview-img" style="max-height: 400px; object-fit: contain;" fetchpriority="high" decoding="async">
               {% else %}
-                <img id="mainProductImage" src="{% static 'images/featured_laptop.jpg' %}" alt="{{ product.name }}" class="img-fluid main-preview-img" style="max-height: 400px; object-fit: contain;">
+                <img id="mainProductImage" src="{% static 'images/featured_laptop.jpg' %}" alt="{{ product.name }}" class="img-fluid main-preview-img" style="max-height: 400px; object-fit: contain;" fetchpriority="high" decoding="async">
               {% endif %}
 
               <div class="zoom-indicator position-absolute bottom-0 end-0 m-3 px-3 py-1 bg-dark bg-opacity-75 text-white rounded-pill small">
@@ -51,13 +51,13 @@
             <div class="d-flex align-items-center gap-3 overflow-auto py-2">
               {% if product.main_image %}
                 <div class="thumbnail-card active" onclick="switchMainImage('{{ product.main_image.url }}', this)">
-                  <img src="{{ product.main_image.url }}" alt="Main View" class="img-fluid" style="height: 70px; object-fit: contain;">
+                  <img src="{{ product.main_image.url }}" alt="Main View" class="img-fluid" style="height: 70px; object-fit: contain;" loading="lazy" decoding="async">
                 </div>
               {% endif %}
 
               {% for gallery_img in product.gallery_images.all %}
                 <div class="thumbnail-card" onclick="switchMainImage('{{ gallery_img.image.url }}', this)">
-                  <img src="{{ gallery_img.image.url }}" alt="{{ gallery_img.alt_text|default:'Product View' }}" class="img-fluid" style="height: 70px; object-fit: contain;">
+                  <img src="{{ gallery_img.image.url }}" alt="{{ gallery_img.alt_text|default:'Product View' }}" class="img-fluid" style="height: 70px; object-fit: contain;" loading="lazy" decoding="async">
                 </div>
               {% endfor %}
             </div>
@@ -160,7 +160,7 @@
               </div>
               <div>
                 <i class="fas fa-truck-fast text-info me-1"></i> Delivery: 
-                <strong class="text-dark">Expected by Tomorrow, 2 PM</strong>
+                <strong class="text-dark">Fast Dispatch (2–3 Business Days)</strong>
               </div>
             </div>
 
@@ -382,8 +382,12 @@ function checkPincode() {
   const pin = document.getElementById('pincodeCheckInput').value.trim();
   const res = document.getElementById('pincodeResult');
   if (pin.length === 6 && !isNaN(pin)) {
+    const deliveryDate = new Date();
+    deliveryDate.setDate(deliveryDate.getDate() + 3);
+    const dateStr = deliveryDate.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
     res.style.display = 'block';
-    res.innerHTML = '<i class="fas fa-circle-check me-1"></i> Delivery available to Pincode ' + pin + ' by Tomorrow, 2 PM. Cash on Delivery (COD) is Available!';
+    res.className = 'mt-2 small fw-bold text-success';
+    res.innerHTML = '<i class="fas fa-circle-check me-1"></i> Delivery available to Pincode ' + pin + ' by <strong>' + dateStr + ' (By 8:00 PM)</strong>. Cash on Delivery (COD) is Available!';
   } else {
     res.style.display = 'block';
     res.className = 'mt-2 small fw-bold text-danger';
