@@ -59,6 +59,22 @@ class Order(models.Model):
         return f"Order #{self.order_number} - {self.user.email}"
 
     @property
+    def full_name(self):
+        return self.shipping_name
+
+    @property
+    def address_line_1(self):
+        return self.shipping_address
+
+    @property
+    def city(self):
+        return self.shipping_city
+
+    @property
+    def pincode(self):
+        return self.shipping_pincode
+
+    @property
     def current_step_index(self):
         try:
             return self.STEPS_ORDER.index(self.status)

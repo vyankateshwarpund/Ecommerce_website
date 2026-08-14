@@ -12,7 +12,7 @@ def send_html_email(subject, template_name, context, recipient_list):
 
         msg = EmailMultiAlternatives(subject, text_content, from_email, recipient_list)
         msg.attach_alternative(html_content, "text/html")
-        msg.send(fail_silently=False)
+        msg.send(fail_silently=True)
         return True
     except Exception as e:
         print(f"Error sending email '{subject}': {e}")
