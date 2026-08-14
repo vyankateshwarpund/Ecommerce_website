@@ -4,6 +4,8 @@ from django.http import JsonResponse
 from django.contrib import messages
 from products.models import Product
 from .cart import Cart
+from dashboard.models import Coupon
+
 
 def cart_detail(request):
     cart = Cart(request)
@@ -11,7 +13,11 @@ def cart_detail(request):
     total_price = cart.get_total_price()
     savings = cart.get_total_savings()
     shipping_fee = 0 if total_price > 999 else (99 if total_price > 0 else 0)
-    grand_total = total_price + shipping_fee
+
+    # Coupon discount from session
+    coupon_discount = float(request.session.get('coupon_discount', 0))
+    coupon_code = request.session.get('coupon_code', '')
+    grand_total = max(0, total_price + shipping_fee - coupon_discount)
 
     context = {
         'cart': cart,
@@ -19,9 +25,54 @@ def cart_detail(request):
         'total_price': total_price,
         'savings': savings,
         'shipping_fee': shipping_fee,
+        'coupon_discount': coupon_discount,
+        'coupon_code': coupon_code,
         'grand_total': grand_total,
     }
     return render(request, 'cart/cart.html', context)
+
+
+@require_POST
+def apply_coupon(request):
+    code = request.POST.get('coupon_code', '').strip().upper()
+    cart = Cart(request)
+    total_price = cart.get_total_price()
+
+    if not code:
+        return JsonResponse({'status': 'error', 'message': 'Please enter a coupon code.'})
+
+    try:
+        coupon = Coupon.objects.get(code__iexact=code)
+    except Coupon.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': f'"{code}" is not a valid coupon code.'})
+
+    valid, reason = coupon.is_valid(order_amount=total_price)
+    if not valid:
+        # Clear any existing coupon from session
+        request.session.pop('coupon_code', None)
+        request.session.pop('coupon_discount', None)
+        return JsonResponse({'status': 'error', 'message': reason})
+
+    discount = coupon.calculate_discount(total_price)
+    request.session['coupon_code'] = coupon.code
+    request.session['coupon_discount'] = discount
+
+    return JsonResponse({
+        'status': 'success',
+        'message': f'Coupon applied! You saved ₹{discount:.0f} 🎉',
+        'coupon_code': coupon.code,
+        'discount': discount,
+        'discount_percentage': float(coupon.discount_percentage),
+    })
+
+
+@require_POST
+def remove_coupon(request):
+    request.session.pop('coupon_code', None)
+    request.session.pop('coupon_discount', None)
+    return JsonResponse({'status': 'success', 'message': 'Coupon removed.'})
+
+
 
 
 @require_POST

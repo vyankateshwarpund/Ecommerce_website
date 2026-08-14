@@ -120,13 +120,33 @@
           
           <h5 class="fw-bold text-dark mb-4 border-bottom pb-3">Order Summary</h5>
 
-          <!-- Promocode Form -->
+          <!-- Promo Code Form -->
           <div class="mb-4">
             <label class="form-label small fw-semibold text-muted">Have a Promo Code?</label>
-            <div class="input-group input-group-sm">
-              <input type="text" class="form-control" placeholder="Enter Coupon Code">
-              <button class="btn btn-primary-custom" type="button">Apply</button>
+
+            {% if coupon_code %}
+            <!-- Applied Coupon Banner -->
+            <div id="coupon-applied-banner" class="d-flex align-items-center justify-content-between bg-success-subtle border border-success rounded-3 px-3 py-2">
+              <div>
+                <i class="fas fa-tag text-success me-2"></i>
+                <span class="fw-bold text-success small">{{ coupon_code }}</span>
+                <span class="text-success small ms-1">applied!</span>
+              </div>
+              <button type="button" id="remove-coupon-btn" class="btn btn-sm btn-link text-danger p-0 ms-2" title="Remove coupon">
+                <i class="fas fa-xmark"></i>
+              </button>
             </div>
+            {% else %}
+            <!-- Coupon Input -->
+            <div id="coupon-input-group" class="input-group input-group-sm">
+              <input type="text" id="coupon-code-input" class="form-control text-uppercase" placeholder="Enter Coupon Code" maxlength="50" autocomplete="off">
+              <button id="apply-coupon-btn" class="btn btn-primary-custom" type="button">
+                <i class="fas fa-check me-1"></i>Apply
+              </button>
+            </div>
+            {% endif %}
+            <!-- Feedback message -->
+            <div id="coupon-feedback" class="mt-2 small fw-semibold" style="min-height:20px;"></div>
           </div>
 
           <!-- Price Breakdown -->
@@ -142,6 +162,13 @@
           </div>
           {% endif %}
 
+          <!-- Coupon Discount Row -->
+          <div id="coupon-discount-row" class="d-flex justify-content-between mb-2 text-success {% if not coupon_discount %}d-none{% endif %}"
+               {% if not coupon_discount %}style="display:none!important"{% endif %}>
+            <span><i class="fas fa-tag me-1"></i>Coupon Discount:</span>
+            <span class="fw-bold" id="coupon-discount-amount">- ₹{{ coupon_discount|floatformat:"0" }}</span>
+          </div>
+
           <div class="d-flex justify-content-between mb-2">
             <span class="text-muted">Shipping Fee:</span>
             {% if shipping_fee == 0 %}
@@ -156,7 +183,7 @@
               <h5 class="fw-bold text-dark mb-0">Total Amount</h5>
               <span class="small text-muted">(Includes GST)</span>
             </div>
-            <div class="fs-3 fw-bold text-primary">
+            <div class="fs-3 fw-bold text-primary" id="grand-total-display">
               ₹{{ grand_total|floatformat:"0" }}
             </div>
           </div>
@@ -166,13 +193,14 @@
           </a>
 
           <div class="text-center mt-3 text-muted small">
-            <i class="fas fa-shield-halved text-success me-1"></i> 100% Safe & Encrypted Checkout
+            <i class="fas fa-shield-halved text-success me-1"></i> 100% Safe &amp; Encrypted Checkout
           </div>
 
         </div>
       </div>
 
     </div>
+
     {% else %}
     <!-- EMPTY CART STATE -->
     <div class="bg-white rounded-5 border p-5 text-center my-4 shadow-sm">
@@ -187,4 +215,117 @@
 
   </div>
 </section>
+
+{% block extra_js %}
+<script>
+(function () {
+  const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content
+                 || document.querySelector('[name=csrfmiddlewaretoken]')?.value;
+
+  function setFeedback(msg, type) {
+    const el = document.getElementById('coupon-feedback');
+    if (!el) return;
+    el.textContent = msg;
+    el.className = 'mt-2 small fw-semibold ' + (type === 'success' ? 'text-success' : 'text-danger');
+  }
+
+  // Apply coupon button
+  const applyBtn = document.getElementById('apply-coupon-btn');
+  if (applyBtn) {
+    applyBtn.addEventListener('click', function () {
+      const input = document.getElementById('coupon-code-input');
+      const code = input ? input.value.trim() : '';
+      if (!code) { setFeedback('Please enter a coupon code.', 'error'); return; }
+
+      applyBtn.disabled = true;
+      applyBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Applying...';
+
+      fetch('{% url "cart:apply_coupon" %}', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'X-CSRFToken': csrfToken,
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        credentials: 'same-origin',
+        body: 'coupon_code=' + encodeURIComponent(code)
+      })
+      .then(r => r.json())
+      .then(data => {
+        applyBtn.disabled = false;
+        applyBtn.innerHTML = '<i class="fas fa-check me-1"></i>Apply';
+
+        if (data.status === 'success') {
+          setFeedback(data.message, 'success');
+
+          // Show coupon discount row
+          const discountRow = document.getElementById('coupon-discount-row');
+          const discountAmt = document.getElementById('coupon-discount-amount');
+          if (discountRow && discountAmt) {
+            discountAmt.textContent = '- ₹' + Math.round(data.discount);
+            discountRow.style.removeProperty('display');
+            discountRow.classList.remove('d-none');
+          }
+
+          // Swap input with applied banner
+          const inputGroup = document.getElementById('coupon-input-group');
+          if (inputGroup) {
+            inputGroup.outerHTML = `
+              <div id="coupon-applied-banner" class="d-flex align-items-center justify-content-between bg-success-subtle border border-success rounded-3 px-3 py-2">
+                <div>
+                  <i class="fas fa-tag text-success me-2"></i>
+                  <span class="fw-bold text-success small">${data.coupon_code}</span>
+                  <span class="text-success small ms-1">applied!</span>
+                </div>
+                <button type="button" id="remove-coupon-btn" class="btn btn-sm btn-link text-danger p-0 ms-2" title="Remove coupon">
+                  <i class="fas fa-xmark"></i>
+                </button>
+              </div>`;
+            attachRemoveBtn();
+          }
+
+          // Reload to refresh grand total properly
+          setTimeout(() => location.reload(), 1200);
+        } else {
+          setFeedback(data.message, 'error');
+        }
+      })
+      .catch(() => {
+        applyBtn.disabled = false;
+        applyBtn.innerHTML = '<i class="fas fa-check me-1"></i>Apply';
+        setFeedback('Something went wrong. Please try again.', 'error');
+      });
+    });
+
+    // Allow pressing Enter in coupon input
+    const input = document.getElementById('coupon-code-input');
+    if (input) {
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); applyBtn.click(); }
+      });
+    }
+  }
+
+  function attachRemoveBtn() {
+    const removeBtn = document.getElementById('remove-coupon-btn');
+    if (!removeBtn) return;
+    removeBtn.addEventListener('click', function () {
+      fetch('{% url "cart:remove_coupon" %}', {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': csrfToken,
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        credentials: 'same-origin'
+      })
+      .then(r => r.json())
+      .then(() => location.reload())
+      .catch(() => location.reload());
+    });
+  }
+
+  // Attach to existing remove button (when page loads with coupon already in session)
+  attachRemoveBtn();
+})();
+</script>
 {% endblock %}
