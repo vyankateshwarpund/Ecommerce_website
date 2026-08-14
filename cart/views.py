@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
@@ -12,12 +13,16 @@ def cart_detail(request):
     total_mrp = cart.get_total_mrp()
     total_price = cart.get_total_price()
     savings = cart.get_total_savings()
-    shipping_fee = 0 if total_price > 999 else (99 if total_price > 0 else 0)
+    shipping_fee = Decimal('0.00') if total_price > 999 else (Decimal('99.00') if total_price > 0 else Decimal('0.00'))
 
     # Coupon discount from session
-    coupon_discount = float(request.session.get('coupon_discount', 0))
+    try:
+        coupon_discount = Decimal(str(request.session.get('coupon_discount', '0')))
+    except Exception:
+        coupon_discount = Decimal('0.00')
     coupon_code = request.session.get('coupon_code', '')
-    grand_total = max(0, total_price + shipping_fee - coupon_discount)
+
+    grand_total = max(Decimal('0.00'), total_price + shipping_fee - coupon_discount)
 
     context = {
         'cart': cart,
@@ -55,15 +60,16 @@ def apply_coupon(request):
 
     discount = coupon.calculate_discount(total_price)
     request.session['coupon_code'] = coupon.code
-    request.session['coupon_discount'] = discount
+    request.session['coupon_discount'] = str(discount)
 
     return JsonResponse({
         'status': 'success',
         'message': f'Coupon applied! You saved ₹{discount:.0f} 🎉',
         'coupon_code': coupon.code,
-        'discount': discount,
+        'discount': float(discount),
         'discount_percentage': float(coupon.discount_percentage),
     })
+
 
 
 @require_POST

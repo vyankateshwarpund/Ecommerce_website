@@ -35,6 +35,7 @@ class Coupon(models.Model):
 
     def is_valid(self, order_amount=0):
         """Check if coupon is currently valid."""
+        from decimal import Decimal
         now = timezone.now()
         if not self.is_active:
             return False, 'This coupon is no longer active.'
@@ -44,11 +45,14 @@ class Coupon(models.Model):
             return False, 'This coupon has expired.'
         if self.usage_limit > 0 and self.times_used >= self.usage_limit:
             return False, 'This coupon has reached its usage limit.'
-        if order_amount < float(self.min_order_amount):
+        if Decimal(str(order_amount)) < self.min_order_amount:
             return False, f'Minimum order amount ₹{self.min_order_amount:.0f} required for this coupon.'
         return True, 'Valid'
 
     def calculate_discount(self, order_amount):
         """Calculate discount amount capped at max_discount_amount."""
-        discount = (float(self.discount_percentage) / 100) * float(order_amount)
-        return min(discount, float(self.max_discount_amount))
+        from decimal import Decimal
+        order_amount_dec = Decimal(str(order_amount))
+        discount = (self.discount_percentage / Decimal('100.00')) * order_amount_dec
+        return min(discount, self.max_discount_amount)
+

@@ -39,9 +39,15 @@ def checkout_view(request):
 
     default_address = addresses.filter(is_default=True).first() or addresses.first()
     
+    from decimal import Decimal
     total_price = cart.get_total_price()
-    shipping_fee = 0 if total_price > 999 else (99 if total_price > 0 else 0)
-    grand_total = total_price + shipping_fee
+    shipping_fee = Decimal('0.00') if total_price > 999 else (Decimal('99.00') if total_price > 0 else Decimal('0.00'))
+    try:
+        coupon_discount = Decimal(str(request.session.get('coupon_discount', '0')))
+    except Exception:
+        coupon_discount = Decimal('0.00')
+    coupon_code = request.session.get('coupon_code', '')
+    grand_total = max(Decimal('0.00'), total_price + shipping_fee - coupon_discount)
 
     context = {
         'cart': cart,
@@ -49,6 +55,8 @@ def checkout_view(request):
         'default_address': default_address,
         'total_price': total_price,
         'shipping_fee': shipping_fee,
+        'coupon_discount': coupon_discount,
+        'coupon_code': coupon_code,
         'grand_total': grand_total,
     }
     return render(request, 'orders/checkout.html', context)
@@ -114,9 +122,15 @@ def place_order_view(request):
                 is_default=not Address.objects.filter(user=request.user).exists()
             )
 
+    from decimal import Decimal
     total_price = cart.get_total_price()
-    shipping_fee = 0 if total_price > 999 else (99 if total_price > 0 else 0)
-    grand_total = total_price + shipping_fee
+    shipping_fee = Decimal('0.00') if total_price > 999 else (Decimal('99.00') if total_price > 0 else Decimal('0.00'))
+    try:
+        coupon_discount = Decimal(str(request.session.get('coupon_discount', '0')))
+    except Exception:
+        coupon_discount = Decimal('0.00')
+    coupon_code = request.session.get('coupon_code', '')
+    grand_total = max(Decimal('0.00'), total_price + shipping_fee - coupon_discount)
 
     order_number = f"SPC-{datetime.now().strftime('%Y%m%d')}-{uuid.uuid4().hex[:6].upper()}"
 
@@ -135,6 +149,19 @@ def place_order_view(request):
         shipping_fee=shipping_fee,
         status='pending'
     )
+
+    # Track coupon usage
+    if coupon_code:
+        try:
+            from dashboard.models import Coupon
+            c = Coupon.objects.filter(code__iexact=coupon_code).first()
+            if c:
+                c.times_used += 1
+                c.save()
+        except Exception:
+            pass
+        request.session.pop('coupon_code', None)
+        request.session.pop('coupon_discount', None)
 
     for item in cart:
         OrderItem.objects.create(

@@ -382,16 +382,48 @@ def coupons_list(request):
     coupons = Coupon.objects.all()
 
     if request.method == 'POST':
-        code = request.POST.get('code').upper().strip()
+        code = request.POST.get('code', '').upper().strip()
         discount = request.POST.get('discount')
         min_order = request.POST.get('min_order', 999)
         max_discount = request.POST.get('max_discount', 500)
+        valid_to = request.POST.get('valid_to', '').strip()
+        usage_limit = request.POST.get('usage_limit', 0)
+
+        if not code:
+            messages.error(request, 'Please provide a valid coupon code.')
+            return redirect('dashboard:coupons')
+
+        # Prevent duplicate code crash (UNIQUE constraint)
+        if Coupon.objects.filter(code__iexact=code).exists():
+            messages.error(request, f'Coupon code "{code}" already exists! Please choose a unique code.')
+            return redirect('dashboard:coupons')
+
+        expiry_datetime = None
+        if valid_to:
+            try:
+                from django.utils.dateparse import parse_datetime, parse_date
+                from datetime import datetime, time
+                parsed = parse_datetime(valid_to)
+                if not parsed:
+                    pdate = parse_date(valid_to)
+                    if pdate:
+                        parsed = timezone.make_aware(datetime.combine(pdate, time.max))
+                expiry_datetime = parsed
+            except Exception:
+                expiry_datetime = None
+
+        try:
+            usage_limit_int = int(usage_limit) if usage_limit else 0
+        except ValueError:
+            usage_limit_int = 0
 
         coupon = Coupon.objects.create(
             code=code,
             discount_percentage=discount,
             min_order_amount=min_order,
             max_discount_amount=max_discount,
+            valid_to=expiry_datetime,
+            usage_limit=usage_limit_int,
             is_active=True
         )
 
@@ -405,6 +437,31 @@ def coupons_list(request):
         return redirect('dashboard:coupons')
 
     return render(request, 'dashboard/coupons.html', {'coupons': coupons})
+
+
+@staff_member_required
+def coupon_toggle(request, coupon_id):
+    coupon = get_object_or_404(Coupon, id=coupon_id)
+    coupon.is_active = not coupon.is_active
+    coupon.save()
+    status_str = "activated" if coupon.is_active else "deactivated"
+    messages.success(request, f'Coupon "{coupon.code}" has been {status_str}.')
+    return redirect('dashboard:coupons')
+
+
+@staff_member_required
+def coupon_delete(request, coupon_id):
+    coupon = get_object_or_404(Coupon, id=coupon_id)
+    code = coupon.code
+    coupon.delete()
+    ActivityLog.objects.create(
+        user=request.user,
+        action=f"Deleted coupon '{code}'",
+        details="Coupon permanently deleted by administrator."
+    )
+    messages.info(request, f'Coupon "{code}" has been deleted.')
+    return redirect('dashboard:coupons')
+
 
 
 @staff_member_required
